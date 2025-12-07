@@ -11,7 +11,8 @@ transformers==4.35.0
 librosa==0.10.1
 soundfile==0.12.1
 pydub==0.25.1
-webrtcvad==2.0.10
+# webrtcvad==2.0.10  # Requires C++ compiler - REMOVED
+# Alternative: Using silero-vad (pure PyTorch, no compilation needed)
 noisereduce==3.0.0
 
 # Feature Extraction

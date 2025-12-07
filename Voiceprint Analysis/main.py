@@ -2,11 +2,40 @@
 Main Entry Point for Voiceprint Analysis System
 """
 import sys
+import os
 import argparse
 from pathlib import Path
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent))
+
+# Fix Windows symlink issue for HuggingFace models
+if sys.platform == 'win32':
+    import shutil
+
+    # Set environment variable
+    os.environ['HF_HUB_DISABLE_SYMLINKS_WARNING'] = '1'
+
+    # Monkey-patch Path.symlink_to to use copy instead
+    original_symlink = Path.symlink_to
+
+    def copy_instead_of_symlink(self, target, target_is_directory=False):
+        """Copy file instead of creating symlink on Windows"""
+        try:
+            return original_symlink(self, target, target_is_directory)
+        except OSError as e:
+            if "WinError 1314" in str(e) or "privilege" in str(e).lower():
+                # Copy instead of symlink
+                if target_is_directory or Path(target).is_dir():
+                    shutil.copytree(target, self, dirs_exist_ok=True)
+                else:
+                    self.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(target, self)
+                return
+            else:
+                raise
+
+    Path.symlink_to = copy_instead_of_symlink
 
 
 def run_api_server():

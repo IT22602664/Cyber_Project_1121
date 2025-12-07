@@ -7,7 +7,7 @@ import torchaudio
 import numpy as np
 import librosa
 import soundfile as sf
-import webrtcvad
+# import webrtcvad  # Removed - requires C++ compiler
 import noisereduce as nr
 from typing import Tuple, List, Optional
 from pathlib import Path
@@ -27,9 +27,8 @@ class AudioPreprocessor:
         self.vad_enabled = self.config.get('audio.vad_enabled', True)
         self.noise_reduction = self.config.get('audio.noise_reduction', True)
         
-        # Initialize VAD
-        if self.vad_enabled:
-            self.vad = webrtcvad.Vad(2)  # Aggressiveness level 2 (0-3)
+        # VAD settings (using energy-based VAD instead of webrtcvad)
+        self.vad_threshold = self.config.get('audio.vad_threshold', 0.01)  # Energy threshold
     
     def load_audio(self, audio_path: str) -> Tuple[np.ndarray, int]:
         """
@@ -87,39 +86,38 @@ class AudioPreprocessor:
     
     def apply_vad(self, audio: np.ndarray, sample_rate: int) -> np.ndarray:
         """
-        Apply Voice Activity Detection to remove silence
-        
+        Apply Voice Activity Detection to remove silence using energy-based method
+
         Args:
             audio: Audio array
             sample_rate: Sample rate
-            
+
         Returns:
             Audio with silence removed
         """
         if not self.vad_enabled:
             return audio
-        
-        # Convert to 16-bit PCM
-        audio_int16 = (audio * 32768).astype(np.int16)
-        
-        # Frame duration in ms (10, 20, or 30 ms for WebRTC VAD)
+
+        # Energy-based VAD (no C++ compilation required)
+        # Frame duration in ms
         frame_duration_ms = 30
         frame_length = int(sample_rate * frame_duration_ms / 1000)
-        
-        # Process frames
+
+        # Calculate energy for each frame
         voiced_frames = []
-        for i in range(0, len(audio_int16) - frame_length, frame_length):
-            frame = audio_int16[i:i + frame_length]
-            
-            # VAD requires exactly frame_length samples
-            if len(frame) == frame_length:
-                is_speech = self.vad.is_speech(frame.tobytes(), sample_rate)
-                if is_speech:
-                    voiced_frames.append(audio[i:i + frame_length])
-        
+        for i in range(0, len(audio) - frame_length, frame_length):
+            frame = audio[i:i + frame_length]
+
+            # Calculate frame energy (RMS)
+            energy = np.sqrt(np.mean(frame ** 2))
+
+            # Keep frame if energy is above threshold
+            if energy > self.vad_threshold:
+                voiced_frames.append(frame)
+
         if len(voiced_frames) == 0:
             return audio  # Return original if no speech detected
-        
+
         return np.concatenate(voiced_frames)
     
     def reduce_noise(self, audio: np.ndarray, sample_rate: int) -> np.ndarray:

@@ -33,16 +33,37 @@ class SpeakerEmbeddingModel:
     def _load_model(self):
         """Load pre-trained ECAPA-TDNN model"""
         try:
+            # Disable symlinks for Windows compatibility
+            import os
+            os.environ['HF_HUB_DISABLE_SYMLINKS_WARNING'] = '1'
+
+            # Create savedir if it doesn't exist
+            savedir = Path("models/pretrained/ecapa_tdnn")
+            savedir.mkdir(parents=True, exist_ok=True)
+
             # Load pre-trained ECAPA-TDNN from SpeechBrain
             # This model is trained on VoxCeleb and produces 192-dim embeddings
+            # Note: On Windows without admin/dev mode, files will be copied instead of symlinked
             self.model = EncoderClassifier.from_hparams(
                 source="speechbrain/spkrec-ecapa-voxceleb",
-                savedir="models/pretrained/ecapa_tdnn",
+                savedir=str(savedir),
                 run_opts={"device": str(self.device)}
             )
-            
+
             print(f"✓ ECAPA-TDNN model loaded successfully on {self.device}")
-            
+
+        except OSError as e:
+            if "WinError 1314" in str(e):
+                # Symlink permission error on Windows
+                raise RuntimeError(
+                    "Failed to load model due to Windows symlink permissions. "
+                    "Please either:\n"
+                    "1. Run as Administrator, OR\n"
+                    "2. Enable Developer Mode in Windows Settings > Update & Security > For developers\n"
+                    f"Original error: {str(e)}"
+                )
+            else:
+                raise RuntimeError(f"Failed to load ECAPA-TDNN model: {str(e)}")
         except Exception as e:
             raise RuntimeError(f"Failed to load ECAPA-TDNN model: {str(e)}")
     

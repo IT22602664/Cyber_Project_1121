@@ -15,6 +15,7 @@ audio:
   min_duration: 1.0     # minimum audio duration
   max_duration: 10.0    # maximum audio duration
   vad_enabled: true     # Voice Activity Detection
+  vad_threshold: 0.01   # Energy threshold for VAD (0.01 = 1% of max amplitude)
   noise_reduction: true
   
 # Speaker Verification
