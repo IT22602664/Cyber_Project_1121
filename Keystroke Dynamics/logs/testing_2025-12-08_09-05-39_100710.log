@@ -1,0 +1,267 @@
+2025-12-08 09:05:39.104 | INFO     | src.config_loader:load_config:62 - Loading configuration from: config.yaml
+2025-12-08 09:05:39.128 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models
+2025-12-08 09:05:39.129 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/checkpoints
+2025-12-08 09:05:39.130 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/pretrained
+2025-12-08 09:05:39.131 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/embeddings
+2025-12-08 09:05:39.134 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: logs
+2025-12-08 09:05:39.144 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: temp
+2025-12-08 09:05:39.145 | INFO     | src.config_loader:load_config:74 - Configuration loaded successfully
+2025-12-08 09:05:39.148 | INFO     | test:__init__:33 - Using device: cpu
+2025-12-08 09:05:39.151 | INFO     | src.keystroke_preprocessing:__init__:34 - KeystrokePreprocessor initialized
+2025-12-08 09:05:39.151 | INFO     | src.anomaly_detection:__init__:56 - AnomalyDetector initialized with method: isolation_forest
+2025-12-08 09:05:39.200 | INFO     | test:load_model:46 - Loading model from: models/checkpoints\best_model.pth
+2025-12-08 09:05:39.222 | INFO     | test:run_comprehensive_test:191 - Running comprehensive tests...
+2025-12-08 09:05:39.225 | INFO     | test:load_test_data:56 - Loading test dataset...
+2025-12-08 09:05:39.227 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:46 - Loading DSL dataset from: Dataset\DSL-StrongPasswordData-Original_Dataset.xls
+2025-12-08 09:05:41.044 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:59 - Loaded dataset: 20400 samples, 34 features
+2025-12-08 09:05:41.055 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:60 - Subjects: 51
+2025-12-08 09:05:41.059 | INFO     | src.keystroke_preprocessing:split_by_subject:311 - Splitting dataset by subject...
+2025-12-08 09:05:41.093 | INFO     | src.keystroke_preprocessing:split_by_subject:331 - Split: Train=12000 (30 subjects), Val=4000 (10 subjects), Test=4400 (11 subjects)
+2025-12-08 09:05:41.095 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:268 - Running preprocessing pipeline...
+2025-12-08 09:05:41.108 | INFO     | src.keystroke_preprocessing:extract_timing_features:83 - Extracting timing features...
+2025-12-08 09:05:41.118 | INFO     | src.keystroke_preprocessing:extract_timing_features:112 - Extracted 31 timing features
+2025-12-08 09:05:41.125 | INFO     | src.keystroke_preprocessing:extract_timing_features:113 - Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 09:05:41.131 | INFO     | src.keystroke_preprocessing:handle_outliers:197 - Handling outliers...
+2025-12-08 09:05:41.179 | INFO     | src.keystroke_preprocessing:handle_outliers:205 - Clipped 1631 outlier values
+2025-12-08 09:05:41.194 | INFO     | src.keystroke_preprocessing:compute_statistical_features:131 - Computing statistical features...
+2025-12-08 09:05:41.242 | INFO     | src.keystroke_preprocessing:compute_statistical_features:156 - Added 7 statistical features
+2025-12-08 09:05:41.246 | WARNING  | src.keystroke_preprocessing:normalize_features:178 - Scaler not fitted, fitting now...
+2025-12-08 09:05:41.306 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:293 - Preprocessing complete: torch.Size([4400, 38])
+2025-12-08 09:05:41.307 | INFO     | test:load_test_data:78 - Test data loaded: torch.Size([4400, 38])
+2025-12-08 09:05:41.323 | INFO     | src.keystroke_embedding:__init__:69 - KeystrokeEmbeddingModel initialized: 38 -> 128
+2025-12-08 09:05:41.331 | INFO     | src.keystroke_embedding:__init__:70 - Architecture: [256, 512, 256, 128]
+2025-12-08 09:05:41.351 | INFO     | test:run_comprehensive_test:206 - Model loaded successfully
+2025-12-08 09:05:41.353 | INFO     | test:evaluate_verification:84 - Evaluating verification performance...
+2025-12-08 09:05:41.355 | INFO     | src.keystroke_verification:__init__:36 - KeystrokeVerifier initialized
+2025-12-08 09:05:41.367 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s012
+2025-12-08 09:05:41.369 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.371 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.373 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.382 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.385 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.387 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.391 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.393 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.409 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.412 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.423 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.426 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.429 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.438 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.441 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.456 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.471 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.487 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.494 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.497 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.503 | WARNING  | src.keystroke_verification:verify_user:97 - User s012 not enrolled
+2025-12-08 09:05:41.512 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s015
+2025-12-08 09:05:41.525 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.528 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.529 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.530 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.530 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.531 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.538 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.541 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.543 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.544 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.545 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.546 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.548 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.552 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.554 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.558 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.559 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.560 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.561 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.563 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.563 | WARNING  | src.keystroke_verification:verify_user:97 - User s015 not enrolled
+2025-12-08 09:05:41.564 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s019
+2025-12-08 09:05:41.564 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.571 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.573 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.575 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.576 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.577 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.578 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.578 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.580 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.581 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.587 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.591 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.594 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.596 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.598 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.607 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.608 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.615 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.628 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.641 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.645 | WARNING  | src.keystroke_verification:verify_user:97 - User s019 not enrolled
+2025-12-08 09:05:41.647 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s020
+2025-12-08 09:05:41.648 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.655 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.659 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.661 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.663 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.664 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.665 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.666 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.674 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.674 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.675 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.678 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.678 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.680 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.680 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.682 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.688 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.691 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.693 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.695 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.696 | WARNING  | src.keystroke_verification:verify_user:97 - User s020 not enrolled
+2025-12-08 09:05:41.698 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s025
+2025-12-08 09:05:41.703 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.705 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.707 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.709 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.711 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.712 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.712 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.713 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.713 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.714 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.714 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.722 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.725 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.728 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.728 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.731 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.741 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.746 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.746 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.748 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.757 | WARNING  | src.keystroke_verification:verify_user:97 - User s025 not enrolled
+2025-12-08 09:05:41.758 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s026
+2025-12-08 09:05:41.759 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.762 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.764 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.764 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.765 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.765 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.771 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.773 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.775 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.776 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.777 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.779 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.779 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.782 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.788 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.791 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.792 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.795 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.795 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.797 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.797 | WARNING  | src.keystroke_verification:verify_user:97 - User s026 not enrolled
+2025-12-08 09:05:41.804 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s037
+2025-12-08 09:05:41.806 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.810 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.811 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.811 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.812 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.814 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.820 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.823 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.826 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.826 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.828 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.829 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.829 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.831 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.832 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.837 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.839 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.841 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.843 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.844 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.844 | WARNING  | src.keystroke_verification:verify_user:97 - User s037 not enrolled
+2025-12-08 09:05:41.846 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s040
+2025-12-08 09:05:41.848 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.848 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.849 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.855 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.857 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.858 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.860 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.863 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.864 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.864 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.869 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.873 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.876 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.878 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.879 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.881 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.888 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.892 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.893 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.894 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.894 | WARNING  | src.keystroke_verification:verify_user:97 - User s040 not enrolled
+2025-12-08 09:05:41.896 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s044
+2025-12-08 09:05:41.897 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.898 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.902 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.906 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.908 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.910 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.912 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.913 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.913 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.914 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.914 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.920 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.924 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.927 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.928 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.929 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.930 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.941 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.942 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.944 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.946 | WARNING  | src.keystroke_verification:verify_user:97 - User s044 not enrolled
+2025-12-08 09:05:41.948 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s049
+2025-12-08 09:05:41.954 | WARNING  | src.keystroke_verification:enroll_user:52 - Insufficient samples for enrollment: 10
+2025-12-08 09:05:41.957 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.957 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.957 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.958 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.959 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.959 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.959 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.960 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.962 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.962 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.963 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.964 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.965 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.970 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.974 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.976 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.979 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.980 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.982 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:41.990 | WARNING  | src.keystroke_verification:verify_user:97 - User s049 not enrolled
+2025-12-08 09:05:42.043 | INFO     | src.keystroke_verification:compute_eer:340 - EER: 1.0000, Optimal Threshold: 0.5000
+2025-12-08 09:05:42.044 | INFO     | test:evaluate_verification:130 - Equal Error Rate (EER): 1.0000 (100.00%)
+2025-12-08 09:05:42.044 | INFO     | test:evaluate_verification:131 - Optimal Threshold: 0.5000
+2025-12-08 09:05:42.606 | INFO     | test:plot_roc_curve:168 - ROC curve saved: logs\roc_curve.png
+2025-12-08 09:05:42.676 | INFO     | test:evaluate_anomaly_detection:173 - Evaluating anomaly detection...
+2025-12-08 09:05:42.711 | INFO     | src.anomaly_detection:fit:66 - Fitting anomaly detector on 100 samples
+2025-12-08 09:05:42.953 | INFO     | src.anomaly_detection:fit:84 - Anomaly detector fitted successfully
+2025-12-08 09:05:42.962 | INFO     | src.anomaly_detection:get_anomaly_report:269 - Anomaly Report: 6/100 anomalies (6.0%)
+2025-12-08 09:05:42.962 | INFO     | test:evaluate_anomaly_detection:185 - Anomaly Detection Report: {'total_samples': 100, 'anomaly_count': 6, 'normal_count': 94, 'anomaly_rate': 0.06, 'mean_score': 0.7943854717973204, 'min_score': 0.0, 'max_score': 0.9999999522919695, 'std_score': 0.16285994839145385}
+2025-12-08 09:05:42.965 | INFO     | test:generate_test_report:254 - Test report saved: logs\test_report.txt
+2025-12-08 09:05:42.966 | INFO     | test:run_comprehensive_test:219 - Comprehensive testing completed!
+2025-12-08 09:05:42.968 | INFO     | test:main:272 - Testing script completed successfully!

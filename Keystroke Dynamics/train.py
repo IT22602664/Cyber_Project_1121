@@ -200,7 +200,7 @@ class KeystrokeTrainer:
         batch_size = embeddings.size(0)
 
         # Simple triplet mining: for each anchor, find positive and negative
-        loss = 0
+        loss = torch.tensor(0.0, device=self.device, requires_grad=True)
         count = 0
 
         for i in range(batch_size):
@@ -220,18 +220,22 @@ class KeystrokeTrainer:
                     negative = embeddings[neg_idx]
 
                     # Compute triplet loss
-                    loss += self.criterion(anchor.unsqueeze(0),
-                                         positive.unsqueeze(0),
-                                         negative.unsqueeze(0))
+                    triplet_loss = self.criterion(anchor.unsqueeze(0),
+                                                 positive.unsqueeze(0),
+                                                 negative.unsqueeze(0))
+                    loss = loss + triplet_loss
                     count += 1
 
-        return loss / max(count, 1)
+        if count > 0:
+            return loss / count
+        else:
+            return loss
 
     def compute_contrastive_loss(self, embeddings, labels):
         """Compute contrastive loss"""
         batch_size = embeddings.size(0)
 
-        loss = 0
+        loss = torch.tensor(0.0, device=self.device, requires_grad=True)
         count = 0
 
         for i in range(batch_size):
@@ -240,10 +244,14 @@ class KeystrokeTrainer:
                 emb2 = embeddings[j].unsqueeze(0)
                 label = (labels[i] == labels[j]).float().unsqueeze(0)
 
-                loss += self.criterion(emb1, emb2, label)
+                contrastive_loss = self.criterion(emb1, emb2, label)
+                loss = loss + contrastive_loss
                 count += 1
 
-        return loss / max(count, 1)
+        if count > 0:
+            return loss / count
+        else:
+            return loss
 
     def validate(self):
         """Validate model"""

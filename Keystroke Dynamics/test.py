@@ -97,29 +97,31 @@ class KeystrokeTester:
             # Get subject's data
             subject_mask = test_df['subject'] == subject
             subject_indices = np.where(subject_mask.values)[0]
-            
-            if len(subject_indices) < 20:
+
+            # Need at least 100 samples: 50 for enrollment + 50 for testing
+            if len(subject_indices) < 100:
                 continue
-            
+
             # Split into enrollment and verification
-            enroll_indices = subject_indices[:10]
-            verify_indices = subject_indices[10:20]
-            
+            # Use 50 samples for enrollment (minimum required)
+            enroll_indices = subject_indices[:50]
+            verify_indices = subject_indices[50:100]
+
             # Enroll user
             enroll_samples = X_test[enroll_indices]
             self.verifier.enroll_user(subject, enroll_samples)
             
-            # Genuine verification
-            for idx in verify_indices:
+            # Genuine verification (test 25 samples from this user)
+            for idx in verify_indices[:25]:
                 result = self.verifier.verify_user(subject, X_test[idx])
                 genuine_scores.append(result['confidence'])
-            
-            # Impostor verification (other subjects)
+
+            # Impostor verification (test samples from other subjects)
             impostor_subjects = [s for s in subjects if s != subject][:5]
             for imp_subject in impostor_subjects:
                 imp_mask = test_df['subject'] == imp_subject
-                imp_indices = np.where(imp_mask.values)[0][:2]
-                
+                imp_indices = np.where(imp_mask.values)[0][:5]  # 5 samples per impostor
+
                 for idx in imp_indices:
                     result = self.verifier.verify_user(subject, X_test[idx])
                     impostor_scores.append(result['confidence'])

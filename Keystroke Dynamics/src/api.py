@@ -86,6 +86,15 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Add CORS middleware (must be added before startup)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Will be configured from config in startup
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Global variables
 config = None
 model = None
@@ -98,21 +107,11 @@ anomaly_detector = None
 async def startup_event():
     """Initialize components on startup"""
     global config, model, verifier, preprocessor, anomaly_detector
-    
+
     logger.info("Starting Keystroke Dynamics API...")
-    
+
     # Load configuration
     config = load_config('config.yaml')
-    
-    # Add CORS middleware
-    if config.api.cors_enabled:
-        app.add_middleware(
-            CORSMiddleware,
-            allow_origins=config.api.allowed_origins,
-            allow_credentials=True,
-            allow_methods=["*"],
-            allow_headers=["*"],
-        )
     
     # Initialize preprocessor
     preprocessor = KeystrokePreprocessor(config)
@@ -122,10 +121,10 @@ async def startup_event():
     
     # Load model
     try:
-        # Determine input dimension (will be set after first data load)
-        # For now, use a placeholder
-        input_dim = 31  # DSL dataset has 31 timing features
-        
+        # Input dimension: 31 timing features + 7 statistical features = 38
+        # This MUST match the training pipeline
+        input_dim = 38  # 31 timing + 7 statistical features
+
         model = KeystrokeEmbeddingModel(input_dim, config)
         
         # Try to load checkpoint

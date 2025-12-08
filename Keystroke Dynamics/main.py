@@ -57,26 +57,27 @@ def run_api(config):
 def run_demo(config):
     """Run interactive demo"""
     logger.info("Starting interactive demo...")
-    
+
     import torch
     import numpy as np
     from src.keystroke_preprocessing import KeystrokePreprocessor
     from src.keystroke_embedding import KeystrokeEmbeddingModel
     from src.keystroke_verification import KeystrokeVerifier
-    
+
     # Load dataset
     preprocessor = KeystrokePreprocessor(config)
     dataset_path = os.path.join('Dataset', 'DSL-StrongPasswordData-Original_Dataset.xls')
-    
+
     try:
         df = preprocessor.load_dsl_dataset(dataset_path)
     except:
-        dataset_path = os.path.join('Keystroke Dynamics', 'Dataset', 
+        dataset_path = os.path.join('Keystroke Dynamics', 'Dataset',
                                    'DSL-StrongPasswordData-Original_Dataset.xls')
         df = preprocessor.load_dsl_dataset(dataset_path)
-    
-    # Preprocess
+
+    # Preprocess - MUST match training pipeline (includes statistical features)
     X, y, _ = preprocessor.extract_timing_features(df)
+    X = preprocessor.compute_statistical_features(X)  # Add statistical features (7 more)
     X = preprocessor.normalize_features(X, fit=True)
     X_tensor = torch.FloatTensor(X)
     

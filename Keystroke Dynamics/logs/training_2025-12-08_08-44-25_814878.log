@@ -1,0 +1,84 @@
+2025-12-08 08:44:25.814 | INFO     | src.config_loader:load_config:62 - Loading configuration from: config.yaml
+2025-12-08 08:44:25.866 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models
+2025-12-08 08:44:25.866 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/checkpoints
+2025-12-08 08:44:25.868 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/pretrained
+2025-12-08 08:44:25.868 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/embeddings
+2025-12-08 08:44:25.868 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: logs
+2025-12-08 08:44:25.870 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: temp
+2025-12-08 08:44:25.870 | INFO     | src.config_loader:load_config:74 - Configuration loaded successfully
+2025-12-08 08:44:25.870 | INFO     | train:__init__:35 - Using device: cpu
+2025-12-08 08:44:25.872 | INFO     | src.keystroke_preprocessing:__init__:34 - KeystrokePreprocessor initialized
+2025-12-08 08:44:25.872 | INFO     | train:load_data:51 - Loading dataset...
+2025-12-08 08:44:25.872 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:46 - Loading DSL dataset from: Dataset\DSL-StrongPasswordData-Original_Dataset.xls
+2025-12-08 08:44:28.765 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:59 - Loaded dataset: 20400 samples, 34 features
+2025-12-08 08:44:28.767 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:60 - Subjects: 51
+2025-12-08 08:44:28.767 | INFO     | src.keystroke_preprocessing:split_by_subject:311 - Splitting dataset by subject...
+2025-12-08 08:44:28.784 | INFO     | src.keystroke_preprocessing:split_by_subject:331 - Split: Train=12000 (30 subjects), Val=4000 (10 subjects), Test=4400 (11 subjects)
+2025-12-08 08:44:28.786 | INFO     | train:load_data:70 - Preprocessing training data...
+2025-12-08 08:44:28.791 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:268 - Running preprocessing pipeline...
+2025-12-08 08:44:28.799 | INFO     | src.keystroke_preprocessing:extract_timing_features:83 - Extracting timing features...
+2025-12-08 08:44:28.815 | INFO     | src.keystroke_preprocessing:extract_timing_features:112 - Extracted 31 timing features
+2025-12-08 08:44:28.817 | INFO     | src.keystroke_preprocessing:extract_timing_features:113 - Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 08:44:28.832 | INFO     | src.keystroke_preprocessing:handle_outliers:197 - Handling outliers...
+2025-12-08 08:44:28.866 | INFO     | src.keystroke_preprocessing:handle_outliers:205 - Clipped 5530 outlier values
+2025-12-08 08:44:28.866 | INFO     | src.keystroke_preprocessing:compute_statistical_features:131 - Computing statistical features...
+2025-12-08 08:44:28.942 | INFO     | src.keystroke_preprocessing:compute_statistical_features:156 - Added 7 statistical features
+2025-12-08 08:44:28.946 | INFO     | src.keystroke_preprocessing:normalize_features:173 - Fitting scaler on training data...
+2025-12-08 08:44:29.017 | INFO     | src.keystroke_preprocessing:augment_data:225 - Augmenting data with factor 2...
+2025-12-08 08:44:29.057 | INFO     | src.keystroke_preprocessing:augment_data:250 - Augmented dataset: 12000 -> 24000 samples
+2025-12-08 08:44:29.067 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:293 - Preprocessing complete: torch.Size([24000, 38])
+2025-12-08 08:44:29.069 | INFO     | train:load_data:75 - Preprocessing validation data...
+2025-12-08 08:44:29.071 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:268 - Running preprocessing pipeline...
+2025-12-08 08:44:29.074 | INFO     | src.keystroke_preprocessing:extract_timing_features:83 - Extracting timing features...
+2025-12-08 08:44:29.078 | INFO     | src.keystroke_preprocessing:extract_timing_features:112 - Extracted 31 timing features
+2025-12-08 08:44:29.086 | INFO     | src.keystroke_preprocessing:extract_timing_features:113 - Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 08:44:29.090 | INFO     | src.keystroke_preprocessing:handle_outliers:197 - Handling outliers...
+2025-12-08 08:44:29.102 | INFO     | src.keystroke_preprocessing:handle_outliers:205 - Clipped 1318 outlier values
+2025-12-08 08:44:29.107 | INFO     | src.keystroke_preprocessing:compute_statistical_features:131 - Computing statistical features...
+2025-12-08 08:44:29.134 | INFO     | src.keystroke_preprocessing:compute_statistical_features:156 - Added 7 statistical features
+2025-12-08 08:44:29.142 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:293 - Preprocessing complete: torch.Size([4000, 38])
+2025-12-08 08:44:29.142 | INFO     | train:load_data:80 - Preprocessing test data...
+2025-12-08 08:44:29.151 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:268 - Running preprocessing pipeline...
+2025-12-08 08:44:29.151 | INFO     | src.keystroke_preprocessing:extract_timing_features:83 - Extracting timing features...
+2025-12-08 08:44:29.165 | INFO     | src.keystroke_preprocessing:extract_timing_features:112 - Extracted 31 timing features
+2025-12-08 08:44:29.167 | INFO     | src.keystroke_preprocessing:extract_timing_features:113 - Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 08:44:29.169 | INFO     | src.keystroke_preprocessing:handle_outliers:197 - Handling outliers...
+2025-12-08 08:44:29.191 | INFO     | src.keystroke_preprocessing:handle_outliers:205 - Clipped 2282 outlier values
+2025-12-08 08:44:29.192 | INFO     | src.keystroke_preprocessing:compute_statistical_features:131 - Computing statistical features...
+2025-12-08 08:44:29.227 | INFO     | src.keystroke_preprocessing:compute_statistical_features:156 - Added 7 statistical features
+2025-12-08 08:44:29.234 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:293 - Preprocessing complete: torch.Size([4400, 38])
+2025-12-08 08:44:29.234 | INFO     | train:load_data:111 - Data loaded: Train=24000, Val=4000, Test=4400
+2025-12-08 08:44:29.238 | INFO     | train:build_model:118 - Building model...
+2025-12-08 08:44:29.259 | INFO     | src.keystroke_embedding:__init__:69 - KeystrokeEmbeddingModel initialized: 38 -> 128
+2025-12-08 08:44:29.259 | INFO     | src.keystroke_embedding:__init__:70 - Architecture: [256, 512, 256, 128]
+2025-12-08 08:44:30.774 | INFO     | train:build_model:160 - Model built with 324608 parameters
+2025-12-08 08:44:30.774 | INFO     | train:train:282 - Starting training...
+2025-12-08 08:45:09.538 | INFO     | train:train:299 - Epoch 1/100 - Train Loss: 0.1848, Val Loss: 0.0072
+2025-12-08 08:45:09.668 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 08:45:09.669 | INFO     | train:train:307 - New best model saved! Val Loss: 0.0072
+2025-12-08 08:45:37.378 | INFO     | train:train:299 - Epoch 2/100 - Train Loss: 0.1322, Val Loss: 0.0067
+2025-12-08 08:45:37.401 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 08:45:37.403 | INFO     | train:train:307 - New best model saved! Val Loss: 0.0067
+2025-12-08 08:46:05.583 | INFO     | train:train:299 - Epoch 3/100 - Train Loss: 0.1111, Val Loss: 0.0026
+2025-12-08 08:46:05.598 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 08:46:05.598 | INFO     | train:train:307 - New best model saved! Val Loss: 0.0026
+2025-12-08 08:46:30.972 | INFO     | train:train:299 - Epoch 4/100 - Train Loss: 0.1035, Val Loss: 0.0049
+2025-12-08 08:47:01.189 | INFO     | train:train:299 - Epoch 5/100 - Train Loss: 0.0936, Val Loss: 0.0048
+2025-12-08 08:47:38.582 | INFO     | train:train:299 - Epoch 6/100 - Train Loss: 0.0861, Val Loss: 0.0089
+2025-12-08 08:48:17.009 | INFO     | train:train:299 - Epoch 7/100 - Train Loss: 0.0865, Val Loss: 0.0088
+2025-12-08 08:48:52.361 | INFO     | train:train:299 - Epoch 8/100 - Train Loss: 0.0848, Val Loss: 0.0130
+2025-12-08 08:49:28.889 | INFO     | train:train:299 - Epoch 9/100 - Train Loss: 0.0812, Val Loss: 0.0082
+2025-12-08 08:50:13.670 | INFO     | train:train:299 - Epoch 10/100 - Train Loss: 0.0791, Val Loss: 0.0079
+2025-12-08 08:50:13.687 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_10.pth
+2025-12-08 08:50:51.668 | INFO     | train:train:299 - Epoch 11/100 - Train Loss: 0.0807, Val Loss: 0.0065
+2025-12-08 08:51:21.329 | INFO     | train:train:299 - Epoch 12/100 - Train Loss: 0.0787, Val Loss: 0.0072
+2025-12-08 08:51:51.009 | INFO     | train:train:299 - Epoch 13/100 - Train Loss: 0.0788, Val Loss: 0.0089
+2025-12-08 08:52:20.191 | INFO     | train:train:299 - Epoch 14/100 - Train Loss: 0.0763, Val Loss: 0.0079
+2025-12-08 08:52:49.024 | INFO     | train:train:299 - Epoch 15/100 - Train Loss: 0.0756, Val Loss: 0.0077
+2025-12-08 08:53:18.885 | INFO     | train:train:299 - Epoch 16/100 - Train Loss: 0.0719, Val Loss: 0.0079
+2025-12-08 08:53:47.846 | INFO     | train:train:299 - Epoch 17/100 - Train Loss: 0.0718, Val Loss: 0.0088
+2025-12-08 08:54:16.667 | INFO     | train:train:299 - Epoch 18/100 - Train Loss: 0.0720, Val Loss: 0.0113
+2025-12-08 08:54:16.667 | INFO     | train:train:313 - Early stopping triggered after 18 epochs
+2025-12-08 08:54:16.667 | INFO     | train:train:320 - Training completed!
+2025-12-08 08:54:18.178 | INFO     | train:plot_training_history:353 - Training history plot saved: logs\training_history.png
+2025-12-08 08:54:18.185 | INFO     | train:main:377 - Training script completed successfully!

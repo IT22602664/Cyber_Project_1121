@@ -39,7 +39,7 @@ training:
   weight_decay: 0.0001
   optimizer: "adam"
   scheduler: "cosine"
-  early_stopping_patience: 15
+  early_stopping_patience: 50  # Increased from 15 to allow more training
   
   # Loss function
   loss_type: "triplet"  # triplet, contrastive, or cross_entropy

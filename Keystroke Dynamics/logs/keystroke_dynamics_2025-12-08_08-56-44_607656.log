@@ -1,0 +1,70 @@
+2025-12-08 08:56:44 | INFO | ================================================================================
+2025-12-08 08:56:44 | INFO | KEYSTROKE DYNAMICS - ZERO TRUST TELEHEALTH PLATFORM
+2025-12-08 08:56:44 | INFO | ================================================================================
+2025-12-08 08:56:44 | INFO | Starting interactive demo...
+2025-12-08 08:56:44 | INFO | KeystrokePreprocessor initialized
+2025-12-08 08:56:44 | INFO | Loading DSL dataset from: Dataset\DSL-StrongPasswordData-Original_Dataset.xls
+2025-12-08 08:56:46 | INFO | Loaded dataset: 20400 samples, 34 features
+2025-12-08 08:56:46 | INFO | Subjects: 51
+2025-12-08 08:56:46 | INFO | Extracting timing features...
+2025-12-08 08:56:46 | INFO | Extracted 31 timing features
+2025-12-08 08:56:46 | INFO | Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 08:56:46 | INFO | Computing statistical features...
+2025-12-08 08:56:46 | INFO | Added 7 statistical features
+2025-12-08 08:56:46 | INFO | Fitting scaler on training data...
+2025-12-08 08:56:46 | INFO | KeystrokeEmbeddingModel initialized: 38 -> 128
+2025-12-08 08:56:47 | INFO | Architecture: [256, 512, 256, 128]
+2025-12-08 08:56:47 | INFO | Model loaded from checkpoint
+2025-12-08 08:56:47 | INFO | KeystrokeVerifier initialized
+2025-12-08 08:56:47 | INFO | Enrolling user: s002
+2025-12-08 08:56:47 | INFO | User s002 enrolled successfully with 50 samples
+2025-12-08 08:56:47 | INFO | Enrolled user: {'success': True, 'user_id': 's002', 'n_samples': 50, 'embedding_dim': 128}
+2025-12-08 08:56:47 | INFO | 
+=== Genuine Verification ===
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.961, Latency=10.3ms
+2025-12-08 08:56:47 | INFO | Sample 1: Verified=True, Confidence=0.961
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.991, Latency=2.0ms
+2025-12-08 08:56:47 | INFO | Sample 2: Verified=True, Confidence=0.991
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.978, Latency=11.7ms
+2025-12-08 08:56:47 | INFO | Sample 3: Verified=True, Confidence=0.978
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.974, Latency=2.0ms
+2025-12-08 08:56:47 | INFO | Sample 4: Verified=True, Confidence=0.974
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.987, Latency=9.3ms
+2025-12-08 08:56:47 | INFO | Sample 5: Verified=True, Confidence=0.987
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.962, Latency=2.0ms
+2025-12-08 08:56:47 | INFO | Sample 6: Verified=True, Confidence=0.962
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.958, Latency=9.1ms
+2025-12-08 08:56:47 | INFO | Sample 7: Verified=True, Confidence=0.958
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.962, Latency=4.0ms
+2025-12-08 08:56:47 | INFO | Sample 8: Verified=True, Confidence=0.962
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.998, Latency=8.6ms
+2025-12-08 08:56:47 | INFO | Sample 9: Verified=True, Confidence=0.998
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.942, Latency=2.0ms
+2025-12-08 08:56:47 | INFO | Sample 10: Verified=True, Confidence=0.942
+2025-12-08 08:56:47 | INFO | 
+=== Impostor Verification ===
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.798, Latency=4.2ms
+2025-12-08 08:56:47 | INFO | Sample 1: Verified=True, Confidence=0.798
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=False, Confidence=0.637, Latency=6.0ms
+2025-12-08 08:56:47 | INFO | Sample 2: Verified=False, Confidence=0.637
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=False, Confidence=0.519, Latency=2.9ms
+2025-12-08 08:56:47 | INFO | Sample 3: Verified=False, Confidence=0.519
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=False, Confidence=0.567, Latency=2.0ms
+2025-12-08 08:56:47 | INFO | Sample 4: Verified=False, Confidence=0.567
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=False, Confidence=0.678, Latency=5.6ms
+2025-12-08 08:56:47 | INFO | Sample 5: Verified=False, Confidence=0.678
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.856, Latency=1.8ms
+2025-12-08 08:56:47 | INFO | Sample 6: Verified=True, Confidence=0.856
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=False, Confidence=0.569, Latency=2.9ms
+2025-12-08 08:56:47 | INFO | Sample 7: Verified=False, Confidence=0.569
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=True, Confidence=0.751, Latency=8.7ms
+2025-12-08 08:56:47 | INFO | Sample 8: Verified=True, Confidence=0.751
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=False, Confidence=0.565, Latency=2.0ms
+2025-12-08 08:56:47 | INFO | Sample 9: Verified=False, Confidence=0.565
+2025-12-08 08:56:47 | INFO | Verification: s002 - Verified=False, Confidence=0.622, Latency=7.9ms
+2025-12-08 08:56:47 | INFO | Sample 10: Verified=False, Confidence=0.622
+2025-12-08 08:56:47 | INFO | 
+=== Statistics ===
+2025-12-08 08:56:47 | INFO | Total verifications: 20
+2025-12-08 08:56:47 | INFO | Verification rate: 65.0%
+2025-12-08 08:56:47 | INFO | Mean confidence: 0.814

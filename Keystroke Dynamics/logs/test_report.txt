@@ -1,0 +1,27 @@
+================================================================================
+KEYSTROKE DYNAMICS - TEST REPORT
+================================================================================
+
+VERIFICATION PERFORMANCE
+--------------------------------------------------------------------------------
+Equal Error Rate (EER): 0.3280 (32.80%)
+Optimal Threshold: 0.9760
+Genuine Samples: 250
+Impostor Samples: 250
+Mean Genuine Score: 0.9008
+Mean Impostor Score: 0.6163
+
+ANOMALY DETECTION PERFORMANCE
+--------------------------------------------------------------------------------
+Total Samples: 100
+Anomalies Detected: 15
+Anomaly Rate: 15.00%
+Mean Anomaly Score: 0.5775
+
+PERFORMANCE TARGETS
+--------------------------------------------------------------------------------
+Target EER: 5.00%
+Achieved EER: 32.80%
+Target Met: NO
+
+================================================================================
