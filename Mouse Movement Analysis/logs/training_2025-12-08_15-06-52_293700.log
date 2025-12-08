@@ -1,0 +1,13 @@
+2025-12-08 15:06:52.297 | INFO     | src.config_loader:load_config:76 - Loading configuration from: config.yaml
+2025-12-08 15:06:52.313 | DEBUG    | src.config_loader:validate_config:131 - Configuration validation passed
+2025-12-08 15:06:52.313 | INFO     | src.config_loader:load_config:86 - Configuration loaded successfully
+2025-12-08 15:06:52.315 | INFO     | __main__:__init__:35 - Using device: cpu
+2025-12-08 15:06:52.316 | INFO     | src.mouse_preprocessing:__init__:39 - MousePreprocessor initialized
+2025-12-08 15:06:52.316 | INFO     | __main__:load_data:52 - Loading Balabit dataset...
+2025-12-08 15:06:52.316 | INFO     | src.mouse_preprocessing:load_balabit_dataset:54 - Loading Balabit dataset from: Dataset/training_files
+2025-12-08 15:06:52.319 | INFO     | src.mouse_preprocessing:load_balabit_dataset:70 - Loaded 10 users with 60 sessions
+2025-12-08 15:06:52.557 | INFO     | src.mouse_preprocessing:load_balabit_dataset:76 - Loaded 816 labels
+2025-12-08 15:06:52.559 | INFO     | src.mouse_preprocessing:split_by_user:539 - Split: 6 train, 2 val, 2 test users
+2025-12-08 15:06:52.559 | INFO     | __main__:load_data:68 - Preprocessing training data...
+2025-12-08 15:06:52.560 | INFO     | src.mouse_preprocessing:preprocess_pipeline:557 - Running preprocessing pipeline...
+2025-12-08 15:06:52.560 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user7 (1/6)
