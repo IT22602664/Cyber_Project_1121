@@ -74,3 +74,82 @@
 2025-12-08 09:34:04.091 | INFO     | train:train:299 - Epoch 16/100 - Train Loss: 0.0778, Val Loss: 0.0069
 2025-12-08 09:34:24.409 | INFO     | train:train:299 - Epoch 17/100 - Train Loss: 0.0806, Val Loss: 0.0056
 2025-12-08 09:34:50.961 | INFO     | train:train:299 - Epoch 18/100 - Train Loss: 0.0776, Val Loss: 0.0062
+2025-12-08 09:35:17.082 | INFO     | train:train:299 - Epoch 19/100 - Train Loss: 0.0799, Val Loss: 0.0064
+2025-12-08 09:35:39.290 | INFO     | train:train:299 - Epoch 20/100 - Train Loss: 0.0765, Val Loss: 0.0076
+2025-12-08 09:35:39.298 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_20.pth
+2025-12-08 09:36:03.263 | INFO     | train:train:299 - Epoch 21/100 - Train Loss: 0.0760, Val Loss: 0.0069
+2025-12-08 09:36:23.383 | INFO     | train:train:299 - Epoch 22/100 - Train Loss: 0.0706, Val Loss: 0.0086
+2025-12-08 09:36:43.227 | INFO     | train:train:299 - Epoch 23/100 - Train Loss: 0.0770, Val Loss: 0.0066
+2025-12-08 09:37:01.752 | INFO     | train:train:299 - Epoch 24/100 - Train Loss: 0.0703, Val Loss: 0.0056
+2025-12-08 09:37:20.501 | INFO     | train:train:299 - Epoch 25/100 - Train Loss: 0.0699, Val Loss: 0.0055
+2025-12-08 09:37:39.164 | INFO     | train:train:299 - Epoch 26/100 - Train Loss: 0.0677, Val Loss: 0.0056
+2025-12-08 09:37:58.600 | INFO     | train:train:299 - Epoch 27/100 - Train Loss: 0.0698, Val Loss: 0.0047
+2025-12-08 09:38:18.050 | INFO     | train:train:299 - Epoch 28/100 - Train Loss: 0.0650, Val Loss: 0.0057
+2025-12-08 09:38:37.683 | INFO     | train:train:299 - Epoch 29/100 - Train Loss: 0.0640, Val Loss: 0.0072
+2025-12-08 09:39:07.126 | INFO     | train:train:299 - Epoch 30/100 - Train Loss: 0.0674, Val Loss: 0.0075
+2025-12-08 09:39:07.146 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_30.pth
+2025-12-08 09:39:38.840 | INFO     | train:train:299 - Epoch 31/100 - Train Loss: 0.0686, Val Loss: 0.0059
+2025-12-08 09:40:07.385 | INFO     | train:train:299 - Epoch 32/100 - Train Loss: 0.0676, Val Loss: 0.0052
+2025-12-08 09:40:33.547 | INFO     | train:train:299 - Epoch 33/100 - Train Loss: 0.0637, Val Loss: 0.0055
+2025-12-08 09:41:02.066 | INFO     | train:train:299 - Epoch 34/100 - Train Loss: 0.0670, Val Loss: 0.0034
+2025-12-08 09:41:02.082 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 09:41:02.082 | INFO     | train:train:307 - New best model saved! Val Loss: 0.0034
+2025-12-08 09:41:31.145 | INFO     | train:train:299 - Epoch 35/100 - Train Loss: 0.0645, Val Loss: 0.0044
+2025-12-08 09:41:59.085 | INFO     | train:train:299 - Epoch 36/100 - Train Loss: 0.0649, Val Loss: 0.0057
+2025-12-08 09:42:26.347 | INFO     | train:train:299 - Epoch 37/100 - Train Loss: 0.0611, Val Loss: 0.0055
+2025-12-08 09:42:54.618 | INFO     | train:train:299 - Epoch 38/100 - Train Loss: 0.0663, Val Loss: 0.0054
+2025-12-08 09:43:22.823 | INFO     | train:train:299 - Epoch 39/100 - Train Loss: 0.0621, Val Loss: 0.0056
+2025-12-08 09:43:51.893 | INFO     | train:train:299 - Epoch 40/100 - Train Loss: 0.0610, Val Loss: 0.0045
+2025-12-08 09:43:51.909 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_40.pth
+2025-12-08 09:44:22.557 | INFO     | train:train:299 - Epoch 41/100 - Train Loss: 0.0607, Val Loss: 0.0048
+2025-12-08 09:44:53.904 | INFO     | train:train:299 - Epoch 42/100 - Train Loss: 0.0587, Val Loss: 0.0053
+2025-12-08 09:45:23.771 | INFO     | train:train:299 - Epoch 43/100 - Train Loss: 0.0608, Val Loss: 0.0067
+2025-12-08 09:45:54.736 | INFO     | train:train:299 - Epoch 44/100 - Train Loss: 0.0584, Val Loss: 0.0060
+2025-12-08 09:46:25.515 | INFO     | train:train:299 - Epoch 45/100 - Train Loss: 0.0548, Val Loss: 0.0064
+2025-12-08 09:46:59.444 | INFO     | train:train:299 - Epoch 46/100 - Train Loss: 0.0554, Val Loss: 0.0060
+2025-12-08 09:47:35.134 | INFO     | train:train:299 - Epoch 47/100 - Train Loss: 0.0543, Val Loss: 0.0072
+2025-12-08 09:48:12.538 | INFO     | train:train:299 - Epoch 48/100 - Train Loss: 0.0597, Val Loss: 0.0051
+2025-12-08 09:48:45.220 | INFO     | train:train:299 - Epoch 49/100 - Train Loss: 0.0516, Val Loss: 0.0089
+2025-12-08 09:49:18.150 | INFO     | train:train:299 - Epoch 50/100 - Train Loss: 0.0540, Val Loss: 0.0075
+2025-12-08 09:49:18.161 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_50.pth
+2025-12-08 09:50:01.371 | INFO     | train:train:299 - Epoch 51/100 - Train Loss: 0.0579, Val Loss: 0.0062
+2025-12-08 09:50:32.762 | INFO     | train:train:299 - Epoch 52/100 - Train Loss: 0.0532, Val Loss: 0.0058
+2025-12-08 09:51:05.131 | INFO     | train:train:299 - Epoch 53/100 - Train Loss: 0.0500, Val Loss: 0.0049
+2025-12-08 09:51:37.551 | INFO     | train:train:299 - Epoch 54/100 - Train Loss: 0.0523, Val Loss: 0.0063
+2025-12-08 09:52:10.960 | INFO     | train:train:299 - Epoch 55/100 - Train Loss: 0.0512, Val Loss: 0.0047
+2025-12-08 09:52:44.412 | INFO     | train:train:299 - Epoch 56/100 - Train Loss: 0.0516, Val Loss: 0.0058
+2025-12-08 09:53:24.534 | INFO     | train:train:299 - Epoch 57/100 - Train Loss: 0.0494, Val Loss: 0.0035
+2025-12-08 09:53:59.386 | INFO     | train:train:299 - Epoch 58/100 - Train Loss: 0.0495, Val Loss: 0.0053
+2025-12-08 09:54:33.087 | INFO     | train:train:299 - Epoch 59/100 - Train Loss: 0.0485, Val Loss: 0.0041
+2025-12-08 09:55:06.760 | INFO     | train:train:299 - Epoch 60/100 - Train Loss: 0.0496, Val Loss: 0.0055
+2025-12-08 09:55:06.772 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_60.pth
+2025-12-08 09:55:40.458 | INFO     | train:train:299 - Epoch 61/100 - Train Loss: 0.0470, Val Loss: 0.0051
+2025-12-08 09:56:14.891 | INFO     | train:train:299 - Epoch 62/100 - Train Loss: 0.0469, Val Loss: 0.0061
+2025-12-08 09:56:48.101 | INFO     | train:train:299 - Epoch 63/100 - Train Loss: 0.0477, Val Loss: 0.0048
+2025-12-08 09:57:23.017 | INFO     | train:train:299 - Epoch 64/100 - Train Loss: 0.0458, Val Loss: 0.0081
+2025-12-08 09:57:56.507 | INFO     | train:train:299 - Epoch 65/100 - Train Loss: 0.0441, Val Loss: 0.0075
+2025-12-08 09:58:29.855 | INFO     | train:train:299 - Epoch 66/100 - Train Loss: 0.0427, Val Loss: 0.0064
+2025-12-08 09:59:04.439 | INFO     | train:train:299 - Epoch 67/100 - Train Loss: 0.0459, Val Loss: 0.0053
+2025-12-08 09:59:39.878 | INFO     | train:train:299 - Epoch 68/100 - Train Loss: 0.0407, Val Loss: 0.0061
+2025-12-08 10:00:13.657 | INFO     | train:train:299 - Epoch 69/100 - Train Loss: 0.0445, Val Loss: 0.0058
+2025-12-08 10:00:47.876 | INFO     | train:train:299 - Epoch 70/100 - Train Loss: 0.0435, Val Loss: 0.0061
+2025-12-08 10:00:48.193 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_70.pth
+2025-12-08 10:01:21.970 | INFO     | train:train:299 - Epoch 71/100 - Train Loss: 0.0424, Val Loss: 0.0059
+2025-12-08 10:01:55.709 | INFO     | train:train:299 - Epoch 72/100 - Train Loss: 0.0398, Val Loss: 0.0058
+2025-12-08 10:02:29.246 | INFO     | train:train:299 - Epoch 73/100 - Train Loss: 0.0388, Val Loss: 0.0057
+2025-12-08 10:03:04.205 | INFO     | train:train:299 - Epoch 74/100 - Train Loss: 0.0420, Val Loss: 0.0054
+2025-12-08 10:03:37.763 | INFO     | train:train:299 - Epoch 75/100 - Train Loss: 0.0382, Val Loss: 0.0053
+2025-12-08 10:04:11.969 | INFO     | train:train:299 - Epoch 76/100 - Train Loss: 0.0378, Val Loss: 0.0057
+2025-12-08 10:04:55.098 | INFO     | train:train:299 - Epoch 77/100 - Train Loss: 0.0379, Val Loss: 0.0070
+2025-12-08 10:05:28.563 | INFO     | train:train:299 - Epoch 78/100 - Train Loss: 0.0408, Val Loss: 0.0069
+2025-12-08 10:06:04.858 | INFO     | train:train:299 - Epoch 79/100 - Train Loss: 0.0357, Val Loss: 0.0076
+2025-12-08 10:06:37.322 | INFO     | train:train:299 - Epoch 80/100 - Train Loss: 0.0356, Val Loss: 0.0059
+2025-12-08 10:06:37.335 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_80.pth
+2025-12-08 10:07:08.898 | INFO     | train:train:299 - Epoch 81/100 - Train Loss: 0.0338, Val Loss: 0.0052
+2025-12-08 10:07:39.755 | INFO     | train:train:299 - Epoch 82/100 - Train Loss: 0.0355, Val Loss: 0.0059
+2025-12-08 10:08:11.008 | INFO     | train:train:299 - Epoch 83/100 - Train Loss: 0.0348, Val Loss: 0.0062
+2025-12-08 10:08:41.962 | INFO     | train:train:299 - Epoch 84/100 - Train Loss: 0.0336, Val Loss: 0.0058
+2025-12-08 10:08:41.964 | INFO     | train:train:313 - Early stopping triggered after 84 epochs
+2025-12-08 10:08:41.964 | INFO     | train:train:320 - Training completed!
+2025-12-08 10:08:42.268 | INFO     | train:plot_training_history:353 - Training history plot saved: logs\training_history.png
+2025-12-08 10:08:42.295 | INFO     | train:main:377 - Training script completed successfully!

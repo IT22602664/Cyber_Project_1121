@@ -2,26 +2,68 @@
 KEYSTROKE DYNAMICS - TEST REPORT
 ================================================================================
 
-VERIFICATION PERFORMANCE
+PRIMARY METRICS
 --------------------------------------------------------------------------------
-Equal Error Rate (EER): 0.3280 (32.80%)
-Optimal Threshold: 0.9760
-Genuine Samples: 250
-Impostor Samples: 250
-Mean Genuine Score: 0.9008
-Mean Impostor Score: 0.6163
+Equal Error Rate (EER)      : 0.3316 (33.16%)
+Optimal Threshold           : 0.9930
+Accuracy                    : 0.9620 (96.20%)
+Precision                   : 0.9955 (99.55%)
+Recall (Sensitivity/TPR)    : 0.9252 (92.52%)
+F1 Score                    : 0.9591
+ROC AUC                     : 0.9982
+
+BIOMETRIC AUTHENTICATION METRICS
+--------------------------------------------------------------------------------
+False Accept Rate (FAR)     : 0.0039 (0.39%)
+False Reject Rate (FRR)     : 0.0748 (7.48%)
+Genuine Accept Rate (GAR)   : 0.9252 (92.52%)
+True Reject Rate (TRR)      : 0.9961 (99.61%)
+
+CONFUSION MATRIX
+--------------------------------------------------------------------------------
+                    Predicted
+                 Genuine  Impostor
+  Actual Genuine     445       36      (TP: 445, FN: 36)
+         Impostor      2      517      (FP: 2, TN: 517)
+
+  True Positives (TP)  :  445 - Genuine users correctly verified
+  True Negatives (TN)  :  517 - Impostors correctly rejected
+  False Positives (FP) :    2 - Impostors incorrectly accepted
+  False Negatives (FN) :   36 - Genuine users incorrectly rejected
+
+SCORE STATISTICS
+--------------------------------------------------------------------------------
+Genuine Scores:
+  Mean                      : 0.9534 (95.34%)
+  Std Dev                   : 0.0812
+  Min                       : 0.3449
+  Max                       : 1.0000
+
+Impostor Scores:
+  Mean                      : 0.1275 (12.75%)
+  Std Dev                   : 0.2441
+  Min                       : -0.6417
+  Max                       : 0.8810
+
+Score Separation            : 0.8259 (82.59%)
+
+TEST SAMPLES
+--------------------------------------------------------------------------------
+Genuine Samples Tested      : 481
+Impostor Samples Tested     : 519
+Total Samples               : 1000
 
 ANOMALY DETECTION PERFORMANCE
 --------------------------------------------------------------------------------
-Total Samples: 100
-Anomalies Detected: 15
-Anomaly Rate: 15.00%
-Mean Anomaly Score: 0.5775
+Total Samples               : 100
+Anomalies Detected          : 11
+Anomaly Rate                : 11.00%
+Mean Anomaly Score          : 0.8032
 
 PERFORMANCE TARGETS
 --------------------------------------------------------------------------------
-Target EER: 5.00%
-Achieved EER: 32.80%
-Target Met: NO
+EER Target (<5%)            : FAIL (Current: 33.16%, Target: 5.00%)
+Accuracy Target (>95%)      : PASS (Current: 96.20%, Target: 95.00%)
+F1 Score Target (>0.95)     : PASS (Current: 0.9591, Target: 0.9500)
 
 ================================================================================

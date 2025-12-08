@@ -1,0 +1,564 @@
+2025-12-08 12:29:04 | INFO | ================================================================================
+2025-12-08 12:29:04 | INFO | KEYSTROKE DYNAMICS - ZERO TRUST TELEHEALTH PLATFORM
+2025-12-08 12:29:04 | INFO | ================================================================================
+2025-12-08 12:29:04 | INFO | Starting testing pipeline...
+2025-12-08 12:29:05 | INFO | Loading configuration from: config.yaml
+2025-12-08 12:29:05 | INFO | Configuration loaded successfully
+2025-12-08 12:29:05 | INFO | Using device: cpu
+2025-12-08 12:29:05 | INFO | KeystrokePreprocessor initialized
+2025-12-08 12:29:05 | INFO | AnomalyDetector initialized with method: isolation_forest
+2025-12-08 12:29:05 | INFO | Loading model from: models/checkpoints\best_model.pth
+2025-12-08 12:29:05 | INFO | Running comprehensive tests...
+2025-12-08 12:29:05 | INFO | Loading test dataset...
+2025-12-08 12:29:05 | INFO | Loading DSL dataset from: Dataset\DSL-StrongPasswordData-Original_Dataset.xls
+2025-12-08 12:29:06 | INFO | Loaded dataset: 20400 samples, 34 features
+2025-12-08 12:29:06 | INFO | Subjects: 51
+2025-12-08 12:29:06 | INFO | Splitting dataset by subject...
+2025-12-08 12:29:06 | INFO | Split: Train=12000 (30 subjects), Val=4000 (10 subjects), Test=4400 (11 subjects)
+2025-12-08 12:29:06 | INFO | Running preprocessing pipeline...
+2025-12-08 12:29:06 | INFO | Extracting timing features...
+2025-12-08 12:29:06 | INFO | Extracted 31 timing features
+2025-12-08 12:29:06 | INFO | Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 12:29:06 | INFO | Handling outliers...
+2025-12-08 12:29:06 | INFO | Clipped 1812 outlier values
+2025-12-08 12:29:06 | INFO | Computing statistical features...
+2025-12-08 12:29:06 | INFO | Added 7 statistical features
+2025-12-08 12:29:06 | WARNING | Scaler not fitted, fitting now...
+2025-12-08 12:29:06 | INFO | Preprocessing complete: torch.Size([4400, 38])
+2025-12-08 12:29:06 | INFO | Test data loaded: torch.Size([4400, 38])
+2025-12-08 12:29:06 | INFO | KeystrokeEmbeddingModel initialized: 38 -> 128
+2025-12-08 12:29:06 | INFO | Architecture: [256, 512, 256, 128]
+2025-12-08 12:29:06 | INFO | Model loaded successfully
+2025-12-08 12:29:06 | INFO | Evaluating verification performance...
+2025-12-08 12:29:06 | INFO | KeystrokeVerifier initialized
+2025-12-08 12:29:06 | INFO | Adaptive threshold: False
+2025-12-08 12:29:06 | INFO | Enrolling user: s004
+2025-12-08 12:29:07 | INFO | User s004 enrolled successfully with 50 samples
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=True, Confidence=0.934, Latency=5.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=True, Confidence=0.951, Latency=2.2ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=True, Confidence=0.933, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.446, Latency=6.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=True, Confidence=0.965, Latency=3.1ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.861, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.929, Latency=6.1ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.870, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.900, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.903, Latency=3.5ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.905, Latency=6.4ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.375, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.883, Latency=3.1ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.811, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.883, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.898, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.795, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.713, Latency=7.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.194, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.868, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.806, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.855, Latency=3.1ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.922, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.885, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.871, Latency=3.3ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.596, Latency=1.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.000, Latency=5.2ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.000, Latency=3.1ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.000, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.185, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.090, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.230, Latency=6.4ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.155, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.001, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.000, Latency=5.3ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.000, Latency=2.5ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.218, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.155, Latency=2.1ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.178, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.894, Latency=2.4ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.637, Latency=2.3ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.791, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.899, Latency=5.3ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.880, Latency=4.2ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.605, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.523, Latency=3.4ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.659, Latency=4.5ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.667, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s004 - Verified=False, Confidence=0.701, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Enrolling user: s005
+2025-12-08 12:29:07 | INFO | User s005 enrolled successfully with 50 samples
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.820, Latency=3.3ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.810, Latency=3.4ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.933, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.990, Latency=3.3ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.943, Latency=2.2ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.953, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.964, Latency=5.5ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.992, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.959, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.983, Latency=1.3ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.994, Latency=6.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.976, Latency=5.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.990, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.994, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.966, Latency=3.1ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.982, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.987, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.970, Latency=7.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.977, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.969, Latency=6.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.953, Latency=6.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.969, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.844, Latency=10.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.961, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.972, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.628, Latency=5.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.290, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.263, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.498, Latency=7.4ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=2.2ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=2.3ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=4.3ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=True, Confidence=0.935, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.835, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.744, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.810, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.895, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.003, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.457, Latency=3.5ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.205, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.186, Latency=2.4ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=8.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=2.2ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=4.1ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=6.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s005 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Enrolling user: s017
+2025-12-08 12:29:07 | INFO | User s017 enrolled successfully with 50 samples
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.794, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.943, Latency=4.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.986, Latency=5.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.972, Latency=2.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.896, Latency=1.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.957, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.969, Latency=7.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.955, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.968, Latency=2.3ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.950, Latency=3.1ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.951, Latency=6.1ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.987, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.955, Latency=2.4ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.961, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.962, Latency=2.4ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.957, Latency=4.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.949, Latency=2.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.938, Latency=2.4ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.963, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.971, Latency=5.3ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.972, Latency=3.4ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.971, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.964, Latency=3.1ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=True, Confidence=0.968, Latency=5.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.917, Latency=4.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.213, Latency=2.4ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=5.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=2.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=2.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=1.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=6.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=3.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=8.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=44.9ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=80.5ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=22.2ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=2.4ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.000, Latency=7.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.257, Latency=17.1ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.436, Latency=17.6ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.612, Latency=3.0ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.577, Latency=24.3ms
+2025-12-08 12:29:07 | INFO | Verification: s017 - Verified=False, Confidence=0.497, Latency=113.9ms
+2025-12-08 12:29:07 | INFO | Enrolling user: s019
+2025-12-08 12:29:08 | INFO | User s019 enrolled successfully with 50 samples
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.495, Latency=3.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.814, Latency=2.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.609, Latency=10.7ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.768, Latency=2.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.655, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.715, Latency=1.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.777, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.765, Latency=6.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.743, Latency=3.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.929, Latency=3.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.796, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.859, Latency=5.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.847, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.814, Latency=2.3ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.343, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.491, Latency=5.4ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.146, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.599, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.781, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.579, Latency=7.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.715, Latency=5.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.737, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.578, Latency=7.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.654, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.514, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.874, Latency=2.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.652, Latency=7.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.851, Latency=3.4ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.807, Latency=1.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.853, Latency=2.4ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.912, Latency=4.7ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.469, Latency=3.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.399, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.543, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.718, Latency=6.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.186, Latency=3.2ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.585, Latency=1.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.188, Latency=1.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.213, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.246, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.570, Latency=2.1ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.705, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.657, Latency=2.3ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.584, Latency=6.7ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.297, Latency=2.4ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.702, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.380, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.282, Latency=2.1ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.257, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s019 - Verified=False, Confidence=0.381, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Enrolling user: s020
+2025-12-08 12:29:08 | INFO | User s020 enrolled successfully with 50 samples
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.075, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.038, Latency=6.4ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.469, Latency=1.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.035, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.105, Latency=6.3ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.781, Latency=1.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.031, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.453, Latency=8.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.844, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.610, Latency=8.8ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.886, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.557, Latency=3.1ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.344, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.412, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.849, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=True, Confidence=0.949, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.874, Latency=5.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.710, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.051, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.549, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.317, Latency=6.5ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.208, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.146, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.488, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.386, Latency=4.2ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.315, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.133, Latency=2.3ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=3.3ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=6.3ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=3.2ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=5.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.051, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.000, Latency=8.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.420, Latency=1.2ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.801, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.363, Latency=2.2ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.481, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s020 - Verified=False, Confidence=0.108, Latency=7.0ms
+2025-12-08 12:29:08 | INFO | Enrolling user: s026
+2025-12-08 12:29:08 | INFO | User s026 enrolled successfully with 50 samples
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.290, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.433, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.754, Latency=6.2ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.216, Latency=5.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.903, Latency=1.3ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.632, Latency=6.1ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.956, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.883, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.963, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.967, Latency=5.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.711, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.967, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.917, Latency=7.7ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.824, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.809, Latency=2.7ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.957, Latency=3.3ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.937, Latency=7.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.888, Latency=2.4ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.924, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.937, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.497, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.974, Latency=5.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.896, Latency=3.9ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.994, Latency=1.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=True, Confidence=0.951, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.141, Latency=1.2ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.574, Latency=5.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.383, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.602, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.293, Latency=2.4ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.101, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.000, Latency=3.3ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.000, Latency=3.1ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.555, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.421, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.626, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.425, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.314, Latency=4.2ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.000, Latency=5.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.520, Latency=1.2ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.036, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.269, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.454, Latency=2.3ms
+2025-12-08 12:29:08 | INFO | Verification: s026 - Verified=False, Confidence=0.600, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Enrolling user: s039
+2025-12-08 12:29:08 | INFO | User s039 enrolled successfully with 50 samples
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.798, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.800, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.772, Latency=8.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.883, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.877, Latency=2.4ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.389, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.703, Latency=7.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=True, Confidence=0.943, Latency=2.2ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=True, Confidence=0.991, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=True, Confidence=0.955, Latency=8.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=True, Confidence=0.974, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.881, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=True, Confidence=0.939, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.925, Latency=3.7ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.906, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.828, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.836, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=True, Confidence=0.953, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=True, Confidence=0.991, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.886, Latency=4.3ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.808, Latency=3.2ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.884, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=True, Confidence=0.931, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.896, Latency=6.4ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.842, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.625, Latency=1.5ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.144, Latency=1.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.465, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.628, Latency=6.2ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.596, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.489, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.341, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.500, Latency=3.4ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.398, Latency=2.4ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.446, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.000, Latency=1.2ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.000, Latency=8.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.000, Latency=2.3ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.000, Latency=3.3ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.000, Latency=2.5ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.394, Latency=7.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.463, Latency=4.1ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.329, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.450, Latency=8.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.430, Latency=3.4ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.257, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.364, Latency=9.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.268, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.529, Latency=6.1ms
+2025-12-08 12:29:08 | INFO | Verification: s039 - Verified=False, Confidence=0.293, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Enrolling user: s040
+2025-12-08 12:29:08 | INFO | User s040 enrolled successfully with 50 samples
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.918, Latency=5.5ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=True, Confidence=0.964, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.897, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.871, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.834, Latency=7.2ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.627, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.917, Latency=1.4ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.711, Latency=3.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.798, Latency=4.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.783, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.775, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.859, Latency=2.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.923, Latency=13.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.804, Latency=15.0ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.730, Latency=52.9ms
+2025-12-08 12:29:08 | INFO | Verification: s040 - Verified=False, Confidence=0.681, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.708, Latency=9.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.713, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.704, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.828, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.760, Latency=3.4ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.770, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.699, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.763, Latency=2.4ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.786, Latency=7.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.657, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.513, Latency=3.3ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.638, Latency=10.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.638, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.728, Latency=12.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.782, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.202, Latency=12.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.251, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.388, Latency=12.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.509, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.000, Latency=8.2ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.000, Latency=2.2ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.000, Latency=10.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.000, Latency=4.4ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.313, Latency=8.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.523, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.461, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.425, Latency=9.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.294, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.649, Latency=3.2ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.923, Latency=8.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.825, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.790, Latency=11.0ms
+2025-12-08 12:29:09 | INFO | Verification: s040 - Verified=False, Confidence=0.592, Latency=2.1ms
+2025-12-08 12:29:09 | INFO | Enrolling user: s041
+2025-12-08 12:29:09 | INFO | User s041 enrolled successfully with 50 samples
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.915, Latency=9.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.893, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.926, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.913, Latency=9.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.863, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=True, Confidence=0.934, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.796, Latency=7.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=True, Confidence=0.934, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.905, Latency=13.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.866, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=True, Confidence=0.955, Latency=11.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.907, Latency=8.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.865, Latency=11.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.907, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.926, Latency=10.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.620, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.809, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.909, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=True, Confidence=0.956, Latency=7.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.887, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.928, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.901, Latency=11.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.893, Latency=2.4ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.831, Latency=3.1ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.886, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.448, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.025, Latency=13.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.290, Latency=2.5ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.405, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.472, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.532, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.285, Latency=13.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.476, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.415, Latency=7.3ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.398, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.000, Latency=7.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.000, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.413, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.408, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.279, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.305, Latency=11.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.306, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.309, Latency=9.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.640, Latency=7.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.457, Latency=8.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.621, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s041 - Verified=False, Confidence=0.334, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Enrolling user: s043
+2025-12-08 12:29:09 | INFO | User s043 enrolled successfully with 50 samples
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.607, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.906, Latency=6.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.962, Latency=4.1ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.635, Latency=1.3ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.976, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.994, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.980, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.976, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.912, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.978, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.963, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.957, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.979, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.987, Latency=3.4ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.990, Latency=2.4ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.983, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.984, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.979, Latency=3.3ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.995, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.983, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.995, Latency=3.3ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.980, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.982, Latency=7.4ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.981, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=True, Confidence=0.945, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.214, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.207, Latency=7.1ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.259, Latency=3.2ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.072, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.292, Latency=6.5ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.358, Latency=1.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.163, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.272, Latency=4.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.327, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.596, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.829, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.492, Latency=7.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.732, Latency=2.3ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.786, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.246, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.343, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.414, Latency=5.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.363, Latency=3.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.394, Latency=3.4ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.000, Latency=2.3ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.035, Latency=1.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.000, Latency=2.0ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.000, Latency=5.4ms
+2025-12-08 12:29:09 | INFO | Verification: s043 - Verified=False, Confidence=0.000, Latency=2.1ms
+2025-12-08 12:29:09 | INFO | EER: 0.3100, Optimal Threshold: 0.9279
+2025-12-08 12:29:10 | INFO | ROC curve saved: logs\roc_curve.png
+2025-12-08 12:29:10 | INFO | Evaluating anomaly detection...
+2025-12-08 12:29:10 | INFO | Fitting anomaly detector on 100 samples
+2025-12-08 12:29:10 | INFO | Anomaly detector fitted successfully
+2025-12-08 12:29:10 | INFO | Anomaly Report: 4/100 anomalies (4.0%)
+2025-12-08 12:29:10 | INFO | Anomaly Detection Report: {'total_samples': 100, 'anomaly_count': 4, 'normal_count': 96, 'anomaly_rate': 0.04, 'mean_score': 0.601569757338551, 'min_score': 0.0, 'max_score': 0.9999999250338187, 'std_score': 0.19147500347139412}
+2025-12-08 12:29:10 | INFO | Test report saved: logs\test_report.txt
+2025-12-08 12:29:10 | INFO | Comprehensive testing completed!
+2025-12-08 12:29:10 | INFO | Testing script completed successfully!

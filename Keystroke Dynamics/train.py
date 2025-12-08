@@ -49,39 +49,195 @@ class KeystrokeTrainer:
     def load_data(self):
         """Load and preprocess dataset"""
         logger.info("Loading dataset...")
-        
+
+        # Check if using tuplet dataset
+        use_tuplet = self.config.dataset.get('use_tuplet', False)
+
+        if use_tuplet:
+            logger.info("Using TUPLET dataset (pre-paired samples)")
+            self.load_tuplet_data()
+        else:
+            logger.info("Using DSL dataset (original)")
+            self.load_dsl_data()
+
+    def augment_tuplet_data(self, X_A, X_B, labels, aug_factor):
+        """
+        Augment tuplet dataset with noise and time warping
+
+        Args:
+            X_A: Features for sample A
+            X_B: Features for sample B
+            labels: Labels (1=genuine, 0=impostor)
+            aug_factor: Augmentation factor (e.g., 5 = 5x more data)
+
+        Returns:
+            Augmented X_A, X_B, labels
+        """
+        X_A_aug = [X_A]
+        X_B_aug = [X_B]
+        labels_aug = [labels]
+
+        noise_level = self.config.training.get('noise_level', 0.02)
+
+        for i in range(aug_factor - 1):
+            # Add Gaussian noise
+            noise_A = np.random.normal(0, noise_level, X_A.shape)
+            noise_B = np.random.normal(0, noise_level, X_B.shape)
+
+            X_A_noisy = X_A + noise_A
+            X_B_noisy = X_B + noise_B
+
+            # Ensure non-negative values (timing features should be positive)
+            X_A_noisy = np.maximum(X_A_noisy, 0)
+            X_B_noisy = np.maximum(X_B_noisy, 0)
+
+            X_A_aug.append(X_A_noisy)
+            X_B_aug.append(X_B_noisy)
+            labels_aug.append(labels)
+
+        # Concatenate all augmented data
+        X_A_final = np.vstack(X_A_aug)
+        X_B_final = np.vstack(X_B_aug)
+        labels_final = np.concatenate(labels_aug)
+
+        return X_A_final, X_B_final, labels_final
+
+    def load_tuplet_data(self):
+        """Load and preprocess tuplet dataset"""
+        # Load tuplet dataset
+        dataset_path = self.config.dataset.tuplet_path
+        if not os.path.exists(dataset_path):
+            # Try alternative path
+            dataset_path = os.path.join('Keystroke Dynamics', dataset_path)
+
+        X_A, X_B, labels, feature_names = self.preprocessor.load_tuplet_dataset(dataset_path)
+
+        # Split data (80% train, 10% val, 10% test)
+        n_samples = len(labels)
+        indices = np.random.permutation(n_samples)
+
+        train_size = int(0.8 * n_samples)
+        val_size = int(0.1 * n_samples)
+
+        train_idx = indices[:train_size]
+        val_idx = indices[train_size:train_size + val_size]
+        test_idx = indices[train_size + val_size:]
+
+        # Split data
+        X_A_train, X_B_train, y_train = X_A[train_idx], X_B[train_idx], labels[train_idx]
+        X_A_val, X_B_val, y_val = X_A[val_idx], X_B[val_idx], labels[val_idx]
+        X_A_test, X_B_test, y_test = X_A[test_idx], X_B[test_idx], labels[test_idx]
+
+        # Apply data augmentation to training data
+        if self.config.training.get('use_augmentation', False):
+            aug_factor = self.config.training.get('augmentation_factor', 5)
+            logger.info(f"Applying {aug_factor}x data augmentation to tuplet training data...")
+
+            X_A_train_aug, X_B_train_aug, y_train_aug = self.augment_tuplet_data(
+                X_A_train, X_B_train, y_train, aug_factor
+            )
+
+            logger.info(f"Training data augmented: {len(y_train)} -> {len(y_train_aug)} pairs")
+            X_A_train, X_B_train, y_train = X_A_train_aug, X_B_train_aug, y_train_aug
+
+        # Normalize features
+        from sklearn.preprocessing import RobustScaler
+        scaler = RobustScaler()
+
+        # Fit on training data
+        X_A_train = scaler.fit_transform(X_A_train)
+        X_B_train = scaler.transform(X_B_train)
+
+        # Transform validation and test data
+        X_A_val = scaler.transform(X_A_val)
+        X_B_val = scaler.transform(X_B_val)
+        X_A_test = scaler.transform(X_A_test)
+        X_B_test = scaler.transform(X_B_test)
+
+        # Convert to tensors
+        X_A_train = torch.FloatTensor(X_A_train)
+        X_B_train = torch.FloatTensor(X_B_train)
+        y_train = torch.LongTensor(y_train)
+
+        X_A_val = torch.FloatTensor(X_A_val)
+        X_B_val = torch.FloatTensor(X_B_val)
+        y_val = torch.LongTensor(y_val)
+
+        X_A_test = torch.FloatTensor(X_A_test)
+        X_B_test = torch.FloatTensor(X_B_test)
+        y_test = torch.LongTensor(y_test)
+
+        # Create datasets - store pairs
+        train_dataset = TensorDataset(X_A_train, X_B_train, y_train)
+        val_dataset = TensorDataset(X_A_val, X_B_val, y_val)
+        test_dataset = TensorDataset(X_A_test, X_B_test, y_test)
+
+        # Create data loaders
+        self.train_loader = DataLoader(
+            train_dataset,
+            batch_size=self.config.training.batch_size,
+            shuffle=True,
+            num_workers=0
+        )
+
+        self.val_loader = DataLoader(
+            val_dataset,
+            batch_size=self.config.training.batch_size,
+            shuffle=False,
+            num_workers=0
+        )
+
+        self.test_loader = DataLoader(
+            test_dataset,
+            batch_size=self.config.training.batch_size,
+            shuffle=False,
+            num_workers=0
+        )
+
+        logger.info(f"Tuplet dataset loaded:")
+        logger.info(f"  Train: {len(train_dataset)} pairs")
+        logger.info(f"  Val: {len(val_dataset)} pairs")
+        logger.info(f"  Test: {len(test_dataset)} pairs")
+        logger.info(f"  Features: {X_A_train.shape[1]}")
+
+        # Store for model initialization
+        self.input_dim = X_A_train.shape[1]
+        self.use_tuplet = True
+
+    def load_dsl_data(self):
+        """Load and preprocess DSL dataset (original method)"""
         # Load DSL dataset
         dataset_path = os.path.join('Dataset', 'DSL-StrongPasswordData-Original_Dataset.xls')
         if not os.path.exists(dataset_path):
             # Try alternative path
-            dataset_path = os.path.join('Keystroke Dynamics', 'Dataset', 
+            dataset_path = os.path.join('Keystroke Dynamics', 'Dataset',
                                        'DSL-StrongPasswordData-Original_Dataset.xls')
-        
+
         df = self.preprocessor.load_dsl_dataset(dataset_path)
-        
+
         # Split by subject
         train_df, val_df, test_df = self.preprocessor.split_by_subject(
             df,
             train_ratio=self.config.training.train_ratio,
             val_ratio=self.config.training.val_ratio
         )
-        
+
         # Preprocess
         logger.info("Preprocessing training data...")
         X_train, y_train = self.preprocessor.preprocess_pipeline(
             train_df, fit=True, augment=True
         )
-        
+
         logger.info("Preprocessing validation data...")
         X_val, y_val = self.preprocessor.preprocess_pipeline(
             val_df, fit=False, augment=False
         )
-        
+
         logger.info("Preprocessing test data...")
         X_test, y_test = self.preprocessor.preprocess_pipeline(
             test_df, fit=False, augment=False
         )
-        
+
         # Create data loaders
         train_dataset = TensorDataset(X_train, y_train)
         val_dataset = TensorDataset(X_val, y_val)
@@ -108,10 +264,14 @@ class KeystrokeTrainer:
             num_workers=0
         )
         
-        logger.info(f"Data loaded: Train={len(train_dataset)}, "
-                   f"Val={len(val_dataset)}, Test={len(test_dataset)}")
-        
-        return X_train.shape[1]  # Return input dimension
+        logger.info(f"DSL dataset loaded:")
+        logger.info(f"  Train: {len(train_dataset)} samples")
+        logger.info(f"  Val: {len(val_dataset)} samples")
+        logger.info(f"  Test: {len(test_dataset)} samples")
+
+        # Store for model initialization
+        self.input_dim = X_train.shape[1]
+        self.use_tuplet = False
     
     def build_model(self, input_dim):
         """Build model and training components"""
@@ -166,27 +326,53 @@ class KeystrokeTrainer:
 
         pbar = tqdm(self.train_loader, desc=f"Epoch {epoch+1}/{self.config.training.epochs}")
 
-        for batch_idx, (data, labels) in enumerate(pbar):
-            data = data.to(self.device)
-            labels = labels.to(self.device)
+        for batch_idx, batch in enumerate(pbar):
+            if self.use_tuplet:
+                # Tuplet dataset: (X_A, X_B, labels)
+                data_a, data_b, labels = batch
+                data_a = data_a.to(self.device)
+                data_b = data_b.to(self.device)
+                labels = labels.to(self.device)
+            else:
+                # DSL dataset: (data, labels)
+                data, labels = batch
+                data = data.to(self.device)
+                labels = labels.to(self.device)
 
             self.optimizer.zero_grad()
 
             # Forward pass
-            embeddings = self.model(data)
+            if self.use_tuplet:
+                # For tuplet data, compute embeddings for both samples
+                embeddings_a = self.model(data_a)
+                embeddings_b = self.model(data_b)
 
-            # Compute loss based on type
-            if self.config.training.loss_type == 'triplet':
-                # Create triplets
-                loss = self.compute_triplet_loss(embeddings, labels)
-            elif self.config.training.loss_type == 'contrastive':
-                loss = self.compute_contrastive_loss(embeddings, labels)
+                # Compute contrastive loss (1=genuine, 0=impostor)
+                loss = self.compute_contrastive_loss_tuplet(embeddings_a, embeddings_b, labels)
             else:
-                # Classification loss (would need classifier head)
-                loss = self.criterion(embeddings, labels)
+                # For DSL data, use triplet loss
+                embeddings = self.model(data)
+
+                # Compute loss based on type
+                if self.config.training.loss_type == 'triplet':
+                    # Create triplets
+                    loss = self.compute_triplet_loss(embeddings, labels)
+                elif self.config.training.loss_type == 'contrastive':
+                    loss = self.compute_contrastive_loss(embeddings, labels)
+                else:
+                    # Classification loss (would need classifier head)
+                    loss = self.criterion(embeddings, labels)
 
             # Backward pass
             loss.backward()
+
+            # Gradient clipping to prevent explosion
+            if self.config.training.get('gradient_clipping', 0) > 0:
+                torch.nn.utils.clip_grad_norm_(
+                    self.model.parameters(),
+                    self.config.training.gradient_clipping
+                )
+
             self.optimizer.step()
 
             total_loss += loss.item()
@@ -253,24 +439,87 @@ class KeystrokeTrainer:
         else:
             return loss
 
+    def compute_contrastive_loss_tuplet(self, embeddings_a, embeddings_b, labels):
+        """
+        Compute improved contrastive loss for tuplet data with hard mining
+
+        Args:
+            embeddings_a: Embeddings for sample A
+            embeddings_b: Embeddings for sample B
+            labels: 1 for genuine (same user), 0 for impostor (different users)
+        """
+        # Compute cosine similarity
+        similarity = torch.nn.functional.cosine_similarity(embeddings_a, embeddings_b)
+
+        # Convert labels to float (1.0 for genuine, 0.0 for impostor)
+        labels_float = labels.float()
+
+        # Use smaller margin for tighter clustering
+        margin = self.config.training.get('triplet_margin', 0.2)
+
+        # Loss for genuine pairs: (1 - similarity)^2
+        genuine_loss = labels_float * torch.pow(1 - similarity, 2)
+
+        # Loss for impostor pairs: max(0, similarity - margin)^2
+        impostor_loss = (1 - labels_float) * torch.pow(torch.clamp(similarity - margin, min=0), 2)
+
+        # Hard mining: focus on hard examples
+        if self.config.training.get('use_hard_mining', False):
+            # For genuine pairs: focus on those with low similarity (hard positives)
+            genuine_mask = labels_float == 1
+            if genuine_mask.sum() > 0:
+                genuine_similarities = similarity[genuine_mask]
+                # Weight hard positives (low similarity) more
+                hard_positive_weights = 1.0 + (1.0 - genuine_similarities)
+                genuine_loss[genuine_mask] = genuine_loss[genuine_mask] * hard_positive_weights
+
+            # For impostor pairs: focus on those with high similarity (hard negatives)
+            impostor_mask = labels_float == 0
+            if impostor_mask.sum() > 0:
+                impostor_similarities = similarity[impostor_mask]
+                # Weight hard negatives (high similarity) more
+                hard_negative_weights = 1.0 + impostor_similarities
+                impostor_loss[impostor_mask] = impostor_loss[impostor_mask] * hard_negative_weights
+
+        # Total loss
+        loss = torch.mean(genuine_loss + impostor_loss)
+
+        return loss
+
     def validate(self):
         """Validate model"""
         self.model.eval()
         total_loss = 0
 
         with torch.no_grad():
-            for data, labels in self.val_loader:
-                data = data.to(self.device)
-                labels = labels.to(self.device)
+            for batch in self.val_loader:
+                if self.use_tuplet:
+                    # Tuplet dataset: (X_A, X_B, labels)
+                    data_a, data_b, labels = batch
+                    data_a = data_a.to(self.device)
+                    data_b = data_b.to(self.device)
+                    labels = labels.to(self.device)
 
-                embeddings = self.model(data)
+                    # Compute embeddings
+                    embeddings_a = self.model(data_a)
+                    embeddings_b = self.model(data_b)
 
-                if self.config.training.loss_type == 'triplet':
-                    loss = self.compute_triplet_loss(embeddings, labels)
-                elif self.config.training.loss_type == 'contrastive':
-                    loss = self.compute_contrastive_loss(embeddings, labels)
+                    # Compute loss
+                    loss = self.compute_contrastive_loss_tuplet(embeddings_a, embeddings_b, labels)
                 else:
-                    loss = self.criterion(embeddings, labels)
+                    # DSL dataset: (data, labels)
+                    data, labels = batch
+                    data = data.to(self.device)
+                    labels = labels.to(self.device)
+
+                    embeddings = self.model(data)
+
+                    if self.config.training.loss_type == 'triplet':
+                        loss = self.compute_triplet_loss(embeddings, labels)
+                    elif self.config.training.loss_type == 'contrastive':
+                        loss = self.compute_contrastive_loss(embeddings, labels)
+                    else:
+                        loss = self.criterion(embeddings, labels)
 
                 total_loss += loss.item()
 
@@ -366,10 +615,10 @@ def main():
     trainer = KeystrokeTrainer(config)
 
     # Load data
-    input_dim = trainer.load_data()
+    trainer.load_data()
 
     # Build model
-    trainer.build_model(input_dim)
+    trainer.build_model(trainer.input_dim)
 
     # Train
     trainer.train()

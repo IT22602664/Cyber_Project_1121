@@ -1,0 +1,196 @@
+2025-12-08 13:28:26.097 | INFO     | src.config_loader:load_config:62 - Loading configuration from: config.yaml
+2025-12-08 13:28:26.115 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models
+2025-12-08 13:28:26.116 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/checkpoints
+2025-12-08 13:28:26.117 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/pretrained
+2025-12-08 13:28:26.117 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/embeddings
+2025-12-08 13:28:26.120 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: logs
+2025-12-08 13:28:26.121 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: temp
+2025-12-08 13:28:26.123 | INFO     | src.config_loader:load_config:74 - Configuration loaded successfully
+2025-12-08 13:28:26.123 | INFO     | train:__init__:35 - Using device: cpu
+2025-12-08 13:28:26.123 | INFO     | src.keystroke_preprocessing:__init__:34 - KeystrokePreprocessor initialized
+2025-12-08 13:28:26.124 | INFO     | train:load_data:51 - Loading dataset...
+2025-12-08 13:28:26.138 | INFO     | train:load_data:57 - Using TUPLET dataset (pre-paired samples)
+2025-12-08 13:28:26.141 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:82 - Loading tuplet dataset from: Dataset/tuplet_dataset_with_subjects1.xlsx
+2025-12-08 13:28:35.920 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:104 - Loaded tuplet dataset: 10000 pairs
+2025-12-08 13:28:35.920 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:105 - Features per sample: 31
+2025-12-08 13:28:35.921 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:106 - Genuine pairs: 5000 (50.0%)
+2025-12-08 13:28:35.921 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:107 - Impostor pairs: 5000 (50.0%)
+2025-12-08 13:28:35.922 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:108 - Unique A subjects: 51
+2025-12-08 13:28:35.925 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:109 - Unique B subjects: 51
+2025-12-08 13:28:36.019 | INFO     | train:load_tuplet_data:143 - Tuplet dataset loaded:
+2025-12-08 13:28:36.020 | INFO     | train:load_tuplet_data:144 -   Train: 8000 pairs
+2025-12-08 13:28:36.021 | INFO     | train:load_tuplet_data:145 -   Val: 1000 pairs
+2025-12-08 13:28:36.021 | INFO     | train:load_tuplet_data:146 -   Test: 1000 pairs
+2025-12-08 13:28:36.022 | INFO     | train:load_tuplet_data:147 -   Features: 31
+2025-12-08 13:28:36.023 | INFO     | train:build_model:224 - Building model...
+2025-12-08 13:28:36.060 | INFO     | src.keystroke_embedding:__init__:69 - KeystrokeEmbeddingModel initialized: 31 -> 128
+2025-12-08 13:28:36.066 | INFO     | src.keystroke_embedding:__init__:70 - Architecture: [256, 512, 256, 128]
+2025-12-08 13:28:37.387 | INFO     | train:build_model:266 - Model built with 322816 parameters
+2025-12-08 13:28:37.387 | INFO     | train:train:453 - Starting training...
+2025-12-08 13:28:45.126 | INFO     | train:train:470 - Epoch 1/100 - Train Loss: 0.0546, Val Loss: 0.0413
+2025-12-08 13:28:45.143 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:28:45.144 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0413
+2025-12-08 13:28:51.891 | INFO     | train:train:470 - Epoch 2/100 - Train Loss: 0.0397, Val Loss: 0.0355
+2025-12-08 13:28:51.905 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:28:51.906 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0355
+2025-12-08 13:28:58.460 | INFO     | train:train:470 - Epoch 3/100 - Train Loss: 0.0363, Val Loss: 0.0321
+2025-12-08 13:28:58.473 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:28:58.474 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0321
+2025-12-08 13:29:04.420 | INFO     | train:train:470 - Epoch 4/100 - Train Loss: 0.0342, Val Loss: 0.0310
+2025-12-08 13:29:04.434 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:29:04.434 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0310
+2025-12-08 13:29:09.899 | INFO     | train:train:470 - Epoch 5/100 - Train Loss: 0.0324, Val Loss: 0.0282
+2025-12-08 13:29:09.919 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:29:09.919 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0282
+2025-12-08 13:29:15.562 | INFO     | train:train:470 - Epoch 6/100 - Train Loss: 0.0316, Val Loss: 0.0307
+2025-12-08 13:29:20.851 | INFO     | train:train:470 - Epoch 7/100 - Train Loss: 0.0302, Val Loss: 0.0269
+2025-12-08 13:29:20.865 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:29:20.866 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0269
+2025-12-08 13:29:26.471 | INFO     | train:train:470 - Epoch 8/100 - Train Loss: 0.0299, Val Loss: 0.0265
+2025-12-08 13:29:26.487 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:29:26.487 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0265
+2025-12-08 13:29:31.962 | INFO     | train:train:470 - Epoch 9/100 - Train Loss: 0.0284, Val Loss: 0.0257
+2025-12-08 13:29:31.978 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:29:31.980 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0257
+2025-12-08 13:29:37.552 | INFO     | train:train:470 - Epoch 10/100 - Train Loss: 0.0284, Val Loss: 0.0257
+2025-12-08 13:29:37.566 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_10.pth
+2025-12-08 13:29:43.857 | INFO     | train:train:470 - Epoch 11/100 - Train Loss: 0.0271, Val Loss: 0.0249
+2025-12-08 13:29:43.870 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:29:43.870 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0249
+2025-12-08 13:29:49.677 | INFO     | train:train:470 - Epoch 12/100 - Train Loss: 0.0275, Val Loss: 0.0255
+2025-12-08 13:29:55.334 | INFO     | train:train:470 - Epoch 13/100 - Train Loss: 0.0270, Val Loss: 0.0245
+2025-12-08 13:29:55.349 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:29:55.350 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0245
+2025-12-08 13:30:04.497 | INFO     | train:train:470 - Epoch 14/100 - Train Loss: 0.0263, Val Loss: 0.0258
+2025-12-08 13:30:10.249 | INFO     | train:train:470 - Epoch 15/100 - Train Loss: 0.0267, Val Loss: 0.0228
+2025-12-08 13:30:10.267 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:30:10.267 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0228
+2025-12-08 13:30:15.827 | INFO     | train:train:470 - Epoch 16/100 - Train Loss: 0.0264, Val Loss: 0.0243
+2025-12-08 13:30:22.482 | INFO     | train:train:470 - Epoch 17/100 - Train Loss: 0.0261, Val Loss: 0.0258
+2025-12-08 13:30:27.983 | INFO     | train:train:470 - Epoch 18/100 - Train Loss: 0.0266, Val Loss: 0.0238
+2025-12-08 13:30:33.838 | INFO     | train:train:470 - Epoch 19/100 - Train Loss: 0.0259, Val Loss: 0.0251
+2025-12-08 13:30:41.383 | INFO     | train:train:470 - Epoch 20/100 - Train Loss: 0.0250, Val Loss: 0.0216
+2025-12-08 13:30:41.401 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:30:41.402 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0216
+2025-12-08 13:30:41.418 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_20.pth
+2025-12-08 13:30:46.900 | INFO     | train:train:470 - Epoch 21/100 - Train Loss: 0.0244, Val Loss: 0.0234
+2025-12-08 13:30:52.374 | INFO     | train:train:470 - Epoch 22/100 - Train Loss: 0.0244, Val Loss: 0.0222
+2025-12-08 13:30:57.800 | INFO     | train:train:470 - Epoch 23/100 - Train Loss: 0.0238, Val Loss: 0.0199
+2025-12-08 13:30:57.823 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:30:57.826 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0199
+2025-12-08 13:31:03.651 | INFO     | train:train:470 - Epoch 24/100 - Train Loss: 0.0248, Val Loss: 0.0241
+2025-12-08 13:31:09.196 | INFO     | train:train:470 - Epoch 25/100 - Train Loss: 0.0243, Val Loss: 0.0238
+2025-12-08 13:31:14.517 | INFO     | train:train:470 - Epoch 26/100 - Train Loss: 0.0243, Val Loss: 0.0243
+2025-12-08 13:31:19.721 | INFO     | train:train:470 - Epoch 27/100 - Train Loss: 0.0237, Val Loss: 0.0226
+2025-12-08 13:31:25.063 | INFO     | train:train:470 - Epoch 28/100 - Train Loss: 0.0230, Val Loss: 0.0226
+2025-12-08 13:31:30.279 | INFO     | train:train:470 - Epoch 29/100 - Train Loss: 0.0235, Val Loss: 0.0212
+2025-12-08 13:31:35.630 | INFO     | train:train:470 - Epoch 30/100 - Train Loss: 0.0237, Val Loss: 0.0212
+2025-12-08 13:31:35.647 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_30.pth
+2025-12-08 13:31:41.374 | INFO     | train:train:470 - Epoch 31/100 - Train Loss: 0.0233, Val Loss: 0.0212
+2025-12-08 13:31:47.036 | INFO     | train:train:470 - Epoch 32/100 - Train Loss: 0.0234, Val Loss: 0.0213
+2025-12-08 13:31:52.298 | INFO     | train:train:470 - Epoch 33/100 - Train Loss: 0.0232, Val Loss: 0.0215
+2025-12-08 13:31:58.702 | INFO     | train:train:470 - Epoch 34/100 - Train Loss: 0.0225, Val Loss: 0.0210
+2025-12-08 13:32:03.974 | INFO     | train:train:470 - Epoch 35/100 - Train Loss: 0.0225, Val Loss: 0.0213
+2025-12-08 13:32:09.153 | INFO     | train:train:470 - Epoch 36/100 - Train Loss: 0.0222, Val Loss: 0.0210
+2025-12-08 13:32:14.534 | INFO     | train:train:470 - Epoch 37/100 - Train Loss: 0.0223, Val Loss: 0.0213
+2025-12-08 13:32:19.800 | INFO     | train:train:470 - Epoch 38/100 - Train Loss: 0.0224, Val Loss: 0.0204
+2025-12-08 13:32:25.065 | INFO     | train:train:470 - Epoch 39/100 - Train Loss: 0.0218, Val Loss: 0.0216
+2025-12-08 13:32:30.392 | INFO     | train:train:470 - Epoch 40/100 - Train Loss: 0.0215, Val Loss: 0.0215
+2025-12-08 13:32:30.404 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_40.pth
+2025-12-08 13:32:35.912 | INFO     | train:train:470 - Epoch 41/100 - Train Loss: 0.0220, Val Loss: 0.0200
+2025-12-08 13:32:41.950 | INFO     | train:train:470 - Epoch 42/100 - Train Loss: 0.0209, Val Loss: 0.0191
+2025-12-08 13:32:41.967 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:32:41.967 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0191
+2025-12-08 13:32:48.160 | INFO     | train:train:470 - Epoch 43/100 - Train Loss: 0.0209, Val Loss: 0.0204
+2025-12-08 13:32:53.633 | INFO     | train:train:470 - Epoch 44/100 - Train Loss: 0.0208, Val Loss: 0.0204
+2025-12-08 13:32:59.054 | INFO     | train:train:470 - Epoch 45/100 - Train Loss: 0.0212, Val Loss: 0.0191
+2025-12-08 13:33:04.810 | INFO     | train:train:470 - Epoch 46/100 - Train Loss: 0.0209, Val Loss: 0.0185
+2025-12-08 13:33:04.822 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:33:04.822 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0185
+2025-12-08 13:33:10.614 | INFO     | train:train:470 - Epoch 47/100 - Train Loss: 0.0212, Val Loss: 0.0185
+2025-12-08 13:33:10.625 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:33:10.626 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0185
+2025-12-08 13:33:16.431 | INFO     | train:train:470 - Epoch 48/100 - Train Loss: 0.0206, Val Loss: 0.0176
+2025-12-08 13:33:16.440 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:33:16.440 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0176
+2025-12-08 13:33:22.531 | INFO     | train:train:470 - Epoch 49/100 - Train Loss: 0.0205, Val Loss: 0.0175
+2025-12-08 13:33:22.547 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:33:22.547 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0175
+2025-12-08 13:33:29.920 | INFO     | train:train:470 - Epoch 50/100 - Train Loss: 0.0196, Val Loss: 0.0180
+2025-12-08 13:33:29.952 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_50.pth
+2025-12-08 13:33:38.262 | INFO     | train:train:470 - Epoch 51/100 - Train Loss: 0.0201, Val Loss: 0.0184
+2025-12-08 13:33:46.367 | INFO     | train:train:470 - Epoch 52/100 - Train Loss: 0.0196, Val Loss: 0.0177
+2025-12-08 13:33:55.158 | INFO     | train:train:470 - Epoch 53/100 - Train Loss: 0.0189, Val Loss: 0.0178
+2025-12-08 13:34:05.629 | INFO     | train:train:470 - Epoch 54/100 - Train Loss: 0.0194, Val Loss: 0.0181
+2025-12-08 13:34:15.573 | INFO     | train:train:470 - Epoch 55/100 - Train Loss: 0.0184, Val Loss: 0.0183
+2025-12-08 13:34:26.418 | INFO     | train:train:470 - Epoch 56/100 - Train Loss: 0.0188, Val Loss: 0.0176
+2025-12-08 13:34:37.484 | INFO     | train:train:470 - Epoch 57/100 - Train Loss: 0.0187, Val Loss: 0.0187
+2025-12-08 13:34:49.322 | INFO     | train:train:470 - Epoch 58/100 - Train Loss: 0.0182, Val Loss: 0.0168
+2025-12-08 13:34:49.333 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:34:49.334 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0168
+2025-12-08 13:35:01.416 | INFO     | train:train:470 - Epoch 59/100 - Train Loss: 0.0182, Val Loss: 0.0188
+2025-12-08 13:35:13.517 | INFO     | train:train:470 - Epoch 60/100 - Train Loss: 0.0177, Val Loss: 0.0177
+2025-12-08 13:35:13.529 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_60.pth
+2025-12-08 13:35:26.619 | INFO     | train:train:470 - Epoch 61/100 - Train Loss: 0.0172, Val Loss: 0.0176
+2025-12-08 13:35:40.229 | INFO     | train:train:470 - Epoch 62/100 - Train Loss: 0.0169, Val Loss: 0.0191
+2025-12-08 13:35:53.262 | INFO     | train:train:470 - Epoch 63/100 - Train Loss: 0.0176, Val Loss: 0.0176
+2025-12-08 13:36:06.337 | INFO     | train:train:470 - Epoch 64/100 - Train Loss: 0.0170, Val Loss: 0.0182
+2025-12-08 13:36:19.997 | INFO     | train:train:470 - Epoch 65/100 - Train Loss: 0.0176, Val Loss: 0.0177
+2025-12-08 13:36:33.584 | INFO     | train:train:470 - Epoch 66/100 - Train Loss: 0.0173, Val Loss: 0.0168
+2025-12-08 13:36:33.597 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:36:33.597 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0168
+2025-12-08 13:36:47.359 | INFO     | train:train:470 - Epoch 67/100 - Train Loss: 0.0166, Val Loss: 0.0170
+2025-12-08 13:37:00.968 | INFO     | train:train:470 - Epoch 68/100 - Train Loss: 0.0164, Val Loss: 0.0170
+2025-12-08 13:37:14.506 | INFO     | train:train:470 - Epoch 69/100 - Train Loss: 0.0160, Val Loss: 0.0163
+2025-12-08 13:37:14.522 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:37:14.522 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0163
+2025-12-08 13:37:28.487 | INFO     | train:train:470 - Epoch 70/100 - Train Loss: 0.0163, Val Loss: 0.0161
+2025-12-08 13:37:28.503 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:37:28.503 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0161
+2025-12-08 13:37:28.515 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_70.pth
+2025-12-08 13:37:42.599 | INFO     | train:train:470 - Epoch 71/100 - Train Loss: 0.0162, Val Loss: 0.0159
+2025-12-08 13:37:42.614 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:37:42.615 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0159
+2025-12-08 13:37:56.290 | INFO     | train:train:470 - Epoch 72/100 - Train Loss: 0.0158, Val Loss: 0.0156
+2025-12-08 13:37:56.301 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:37:56.301 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0156
+2025-12-08 13:38:10.690 | INFO     | train:train:470 - Epoch 73/100 - Train Loss: 0.0153, Val Loss: 0.0159
+2025-12-08 13:38:25.083 | INFO     | train:train:470 - Epoch 74/100 - Train Loss: 0.0155, Val Loss: 0.0167
+2025-12-08 13:38:39.745 | INFO     | train:train:470 - Epoch 75/100 - Train Loss: 0.0153, Val Loss: 0.0157
+2025-12-08 13:38:55.475 | INFO     | train:train:470 - Epoch 76/100 - Train Loss: 0.0149, Val Loss: 0.0156
+2025-12-08 13:38:55.491 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:38:55.491 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0156
+2025-12-08 13:39:10.997 | INFO     | train:train:470 - Epoch 77/100 - Train Loss: 0.0146, Val Loss: 0.0160
+2025-12-08 13:39:26.023 | INFO     | train:train:470 - Epoch 78/100 - Train Loss: 0.0149, Val Loss: 0.0160
+2025-12-08 13:39:40.407 | INFO     | train:train:470 - Epoch 79/100 - Train Loss: 0.0151, Val Loss: 0.0160
+2025-12-08 13:39:57.617 | INFO     | train:train:470 - Epoch 80/100 - Train Loss: 0.0142, Val Loss: 0.0156
+2025-12-08 13:39:57.642 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_80.pth
+2025-12-08 13:40:14.848 | INFO     | train:train:470 - Epoch 81/100 - Train Loss: 0.0147, Val Loss: 0.0176
+2025-12-08 13:40:29.781 | INFO     | train:train:470 - Epoch 82/100 - Train Loss: 0.0143, Val Loss: 0.0158
+2025-12-08 13:40:47.521 | INFO     | train:train:470 - Epoch 83/100 - Train Loss: 0.0136, Val Loss: 0.0153
+2025-12-08 13:40:47.538 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:40:47.539 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0153
+2025-12-08 13:41:02.821 | INFO     | train:train:470 - Epoch 84/100 - Train Loss: 0.0141, Val Loss: 0.0167
+2025-12-08 13:41:17.969 | INFO     | train:train:470 - Epoch 85/100 - Train Loss: 0.0142, Val Loss: 0.0159
+2025-12-08 13:41:32.399 | INFO     | train:train:470 - Epoch 86/100 - Train Loss: 0.0138, Val Loss: 0.0160
+2025-12-08 13:42:00.394 | INFO     | train:train:470 - Epoch 87/100 - Train Loss: 0.0137, Val Loss: 0.0156
+2025-12-08 13:42:14.887 | INFO     | train:train:470 - Epoch 88/100 - Train Loss: 0.0132, Val Loss: 0.0158
+2025-12-08 13:42:29.726 | INFO     | train:train:470 - Epoch 89/100 - Train Loss: 0.0137, Val Loss: 0.0156
+2025-12-08 13:42:44.643 | INFO     | train:train:470 - Epoch 90/100 - Train Loss: 0.0130, Val Loss: 0.0158
+2025-12-08 13:42:44.657 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_90.pth
+2025-12-08 13:42:59.388 | INFO     | train:train:470 - Epoch 91/100 - Train Loss: 0.0135, Val Loss: 0.0156
+2025-12-08 13:43:14.241 | INFO     | train:train:470 - Epoch 92/100 - Train Loss: 0.0132, Val Loss: 0.0147
+2025-12-08 13:43:14.270 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 13:43:14.270 | INFO     | train:train:478 - New best model saved! Val Loss: 0.0147
+2025-12-08 13:43:30.574 | INFO     | train:train:470 - Epoch 93/100 - Train Loss: 0.0130, Val Loss: 0.0158
+2025-12-08 13:43:46.663 | INFO     | train:train:470 - Epoch 94/100 - Train Loss: 0.0130, Val Loss: 0.0149
+2025-12-08 13:44:02.856 | INFO     | train:train:470 - Epoch 95/100 - Train Loss: 0.0126, Val Loss: 0.0153
+2025-12-08 13:44:18.549 | INFO     | train:train:470 - Epoch 96/100 - Train Loss: 0.0135, Val Loss: 0.0155
+2025-12-08 13:44:33.861 | INFO     | train:train:470 - Epoch 97/100 - Train Loss: 0.0129, Val Loss: 0.0150
+2025-12-08 13:44:49.395 | INFO     | train:train:470 - Epoch 98/100 - Train Loss: 0.0138, Val Loss: 0.0152
+2025-12-08 13:45:05.600 | INFO     | train:train:470 - Epoch 99/100 - Train Loss: 0.0131, Val Loss: 0.0155
+2025-12-08 13:45:20.695 | INFO     | train:train:470 - Epoch 100/100 - Train Loss: 0.0135, Val Loss: 0.0161
+2025-12-08 13:45:20.714 | DEBUG    | train:save_checkpoint:509 - Checkpoint saved: models/checkpoints\checkpoint_epoch_100.pth
+2025-12-08 13:45:20.715 | INFO     | train:train:491 - Training completed!
+2025-12-08 13:45:21.365 | INFO     | train:plot_training_history:524 - Training history plot saved: logs\training_history.png
+2025-12-08 13:45:21.384 | INFO     | train:main:548 - Training script completed successfully!

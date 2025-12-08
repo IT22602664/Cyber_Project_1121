@@ -20,7 +20,7 @@ class KeystrokeVerifier:
     def __init__(self, model, config):
         """
         Initialize verifier
-        
+
         Args:
             model: Trained embedding model
             config: Configuration object
@@ -29,11 +29,14 @@ class KeystrokeVerifier:
         self.config = config
         self.enrolled_templates = {}  # user_id -> template embeddings
         self.verification_history = {}  # user_id -> verification scores
-        
+        self.user_thresholds = {}  # user_id -> adaptive threshold
+
         self.threshold = config.verification.threshold
         self.similarity_metric = config.verification.similarity_metric
-        
+        self.adaptive_threshold = getattr(config.verification, 'adaptive_threshold', False)
+
         logger.info("KeystrokeVerifier initialized")
+        logger.info(f"Adaptive threshold: {self.adaptive_threshold}")
     
     def enroll_user(self, user_id: str, keystroke_samples: torch.Tensor) -> Dict:
         """
@@ -59,25 +62,49 @@ class KeystrokeVerifier:
         self.model.eval()
         with torch.no_grad():
             embeddings = self.model(keystroke_samples)
-        
+
         # Create template (mean embedding)
         template = embeddings.mean(dim=0)
-        
+
+        # Compute adaptive threshold if enabled
+        user_threshold = self.threshold
+        if self.adaptive_threshold:
+            # Compute intra-user similarities (how similar user's samples are to each other)
+            similarities = []
+            for i in range(len(embeddings)):
+                # Ensure embeddings are 2D for compute_similarity
+                emb_i = embeddings[i].unsqueeze(0) if embeddings[i].dim() == 1 else embeddings[i]
+                temp = template.unsqueeze(0) if template.dim() == 1 else template
+                sim = self.compute_similarity(emb_i, temp)
+                similarities.append(sim)
+
+            # Set threshold as mean - 3.0*std to capture 99.7% of genuine samples
+            # This is less conservative and will reduce False Reject Rate
+            # With fixed cosine similarity (no normalization), we can use lower thresholds
+            mean_sim = np.mean(similarities)
+            std_sim = np.std(similarities)
+            user_threshold = max(0.3, mean_sim - 3.0 * std_sim)  # At least 0.3
+
+            self.user_thresholds[user_id] = user_threshold
+            logger.info(f"Adaptive threshold for {user_id}: {user_threshold:.4f} (mean: {mean_sim:.4f}, std: {std_sim:.4f})")
+
         # Store template
         self.enrolled_templates[user_id] = {
             'template': template,
             'embeddings': embeddings,
             'n_samples': len(keystroke_samples),
-            'enrollment_time': time.time()
+            'enrollment_time': time.time(),
+            'threshold': user_threshold
         }
-        
+
         logger.info(f"User {user_id} enrolled successfully with {len(keystroke_samples)} samples")
-        
+
         return {
             'success': True,
             'user_id': user_id,
             'n_samples': len(keystroke_samples),
-            'embedding_dim': template.shape[0]
+            'embedding_dim': template.shape[0],
+            'threshold': user_threshold
         }
     
     def verify_user(self, user_id: str, keystroke_sample: torch.Tensor) -> Dict:
@@ -108,14 +135,15 @@ class KeystrokeVerifier:
                 keystroke_sample = keystroke_sample.unsqueeze(0)
             embedding = self.model(keystroke_sample)
         
-        # Get template
+        # Get template and threshold
         template = self.enrolled_templates[user_id]['template'].unsqueeze(0)
-        
+        user_threshold = self.enrolled_templates[user_id].get('threshold', self.threshold)
+
         # Compute similarity
         similarity = self.compute_similarity(embedding, template)
-        
-        # Verification decision
-        verified = similarity >= self.threshold
+
+        # Verification decision using user-specific threshold
+        verified = similarity >= user_threshold
         confidence = float(similarity)
         
         # Determine confidence level
@@ -172,11 +200,20 @@ class KeystrokeVerifier:
         """
         emb1 = embedding1.cpu().numpy()
         emb2 = embedding2.cpu().numpy()
-        
+
+        # Ensure 2D arrays for sklearn functions
+        if emb1.ndim == 1:
+            emb1 = emb1.reshape(1, -1)
+        if emb2.ndim == 1:
+            emb2 = emb2.reshape(1, -1)
+
         if self.similarity_metric == 'cosine':
             similarity = cosine_similarity(emb1, emb2)[0, 0]
-            # Convert to 0-1 range
-            similarity = (similarity + 1) / 2
+            # Cosine similarity is already in [-1, 1] range
+            # For L2-normalized embeddings (which our model produces),
+            # cosine similarity is typically in [0, 1] range
+            # No need to normalize further - use raw cosine similarity
+            similarity = max(0.0, min(1.0, similarity))  # Clamp to [0, 1]
         elif self.similarity_metric == 'euclidean':
             distance = euclidean_distances(emb1, emb2)[0, 0]
             # Convert distance to similarity

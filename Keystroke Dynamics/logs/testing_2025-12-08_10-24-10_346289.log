@@ -1,0 +1,565 @@
+2025-12-08 10:24:10.348 | INFO     | src.config_loader:load_config:62 - Loading configuration from: config.yaml
+2025-12-08 10:24:10.363 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models
+2025-12-08 10:24:10.363 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/checkpoints
+2025-12-08 10:24:10.363 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/pretrained
+2025-12-08 10:24:10.363 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/embeddings
+2025-12-08 10:24:10.363 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: logs
+2025-12-08 10:24:10.363 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: temp
+2025-12-08 10:24:10.363 | INFO     | src.config_loader:load_config:74 - Configuration loaded successfully
+2025-12-08 10:24:10.363 | INFO     | test:__init__:33 - Using device: cpu
+2025-12-08 10:24:10.363 | INFO     | src.keystroke_preprocessing:__init__:34 - KeystrokePreprocessor initialized
+2025-12-08 10:24:10.363 | INFO     | src.anomaly_detection:__init__:56 - AnomalyDetector initialized with method: isolation_forest
+2025-12-08 10:24:10.369 | INFO     | test:load_model:46 - Loading model from: models/checkpoints\best_model.pth
+2025-12-08 10:24:10.386 | INFO     | test:run_comprehensive_test:314 - Running comprehensive tests...
+2025-12-08 10:24:10.386 | INFO     | test:load_test_data:56 - Loading test dataset...
+2025-12-08 10:24:10.387 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:46 - Loading DSL dataset from: Dataset\DSL-StrongPasswordData-Original_Dataset.xls
+2025-12-08 10:24:11.788 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:59 - Loaded dataset: 20400 samples, 34 features
+2025-12-08 10:24:11.791 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:60 - Subjects: 51
+2025-12-08 10:24:11.795 | INFO     | src.keystroke_preprocessing:split_by_subject:311 - Splitting dataset by subject...
+2025-12-08 10:24:11.817 | INFO     | src.keystroke_preprocessing:split_by_subject:331 - Split: Train=12000 (30 subjects), Val=4000 (10 subjects), Test=4400 (11 subjects)
+2025-12-08 10:24:11.819 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:268 - Running preprocessing pipeline...
+2025-12-08 10:24:11.819 | INFO     | src.keystroke_preprocessing:extract_timing_features:83 - Extracting timing features...
+2025-12-08 10:24:11.833 | INFO     | src.keystroke_preprocessing:extract_timing_features:112 - Extracted 31 timing features
+2025-12-08 10:24:11.835 | INFO     | src.keystroke_preprocessing:extract_timing_features:113 - Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 10:24:11.838 | INFO     | src.keystroke_preprocessing:handle_outliers:197 - Handling outliers...
+2025-12-08 10:24:11.858 | INFO     | src.keystroke_preprocessing:handle_outliers:205 - Clipped 1582 outlier values
+2025-12-08 10:24:11.861 | INFO     | src.keystroke_preprocessing:compute_statistical_features:131 - Computing statistical features...
+2025-12-08 10:24:11.917 | INFO     | src.keystroke_preprocessing:compute_statistical_features:156 - Added 7 statistical features
+2025-12-08 10:24:11.919 | WARNING  | src.keystroke_preprocessing:normalize_features:178 - Scaler not fitted, fitting now...
+2025-12-08 10:24:11.975 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:293 - Preprocessing complete: torch.Size([4400, 38])
+2025-12-08 10:24:11.976 | INFO     | test:load_test_data:78 - Test data loaded: torch.Size([4400, 38])
+2025-12-08 10:24:11.988 | INFO     | src.keystroke_embedding:__init__:69 - KeystrokeEmbeddingModel initialized: 38 -> 128
+2025-12-08 10:24:11.988 | INFO     | src.keystroke_embedding:__init__:70 - Architecture: [256, 512, 256, 128]
+2025-12-08 10:24:12.015 | INFO     | test:run_comprehensive_test:329 - Model loaded successfully
+2025-12-08 10:24:12.016 | INFO     | test:evaluate_verification:84 - Evaluating verification performance...
+2025-12-08 10:24:12.018 | INFO     | src.keystroke_verification:__init__:36 - KeystrokeVerifier initialized
+2025-12-08 10:24:12.018 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s010
+2025-12-08 10:24:12.029 | INFO     | src.keystroke_verification:enroll_user:74 - User s010 enrolled successfully with 50 samples
+2025-12-08 10:24:12.032 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.890, Latency=1.4ms
+2025-12-08 10:24:12.032 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.991, Latency=0.0ms
+2025-12-08 10:24:12.032 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.858, Latency=0.0ms
+2025-12-08 10:24:12.039 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.951, Latency=6.9ms
+2025-12-08 10:24:12.042 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.970, Latency=2.3ms
+2025-12-08 10:24:12.045 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.952, Latency=3.0ms
+2025-12-08 10:24:12.048 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.929, Latency=3.0ms
+2025-12-08 10:24:12.055 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.861, Latency=2.2ms
+2025-12-08 10:24:12.059 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.925, Latency=4.4ms
+2025-12-08 10:24:12.066 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.910, Latency=6.2ms
+2025-12-08 10:24:12.069 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.902, Latency=2.6ms
+2025-12-08 10:24:12.072 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.920, Latency=2.0ms
+2025-12-08 10:24:12.075 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.818, Latency=2.2ms
+2025-12-08 10:24:12.082 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.851, Latency=7.5ms
+2025-12-08 10:24:12.089 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.870, Latency=4.0ms
+2025-12-08 10:24:12.093 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.896, Latency=3.0ms
+2025-12-08 10:24:12.143 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.921, Latency=47.6ms
+2025-12-08 10:24:12.279 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.854, Latency=88.4ms
+2025-12-08 10:24:12.281 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.866, Latency=2.0ms
+2025-12-08 10:24:12.285 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.806, Latency=2.0ms
+2025-12-08 10:24:12.287 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.844, Latency=2.6ms
+2025-12-08 10:24:12.292 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.974, Latency=4.6ms
+2025-12-08 10:24:12.296 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.900, Latency=2.8ms
+2025-12-08 10:24:12.319 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.834, Latency=23.6ms
+2025-12-08 10:24:12.323 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.921, Latency=3.0ms
+2025-12-08 10:24:12.336 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.476, Latency=2.0ms
+2025-12-08 10:24:12.339 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.550, Latency=2.2ms
+2025-12-08 10:24:12.347 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.429, Latency=8.4ms
+2025-12-08 10:24:12.351 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.422, Latency=3.4ms
+2025-12-08 10:24:12.353 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.439, Latency=1.0ms
+2025-12-08 10:24:12.355 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.436, Latency=1.0ms
+2025-12-08 10:24:12.364 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.519, Latency=9.6ms
+2025-12-08 10:24:12.369 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.494, Latency=2.0ms
+2025-12-08 10:24:12.377 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.591, Latency=6.9ms
+2025-12-08 10:24:12.384 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.605, Latency=2.0ms
+2025-12-08 10:24:12.399 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.448, Latency=12.4ms
+2025-12-08 10:24:12.402 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.457, Latency=2.0ms
+2025-12-08 10:24:12.405 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.914, Latency=2.0ms
+2025-12-08 10:24:12.416 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.833, Latency=2.0ms
+2025-12-08 10:24:12.421 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.905, Latency=4.0ms
+2025-12-08 10:24:12.431 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.813, Latency=8.6ms
+2025-12-08 10:24:12.434 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.333, Latency=2.0ms
+2025-12-08 10:24:12.437 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.583, Latency=2.2ms
+2025-12-08 10:24:12.446 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.400, Latency=6.8ms
+2025-12-08 10:24:12.513 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.782, Latency=3.1ms
+2025-12-08 10:24:12.515 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.581, Latency=1.2ms
+2025-12-08 10:24:12.517 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.749, Latency=1.1ms
+2025-12-08 10:24:12.519 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.704, Latency=1.3ms
+2025-12-08 10:24:12.522 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=True, Confidence=0.776, Latency=2.6ms
+2025-12-08 10:24:12.529 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s010 - Verified=False, Confidence=0.565, Latency=5.6ms
+2025-12-08 10:24:12.531 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s011
+2025-12-08 10:24:12.535 | INFO     | src.keystroke_verification:enroll_user:74 - User s011 enrolled successfully with 50 samples
+2025-12-08 10:24:12.536 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.963, Latency=1.0ms
+2025-12-08 10:24:12.540 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.949, Latency=2.7ms
+2025-12-08 10:24:12.545 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.937, Latency=2.0ms
+2025-12-08 10:24:12.550 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.969, Latency=1.7ms
+2025-12-08 10:24:12.551 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.993, Latency=1.0ms
+2025-12-08 10:24:12.554 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.993, Latency=1.5ms
+2025-12-08 10:24:12.555 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.991, Latency=1.3ms
+2025-12-08 10:24:12.562 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.974, Latency=7.0ms
+2025-12-08 10:24:12.567 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.822, Latency=5.1ms
+2025-12-08 10:24:12.571 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.978, Latency=1.3ms
+2025-12-08 10:24:12.577 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.987, Latency=5.3ms
+2025-12-08 10:24:12.585 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.927, Latency=2.6ms
+2025-12-08 10:24:12.585 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.880, Latency=0.0ms
+2025-12-08 10:24:12.595 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.893, Latency=10.0ms
+2025-12-08 10:24:12.601 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.990, Latency=1.5ms
+2025-12-08 10:24:12.603 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.960, Latency=1.3ms
+2025-12-08 10:24:12.606 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.988, Latency=2.0ms
+2025-12-08 10:24:12.617 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.957, Latency=2.8ms
+2025-12-08 10:24:12.620 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.994, Latency=2.0ms
+2025-12-08 10:24:12.621 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.982, Latency=0.0ms
+2025-12-08 10:24:12.629 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.987, Latency=4.0ms
+2025-12-08 10:24:12.633 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.973, Latency=1.8ms
+2025-12-08 10:24:12.635 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.990, Latency=1.0ms
+2025-12-08 10:24:12.638 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.979, Latency=2.5ms
+2025-12-08 10:24:12.638 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.995, Latency=0.0ms
+2025-12-08 10:24:12.646 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.524, Latency=2.0ms
+2025-12-08 10:24:12.651 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.276, Latency=5.5ms
+2025-12-08 10:24:12.653 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.487, Latency=2.4ms
+2025-12-08 10:24:12.656 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.520, Latency=2.6ms
+2025-12-08 10:24:12.661 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.423, Latency=3.8ms
+2025-12-08 10:24:12.666 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.808, Latency=1.0ms
+2025-12-08 10:24:12.668 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.690, Latency=1.1ms
+2025-12-08 10:24:12.671 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.760, Latency=2.4ms
+2025-12-08 10:24:12.672 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=True, Confidence=0.805, Latency=1.0ms
+2025-12-08 10:24:12.681 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.685, Latency=7.4ms
+2025-12-08 10:24:12.681 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.684, Latency=0.0ms
+2025-12-08 10:24:12.688 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.710, Latency=6.6ms
+2025-12-08 10:24:12.690 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.524, Latency=2.0ms
+2025-12-08 10:24:12.698 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.368, Latency=5.0ms
+2025-12-08 10:24:12.700 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.378, Latency=2.9ms
+2025-12-08 10:24:12.702 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.554, Latency=1.0ms
+2025-12-08 10:24:12.705 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.575, Latency=3.0ms
+2025-12-08 10:24:12.708 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.312, Latency=1.8ms
+2025-12-08 10:24:12.717 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.397, Latency=4.4ms
+2025-12-08 10:24:12.719 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.266, Latency=2.2ms
+2025-12-08 10:24:12.721 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.251, Latency=2.4ms
+2025-12-08 10:24:12.725 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.351, Latency=3.9ms
+2025-12-08 10:24:12.729 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.390, Latency=2.0ms
+2025-12-08 10:24:12.734 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.566, Latency=4.9ms
+2025-12-08 10:24:12.736 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s011 - Verified=False, Confidence=0.260, Latency=2.0ms
+2025-12-08 10:24:12.736 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s013
+2025-12-08 10:24:12.744 | INFO     | src.keystroke_verification:enroll_user:74 - User s013 enrolled successfully with 50 samples
+2025-12-08 10:24:12.748 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.977, Latency=2.5ms
+2025-12-08 10:24:12.752 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.969, Latency=2.8ms
+2025-12-08 10:24:12.753 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.977, Latency=1.3ms
+2025-12-08 10:24:12.753 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.982, Latency=0.0ms
+2025-12-08 10:24:12.762 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.984, Latency=8.9ms
+2025-12-08 10:24:12.768 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.986, Latency=3.2ms
+2025-12-08 10:24:12.771 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.721, Latency=2.0ms
+2025-12-08 10:24:12.773 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.965, Latency=2.1ms
+2025-12-08 10:24:12.783 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.825, Latency=7.9ms
+2025-12-08 10:24:12.786 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.959, Latency=2.8ms
+2025-12-08 10:24:12.787 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.982, Latency=0.0ms
+2025-12-08 10:24:12.800 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.870, Latency=13.0ms
+2025-12-08 10:24:12.802 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.943, Latency=2.3ms
+2025-12-08 10:24:12.805 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.975, Latency=2.0ms
+2025-12-08 10:24:12.814 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.795, Latency=9.3ms
+2025-12-08 10:24:12.817 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.833, Latency=2.9ms
+2025-12-08 10:24:12.820 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.831, Latency=2.5ms
+2025-12-08 10:24:12.821 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.952, Latency=1.0ms
+2025-12-08 10:24:12.824 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.798, Latency=3.5ms
+2025-12-08 10:24:12.831 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.979, Latency=3.9ms
+2025-12-08 10:24:12.834 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.847, Latency=1.9ms
+2025-12-08 10:24:12.836 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.669, Latency=2.0ms
+2025-12-08 10:24:12.836 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.978, Latency=0.0ms
+2025-12-08 10:24:12.842 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.889, Latency=5.5ms
+2025-12-08 10:24:12.849 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.991, Latency=7.7ms
+2025-12-08 10:24:12.853 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.579, Latency=3.3ms
+2025-12-08 10:24:12.855 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.354, Latency=2.0ms
+2025-12-08 10:24:12.856 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.588, Latency=1.4ms
+2025-12-08 10:24:12.864 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.580, Latency=5.6ms
+2025-12-08 10:24:12.867 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.558, Latency=2.3ms
+2025-12-08 10:24:12.870 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.495, Latency=2.5ms
+2025-12-08 10:24:12.873 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.329, Latency=2.8ms
+2025-12-08 10:24:12.875 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.686, Latency=2.3ms
+2025-12-08 10:24:12.883 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=True, Confidence=0.773, Latency=3.9ms
+2025-12-08 10:24:12.885 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.748, Latency=2.0ms
+2025-12-08 10:24:12.887 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.268, Latency=2.5ms
+2025-12-08 10:24:12.890 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.257, Latency=2.6ms
+2025-12-08 10:24:12.898 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.423, Latency=7.9ms
+2025-12-08 10:24:12.901 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.584, Latency=3.1ms
+2025-12-08 10:24:12.903 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.515, Latency=2.0ms
+2025-12-08 10:24:12.905 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.590, Latency=1.0ms
+2025-12-08 10:24:12.908 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.239, Latency=3.5ms
+2025-12-08 10:24:12.914 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.326, Latency=4.0ms
+2025-12-08 10:24:12.917 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.161, Latency=2.9ms
+2025-12-08 10:24:12.919 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.392, Latency=1.0ms
+2025-12-08 10:24:12.922 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.293, Latency=1.1ms
+2025-12-08 10:24:12.931 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.488, Latency=8.7ms
+2025-12-08 10:24:12.935 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.618, Latency=4.1ms
+2025-12-08 10:24:12.938 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.703, Latency=2.3ms
+2025-12-08 10:24:12.939 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s013 - Verified=False, Confidence=0.352, Latency=1.2ms
+2025-12-08 10:24:12.940 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s021
+2025-12-08 10:24:12.948 | INFO     | src.keystroke_verification:enroll_user:74 - User s021 enrolled successfully with 50 samples
+2025-12-08 10:24:12.953 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.506, Latency=4.0ms
+2025-12-08 10:24:12.957 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.878, Latency=4.1ms
+2025-12-08 10:24:12.965 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.661, Latency=6.1ms
+2025-12-08 10:24:12.969 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.826, Latency=2.5ms
+2025-12-08 10:24:12.972 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.777, Latency=2.0ms
+2025-12-08 10:24:12.974 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.698, Latency=2.0ms
+2025-12-08 10:24:12.984 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.545, Latency=4.5ms
+2025-12-08 10:24:12.987 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.753, Latency=2.3ms
+2025-12-08 10:24:12.989 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.701, Latency=2.0ms
+2025-12-08 10:24:12.998 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.528, Latency=9.6ms
+2025-12-08 10:24:13.002 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.756, Latency=2.5ms
+2025-12-08 10:24:13.003 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.847, Latency=1.3ms
+2025-12-08 10:24:13.004 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.893, Latency=0.0ms
+2025-12-08 10:24:13.015 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.740, Latency=10.3ms
+2025-12-08 10:24:13.017 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.846, Latency=1.6ms
+2025-12-08 10:24:13.019 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.832, Latency=2.0ms
+2025-12-08 10:24:13.019 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.950, Latency=0.0ms
+2025-12-08 10:24:13.024 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.953, Latency=5.1ms
+2025-12-08 10:24:13.031 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.858, Latency=6.0ms
+2025-12-08 10:24:13.035 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.760, Latency=4.1ms
+2025-12-08 10:24:13.037 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.741, Latency=2.1ms
+2025-12-08 10:24:13.039 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.813, Latency=1.3ms
+2025-12-08 10:24:13.046 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.979, Latency=5.9ms
+2025-12-08 10:24:13.049 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.946, Latency=3.3ms
+2025-12-08 10:24:13.052 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.842, Latency=2.5ms
+2025-12-08 10:24:13.054 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.787, Latency=0.0ms
+2025-12-08 10:24:13.058 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.646, Latency=4.5ms
+2025-12-08 10:24:13.064 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.880, Latency=5.6ms
+2025-12-08 10:24:13.068 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.723, Latency=3.8ms
+2025-12-08 10:24:13.070 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=True, Confidence=0.867, Latency=2.0ms
+2025-12-08 10:24:13.072 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.441, Latency=2.2ms
+2025-12-08 10:24:13.075 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.499, Latency=3.0ms
+2025-12-08 10:24:13.081 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.358, Latency=4.0ms
+2025-12-08 10:24:13.085 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.336, Latency=3.6ms
+2025-12-08 10:24:13.087 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.381, Latency=1.0ms
+2025-12-08 10:24:13.090 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.365, Latency=1.1ms
+2025-12-08 10:24:13.094 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.444, Latency=4.2ms
+2025-12-08 10:24:13.099 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.429, Latency=3.5ms
+2025-12-08 10:24:13.102 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.554, Latency=2.5ms
+2025-12-08 10:24:13.103 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.373, Latency=0.0ms
+2025-12-08 10:24:13.107 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.715, Latency=3.9ms
+2025-12-08 10:24:13.111 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.448, Latency=4.0ms
+2025-12-08 10:24:13.116 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.536, Latency=3.3ms
+2025-12-08 10:24:13.118 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.553, Latency=2.0ms
+2025-12-08 10:24:13.122 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.683, Latency=3.5ms
+2025-12-08 10:24:13.124 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.436, Latency=1.0ms
+2025-12-08 10:24:13.129 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.571, Latency=5.7ms
+2025-12-08 10:24:13.133 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.493, Latency=1.0ms
+2025-12-08 10:24:13.135 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.456, Latency=2.0ms
+2025-12-08 10:24:13.137 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s021 - Verified=False, Confidence=0.409, Latency=1.4ms
+2025-12-08 10:24:13.137 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s024
+2025-12-08 10:24:13.148 | INFO     | src.keystroke_verification:enroll_user:74 - User s024 enrolled successfully with 50 samples
+2025-12-08 10:24:13.152 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.978, Latency=3.6ms
+2025-12-08 10:24:13.154 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.809, Latency=1.4ms
+2025-12-08 10:24:13.161 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.927, Latency=5.7ms
+2025-12-08 10:24:13.167 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.991, Latency=1.0ms
+2025-12-08 10:24:13.170 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.985, Latency=2.8ms
+2025-12-08 10:24:13.170 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.900, Latency=0.0ms
+2025-12-08 10:24:13.181 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.961, Latency=11.0ms
+2025-12-08 10:24:13.183 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.962, Latency=2.0ms
+2025-12-08 10:24:13.185 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.987, Latency=2.0ms
+2025-12-08 10:24:13.189 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.993, Latency=4.0ms
+2025-12-08 10:24:13.196 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.972, Latency=5.5ms
+2025-12-08 10:24:13.201 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.936, Latency=4.8ms
+2025-12-08 10:24:13.203 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.950, Latency=1.1ms
+2025-12-08 10:24:13.205 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.993, Latency=1.1ms
+2025-12-08 10:24:13.209 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.960, Latency=3.9ms
+2025-12-08 10:24:13.216 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.983, Latency=4.7ms
+2025-12-08 10:24:13.218 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.857, Latency=1.7ms
+2025-12-08 10:24:13.220 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.962, Latency=1.0ms
+2025-12-08 10:24:13.220 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.998, Latency=0.0ms
+2025-12-08 10:24:13.232 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.981, Latency=11.3ms
+2025-12-08 10:24:13.234 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.983, Latency=2.6ms
+2025-12-08 10:24:13.236 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.977, Latency=2.0ms
+2025-12-08 10:24:13.238 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.988, Latency=1.4ms
+2025-12-08 10:24:13.240 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.975, Latency=1.0ms
+2025-12-08 10:24:13.248 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.995, Latency=6.0ms
+2025-12-08 10:24:13.252 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.812, Latency=2.4ms
+2025-12-08 10:24:13.254 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.965, Latency=1.4ms
+2025-12-08 10:24:13.254 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.672, Latency=0.0ms
+2025-12-08 10:24:13.265 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.769, Latency=6.1ms
+2025-12-08 10:24:13.268 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.773, Latency=1.9ms
+2025-12-08 10:24:13.270 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.353, Latency=1.0ms
+2025-12-08 10:24:13.270 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.545, Latency=0.0ms
+2025-12-08 10:24:13.277 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.263, Latency=7.7ms
+2025-12-08 10:24:13.284 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.266, Latency=4.0ms
+2025-12-08 10:24:13.286 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.245, Latency=2.3ms
+2025-12-08 10:24:13.288 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.239, Latency=1.0ms
+2025-12-08 10:24:13.290 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.328, Latency=1.3ms
+2025-12-08 10:24:13.296 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.321, Latency=5.9ms
+2025-12-08 10:24:13.300 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.378, Latency=2.1ms
+2025-12-08 10:24:13.302 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.575, Latency=2.0ms
+2025-12-08 10:24:13.305 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.626, Latency=2.0ms
+2025-12-08 10:24:13.305 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.533, Latency=0.0ms
+2025-12-08 10:24:13.313 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.674, Latency=4.8ms
+2025-12-08 10:24:13.316 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.626, Latency=1.1ms
+2025-12-08 10:24:13.318 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=False, Confidence=0.595, Latency=1.0ms
+2025-12-08 10:24:13.321 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.896, Latency=2.3ms
+2025-12-08 10:24:13.324 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.957, Latency=1.1ms
+2025-12-08 10:24:13.332 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.881, Latency=7.0ms
+2025-12-08 10:24:13.335 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.753, Latency=3.2ms
+2025-12-08 10:24:13.337 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s024 - Verified=True, Confidence=0.934, Latency=2.0ms
+2025-12-08 10:24:13.338 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s028
+2025-12-08 10:24:13.348 | INFO     | src.keystroke_verification:enroll_user:74 - User s028 enrolled successfully with 50 samples
+2025-12-08 10:24:13.351 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.902, Latency=3.1ms
+2025-12-08 10:24:13.355 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.949, Latency=2.5ms
+2025-12-08 10:24:13.357 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.974, Latency=2.0ms
+2025-12-08 10:24:13.368 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.955, Latency=2.0ms
+2025-12-08 10:24:13.372 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.929, Latency=3.0ms
+2025-12-08 10:24:13.385 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.998, Latency=11.0ms
+2025-12-08 10:24:13.388 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.990, Latency=2.0ms
+2025-12-08 10:24:13.392 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.989, Latency=3.1ms
+2025-12-08 10:24:13.400 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.986, Latency=5.0ms
+2025-12-08 10:24:13.403 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.960, Latency=3.0ms
+2025-12-08 10:24:13.406 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.993, Latency=2.2ms
+2025-12-08 10:24:13.415 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.995, Latency=6.9ms
+2025-12-08 10:24:13.419 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.976, Latency=2.0ms
+2025-12-08 10:24:13.422 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.995, Latency=2.5ms
+2025-12-08 10:24:13.432 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.994, Latency=9.7ms
+2025-12-08 10:24:13.435 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.967, Latency=2.0ms
+2025-12-08 10:24:13.438 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.980, Latency=2.0ms
+2025-12-08 10:24:13.443 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.972, Latency=4.6ms
+2025-12-08 10:24:13.450 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.970, Latency=5.0ms
+2025-12-08 10:24:13.454 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.980, Latency=3.2ms
+2025-12-08 10:24:13.457 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.930, Latency=2.0ms
+2025-12-08 10:24:13.468 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.845, Latency=10.5ms
+2025-12-08 10:24:13.472 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.956, Latency=3.0ms
+2025-12-08 10:24:13.484 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.969, Latency=9.5ms
+2025-12-08 10:24:13.487 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.986, Latency=3.8ms
+2025-12-08 10:24:13.491 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.680, Latency=2.0ms
+2025-12-08 10:24:13.497 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.892, Latency=4.0ms
+2025-12-08 10:24:13.501 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.466, Latency=2.1ms
+2025-12-08 10:24:13.502 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.712, Latency=1.0ms
+2025-12-08 10:24:13.505 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.668, Latency=1.5ms
+2025-12-08 10:24:13.508 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.363, Latency=2.5ms
+2025-12-08 10:24:13.516 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.421, Latency=4.6ms
+2025-12-08 10:24:13.519 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.318, Latency=2.8ms
+2025-12-08 10:24:13.521 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.346, Latency=0.0ms
+2025-12-08 10:24:13.532 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.296, Latency=11.2ms
+2025-12-08 10:24:13.536 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.407, Latency=4.4ms
+2025-12-08 10:24:13.538 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.463, Latency=1.0ms
+2025-12-08 10:24:13.547 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.448, Latency=7.5ms
+2025-12-08 10:24:13.551 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.404, Latency=2.0ms
+2025-12-08 10:24:13.554 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.712, Latency=1.4ms
+2025-12-08 10:24:13.565 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.513, Latency=11.3ms
+2025-12-08 10:24:13.569 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.385, Latency=3.8ms
+2025-12-08 10:24:13.571 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.523, Latency=2.2ms
+2025-12-08 10:24:13.573 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.464, Latency=2.2ms
+2025-12-08 10:24:13.582 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.431, Latency=8.4ms
+2025-12-08 10:24:13.584 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.702, Latency=1.0ms
+2025-12-08 10:24:13.586 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.543, Latency=1.0ms
+2025-12-08 10:24:13.590 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.823, Latency=2.9ms
+2025-12-08 10:24:13.592 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=False, Confidence=0.592, Latency=2.7ms
+2025-12-08 10:24:13.598 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s028 - Verified=True, Confidence=0.845, Latency=4.0ms
+2025-12-08 10:24:13.600 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s029
+2025-12-08 10:24:13.605 | INFO     | src.keystroke_verification:enroll_user:74 - User s029 enrolled successfully with 50 samples
+2025-12-08 10:24:13.608 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.942, Latency=2.5ms
+2025-12-08 10:24:13.613 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.917, Latency=4.0ms
+2025-12-08 10:24:13.617 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.933, Latency=3.6ms
+2025-12-08 10:24:13.619 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.962, Latency=1.0ms
+2025-12-08 10:24:13.621 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.906, Latency=2.5ms
+2025-12-08 10:24:13.622 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.962, Latency=1.0ms
+2025-12-08 10:24:13.626 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.949, Latency=3.9ms
+2025-12-08 10:24:13.635 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.911, Latency=9.3ms
+2025-12-08 10:24:13.637 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.959, Latency=2.0ms
+2025-12-08 10:24:13.639 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.977, Latency=2.1ms
+2025-12-08 10:24:13.645 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.921, Latency=5.1ms
+2025-12-08 10:24:13.650 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.977, Latency=5.2ms
+2025-12-08 10:24:13.652 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.967, Latency=1.0ms
+2025-12-08 10:24:13.654 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.861, Latency=2.0ms
+2025-12-08 10:24:13.654 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.924, Latency=0.0ms
+2025-12-08 10:24:13.663 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.978, Latency=9.3ms
+2025-12-08 10:24:13.667 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.968, Latency=2.0ms
+2025-12-08 10:24:13.670 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.986, Latency=3.2ms
+2025-12-08 10:24:13.672 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.934, Latency=1.0ms
+2025-12-08 10:24:13.674 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.991, Latency=1.5ms
+2025-12-08 10:24:13.680 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.973, Latency=4.0ms
+2025-12-08 10:24:13.684 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.921, Latency=2.4ms
+2025-12-08 10:24:13.687 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.972, Latency=1.1ms
+2025-12-08 10:24:13.689 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.957, Latency=2.0ms
+2025-12-08 10:24:13.693 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.961, Latency=4.0ms
+2025-12-08 10:24:13.699 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.800, Latency=4.0ms
+2025-12-08 10:24:13.702 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.682, Latency=3.9ms
+2025-12-08 10:24:13.705 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.683, Latency=2.0ms
+2025-12-08 10:24:13.706 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.787, Latency=1.4ms
+2025-12-08 10:24:13.711 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.670, Latency=4.3ms
+2025-12-08 10:24:13.722 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.475, Latency=5.9ms
+2025-12-08 10:24:13.732 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.405, Latency=10.0ms
+2025-12-08 10:24:13.737 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.612, Latency=2.0ms
+2025-12-08 10:24:13.740 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.714, Latency=2.2ms
+2025-12-08 10:24:13.752 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.684, Latency=3.0ms
+2025-12-08 10:24:13.754 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.778, Latency=1.0ms
+2025-12-08 10:24:13.761 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.809, Latency=6.9ms
+2025-12-08 10:24:13.769 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.818, Latency=3.2ms
+2025-12-08 10:24:13.771 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.816, Latency=2.2ms
+2025-12-08 10:24:13.771 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.958, Latency=0.0ms
+2025-12-08 10:24:13.783 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.395, Latency=11.8ms
+2025-12-08 10:24:13.786 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.359, Latency=1.7ms
+2025-12-08 10:24:13.788 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.520, Latency=2.0ms
+2025-12-08 10:24:13.789 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.600, Latency=1.0ms
+2025-12-08 10:24:13.797 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.519, Latency=5.4ms
+2025-12-08 10:24:13.801 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=True, Confidence=0.791, Latency=2.1ms
+2025-12-08 10:24:13.803 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.403, Latency=2.1ms
+2025-12-08 10:24:13.804 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.616, Latency=1.5ms
+2025-12-08 10:24:13.805 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.424, Latency=0.0ms
+2025-12-08 10:24:13.813 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s029 - Verified=False, Confidence=0.721, Latency=8.1ms
+2025-12-08 10:24:13.815 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s034
+2025-12-08 10:24:13.822 | INFO     | src.keystroke_verification:enroll_user:74 - User s034 enrolled successfully with 50 samples
+2025-12-08 10:24:13.826 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.889, Latency=2.2ms
+2025-12-08 10:24:13.832 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.916, Latency=4.0ms
+2025-12-08 10:24:13.837 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.976, Latency=4.6ms
+2025-12-08 10:24:13.839 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.936, Latency=2.0ms
+2025-12-08 10:24:13.841 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.980, Latency=2.0ms
+2025-12-08 10:24:13.848 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.970, Latency=5.6ms
+2025-12-08 10:24:13.851 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.983, Latency=1.8ms
+2025-12-08 10:24:13.853 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.979, Latency=1.1ms
+2025-12-08 10:24:13.853 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.954, Latency=0.0ms
+2025-12-08 10:24:13.861 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.993, Latency=4.7ms
+2025-12-08 10:24:13.865 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.970, Latency=3.3ms
+2025-12-08 10:24:13.870 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.931, Latency=5.5ms
+2025-12-08 10:24:13.873 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.978, Latency=2.0ms
+2025-12-08 10:24:13.880 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.984, Latency=7.0ms
+2025-12-08 10:24:13.884 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.989, Latency=4.1ms
+2025-12-08 10:24:13.888 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.992, Latency=2.7ms
+2025-12-08 10:24:13.890 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.993, Latency=2.0ms
+2025-12-08 10:24:13.897 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.981, Latency=6.9ms
+2025-12-08 10:24:13.902 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.992, Latency=2.8ms
+2025-12-08 10:24:13.904 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.997, Latency=2.0ms
+2025-12-08 10:24:13.907 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.979, Latency=2.9ms
+2025-12-08 10:24:13.915 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.985, Latency=7.4ms
+2025-12-08 10:24:13.918 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.978, Latency=2.5ms
+2025-12-08 10:24:13.921 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.975, Latency=2.0ms
+2025-12-08 10:24:13.924 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.964, Latency=2.1ms
+2025-12-08 10:24:13.934 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.604, Latency=5.8ms
+2025-12-08 10:24:13.937 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.485, Latency=1.9ms
+2025-12-08 10:24:13.940 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.501, Latency=2.5ms
+2025-12-08 10:24:13.949 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.625, Latency=8.4ms
+2025-12-08 10:24:13.953 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.505, Latency=2.5ms
+2025-12-08 10:24:13.956 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.526, Latency=2.0ms
+2025-12-08 10:24:13.967 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.381, Latency=10.5ms
+2025-12-08 10:24:13.969 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.704, Latency=2.6ms
+2025-12-08 10:24:13.970 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.801, Latency=1.0ms
+2025-12-08 10:24:13.971 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.754, Latency=0.0ms
+2025-12-08 10:24:13.980 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.908, Latency=8.9ms
+2025-12-08 10:24:13.984 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.920, Latency=2.1ms
+2025-12-08 10:24:13.987 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.922, Latency=1.8ms
+2025-12-08 10:24:13.988 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.849, Latency=1.0ms
+2025-12-08 10:24:13.988 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=True, Confidence=0.989, Latency=0.0ms
+2025-12-08 10:24:14.000 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.352, Latency=4.9ms
+2025-12-08 10:24:14.002 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.302, Latency=2.3ms
+2025-12-08 10:24:14.004 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.378, Latency=1.0ms
+2025-12-08 10:24:14.004 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.435, Latency=0.0ms
+2025-12-08 10:24:14.011 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.359, Latency=7.4ms
+2025-12-08 10:24:14.016 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.630, Latency=4.2ms
+2025-12-08 10:24:14.020 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.342, Latency=3.1ms
+2025-12-08 10:24:14.021 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.459, Latency=1.0ms
+2025-12-08 10:24:14.023 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.274, Latency=1.4ms
+2025-12-08 10:24:14.028 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s034 - Verified=False, Confidence=0.499, Latency=5.0ms
+2025-12-08 10:24:14.030 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s036
+2025-12-08 10:24:14.036 | INFO     | src.keystroke_verification:enroll_user:74 - User s036 enrolled successfully with 50 samples
+2025-12-08 10:24:14.037 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.940, Latency=1.0ms
+2025-12-08 10:24:14.037 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.995, Latency=0.0ms
+2025-12-08 10:24:14.045 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.977, Latency=3.8ms
+2025-12-08 10:24:14.051 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.997, Latency=3.6ms
+2025-12-08 10:24:14.053 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.999, Latency=2.1ms
+2025-12-08 10:24:14.054 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.973, Latency=1.0ms
+2025-12-08 10:24:14.054 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.931, Latency=0.0ms
+2025-12-08 10:24:14.064 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.995, Latency=9.7ms
+2025-12-08 10:24:14.067 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.975, Latency=1.3ms
+2025-12-08 10:24:14.069 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.987, Latency=2.4ms
+2025-12-08 10:24:14.070 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.981, Latency=1.0ms
+2025-12-08 10:24:14.070 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.988, Latency=0.0ms
+2025-12-08 10:24:14.078 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.974, Latency=8.0ms
+2025-12-08 10:24:14.084 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.992, Latency=3.8ms
+2025-12-08 10:24:14.086 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.995, Latency=2.2ms
+2025-12-08 10:24:14.087 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.975, Latency=1.0ms
+2025-12-08 10:24:14.087 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.987, Latency=0.0ms
+2025-12-08 10:24:14.095 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.925, Latency=7.6ms
+2025-12-08 10:24:14.100 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.996, Latency=3.3ms
+2025-12-08 10:24:14.102 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.942, Latency=1.0ms
+2025-12-08 10:24:14.104 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.902, Latency=1.4ms
+2025-12-08 10:24:14.105 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.974, Latency=0.0ms
+2025-12-08 10:24:14.112 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.991, Latency=6.7ms
+2025-12-08 10:24:14.116 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.957, Latency=2.0ms
+2025-12-08 10:24:14.121 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.997, Latency=3.2ms
+2025-12-08 10:24:14.124 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.476, Latency=2.0ms
+2025-12-08 10:24:14.134 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.627, Latency=9.8ms
+2025-12-08 10:24:14.136 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.589, Latency=2.0ms
+2025-12-08 10:24:14.138 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.348, Latency=1.4ms
+2025-12-08 10:24:14.145 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.415, Latency=6.8ms
+2025-12-08 10:24:14.153 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.405, Latency=3.9ms
+2025-12-08 10:24:14.155 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.615, Latency=2.0ms
+2025-12-08 10:24:14.159 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.327, Latency=4.1ms
+2025-12-08 10:24:14.168 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.297, Latency=4.6ms
+2025-12-08 10:24:14.171 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.295, Latency=2.3ms
+2025-12-08 10:24:14.172 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.214, Latency=0.0ms
+2025-12-08 10:24:14.178 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.268, Latency=6.6ms
+2025-12-08 10:24:14.181 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.282, Latency=3.1ms
+2025-12-08 10:24:14.186 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.335, Latency=4.8ms
+2025-12-08 10:24:14.188 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.318, Latency=1.0ms
+2025-12-08 10:24:14.191 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.744, Latency=1.0ms
+2025-12-08 10:24:14.199 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.696, Latency=7.4ms
+2025-12-08 10:24:14.202 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.447, Latency=3.1ms
+2025-12-08 10:24:14.204 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.500, Latency=2.2ms
+2025-12-08 10:24:14.205 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.429, Latency=1.0ms
+2025-12-08 10:24:14.212 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.606, Latency=5.6ms
+2025-12-08 10:24:14.219 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.886, Latency=6.9ms
+2025-12-08 10:24:14.222 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.873, Latency=3.2ms
+2025-12-08 10:24:14.222 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=True, Confidence=0.930, Latency=0.0ms
+2025-12-08 10:24:14.228 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s036 - Verified=False, Confidence=0.659, Latency=6.5ms
+2025-12-08 10:24:14.231 | INFO     | src.keystroke_verification:enroll_user:49 - Enrolling user: s049
+2025-12-08 10:24:14.233 | INFO     | src.keystroke_verification:enroll_user:74 - User s049 enrolled successfully with 50 samples
+2025-12-08 10:24:14.240 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.998, Latency=7.0ms
+2025-12-08 10:24:14.241 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.960, Latency=1.5ms
+2025-12-08 10:24:14.245 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.984, Latency=3.1ms
+2025-12-08 10:24:14.251 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.989, Latency=2.1ms
+2025-12-08 10:24:14.254 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.991, Latency=2.4ms
+2025-12-08 10:24:14.255 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.990, Latency=1.2ms
+2025-12-08 10:24:14.256 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.978, Latency=0.0ms
+2025-12-08 10:24:14.264 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.987, Latency=4.8ms
+2025-12-08 10:24:14.267 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.994, Latency=3.4ms
+2025-12-08 10:24:14.271 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.984, Latency=2.5ms
+2025-12-08 10:24:14.272 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.979, Latency=1.4ms
+2025-12-08 10:24:14.275 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.978, Latency=2.5ms
+2025-12-08 10:24:14.284 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.981, Latency=7.0ms
+2025-12-08 10:24:14.286 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.993, Latency=2.4ms
+2025-12-08 10:24:14.288 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.989, Latency=1.0ms
+2025-12-08 10:24:14.290 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.984, Latency=1.1ms
+2025-12-08 10:24:14.293 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.968, Latency=3.3ms
+2025-12-08 10:24:14.293 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.970, Latency=0.0ms
+2025-12-08 10:24:14.302 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.988, Latency=8.8ms
+2025-12-08 10:24:14.304 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.992, Latency=1.0ms
+2025-12-08 10:24:14.306 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.980, Latency=2.0ms
+2025-12-08 10:24:14.307 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.995, Latency=1.3ms
+2025-12-08 10:24:14.316 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.997, Latency=6.6ms
+2025-12-08 10:24:14.320 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.992, Latency=2.2ms
+2025-12-08 10:24:14.322 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.981, Latency=1.4ms
+2025-12-08 10:24:14.333 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.601, Latency=8.4ms
+2025-12-08 10:24:14.336 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.471, Latency=3.8ms
+2025-12-08 10:24:14.338 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.639, Latency=2.0ms
+2025-12-08 10:24:14.340 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.498, Latency=1.0ms
+2025-12-08 10:24:14.350 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.494, Latency=5.1ms
+2025-12-08 10:24:14.354 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.722, Latency=2.1ms
+2025-12-08 10:24:14.357 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.944, Latency=3.0ms
+2025-12-08 10:24:14.367 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.657, Latency=10.1ms
+2025-12-08 10:24:14.370 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.579, Latency=2.1ms
+2025-12-08 10:24:14.373 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.589, Latency=2.0ms
+2025-12-08 10:24:14.384 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.345, Latency=8.1ms
+2025-12-08 10:24:14.387 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.365, Latency=3.0ms
+2025-12-08 10:24:14.389 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.406, Latency=1.0ms
+2025-12-08 10:24:14.395 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.531, Latency=5.1ms
+2025-12-08 10:24:14.402 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.407, Latency=5.2ms
+2025-12-08 10:24:14.405 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.880, Latency=2.0ms
+2025-12-08 10:24:14.408 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.889, Latency=3.0ms
+2025-12-08 10:24:14.418 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.695, Latency=6.0ms
+2025-12-08 10:24:14.421 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.465, Latency=1.1ms
+2025-12-08 10:24:14.423 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.507, Latency=2.0ms
+2025-12-08 10:24:14.435 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.693, Latency=10.4ms
+2025-12-08 10:24:14.437 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.851, Latency=2.5ms
+2025-12-08 10:24:14.440 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.712, Latency=3.0ms
+2025-12-08 10:24:14.447 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=True, Confidence=0.797, Latency=7.3ms
+2025-12-08 10:24:14.452 | INFO     | src.keystroke_verification:verify_user:156 - Verification: s049 - Verified=False, Confidence=0.500, Latency=3.0ms
+2025-12-08 10:24:14.496 | INFO     | src.keystroke_verification:compute_eer:340 - EER: 0.3260, Optimal Threshold: 0.9790
+2025-12-08 10:24:14.990 | INFO     | test:plot_roc_curve:289 - ROC curve saved: logs\roc_curve.png
+2025-12-08 10:24:14.990 | INFO     | test:evaluate_anomaly_detection:296 - Evaluating anomaly detection...
+2025-12-08 10:24:14.990 | INFO     | src.anomaly_detection:fit:66 - Fitting anomaly detector on 100 samples
+2025-12-08 10:24:15.152 | INFO     | src.anomaly_detection:fit:84 - Anomaly detector fitted successfully
+2025-12-08 10:24:15.165 | INFO     | src.anomaly_detection:get_anomaly_report:269 - Anomaly Report: 3/100 anomalies (3.0%)
+2025-12-08 10:24:15.166 | INFO     | test:evaluate_anomaly_detection:308 - Anomaly Detection Report: {'total_samples': 100, 'anomaly_count': 3, 'normal_count': 97, 'anomaly_rate': 0.03, 'mean_score': 0.6632496068694287, 'min_score': 0.0, 'max_score': 0.999999943073812, 'std_score': 0.17464624884511604}
+2025-12-08 10:24:15.168 | INFO     | test:generate_test_report:438 - Test report saved: logs\test_report.txt
+2025-12-08 10:24:15.168 | INFO     | test:run_comprehensive_test:342 - Comprehensive testing completed!
+2025-12-08 10:24:15.168 | INFO     | test:main:456 - Testing script completed successfully!

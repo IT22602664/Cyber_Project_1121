@@ -1,0 +1,95 @@
+2025-12-08 12:33:45 | INFO | ================================================================================
+2025-12-08 12:33:45 | INFO | KEYSTROKE DYNAMICS - ZERO TRUST TELEHEALTH PLATFORM
+2025-12-08 12:33:45 | INFO | ================================================================================
+2025-12-08 12:33:45 | INFO | Starting training pipeline...
+2025-12-08 12:33:45 | INFO | Loading configuration from: config.yaml
+2025-12-08 12:33:45 | INFO | Configuration loaded successfully
+2025-12-08 12:33:45 | INFO | Using device: cpu
+2025-12-08 12:33:45 | INFO | KeystrokePreprocessor initialized
+2025-12-08 12:33:45 | INFO | Loading dataset...
+2025-12-08 12:33:45 | INFO | Loading DSL dataset from: Dataset\DSL-StrongPasswordData-Original_Dataset.xls
+2025-12-08 12:33:47 | INFO | Loaded dataset: 20400 samples, 34 features
+2025-12-08 12:33:47 | INFO | Subjects: 51
+2025-12-08 12:33:47 | INFO | Splitting dataset by subject...
+2025-12-08 12:33:47 | INFO | Split: Train=12000 (30 subjects), Val=4000 (10 subjects), Test=4400 (11 subjects)
+2025-12-08 12:33:47 | INFO | Preprocessing training data...
+2025-12-08 12:33:47 | INFO | Running preprocessing pipeline...
+2025-12-08 12:33:47 | INFO | Extracting timing features...
+2025-12-08 12:33:47 | INFO | Extracted 31 timing features
+2025-12-08 12:33:47 | INFO | Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 12:33:47 | INFO | Handling outliers...
+2025-12-08 12:33:47 | INFO | Clipped 4778 outlier values
+2025-12-08 12:33:47 | INFO | Computing statistical features...
+2025-12-08 12:33:47 | INFO | Added 7 statistical features
+2025-12-08 12:33:47 | INFO | Fitting scaler on training data...
+2025-12-08 12:33:47 | INFO | Augmenting data with factor 4...
+2025-12-08 12:33:48 | INFO | Augmented dataset: 12000 -> 48000 samples
+2025-12-08 12:33:48 | INFO | Applied mixup augmentation with alpha=0.2
+2025-12-08 12:33:48 | INFO | Preprocessing complete: torch.Size([48000, 38])
+2025-12-08 12:33:48 | INFO | Preprocessing validation data...
+2025-12-08 12:33:48 | INFO | Running preprocessing pipeline...
+2025-12-08 12:33:48 | INFO | Extracting timing features...
+2025-12-08 12:33:48 | INFO | Extracted 31 timing features
+2025-12-08 12:33:48 | INFO | Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 12:33:48 | INFO | Handling outliers...
+2025-12-08 12:33:48 | INFO | Clipped 1863 outlier values
+2025-12-08 12:33:48 | INFO | Computing statistical features...
+2025-12-08 12:33:48 | INFO | Added 7 statistical features
+2025-12-08 12:33:48 | INFO | Preprocessing complete: torch.Size([4000, 38])
+2025-12-08 12:33:48 | INFO | Preprocessing test data...
+2025-12-08 12:33:48 | INFO | Running preprocessing pipeline...
+2025-12-08 12:33:48 | INFO | Extracting timing features...
+2025-12-08 12:33:48 | INFO | Extracted 31 timing features
+2025-12-08 12:33:48 | INFO | Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 12:33:48 | INFO | Handling outliers...
+2025-12-08 12:33:48 | INFO | Clipped 1799 outlier values
+2025-12-08 12:33:48 | INFO | Computing statistical features...
+2025-12-08 12:33:48 | INFO | Added 7 statistical features
+2025-12-08 12:33:48 | INFO | Preprocessing complete: torch.Size([4400, 38])
+2025-12-08 12:33:48 | INFO | Data loaded: Train=48000, Val=4000, Test=4400
+2025-12-08 12:33:48 | INFO | Building model...
+2025-12-08 12:33:48 | INFO | KeystrokeEmbeddingModel initialized: 38 -> 128
+2025-12-08 12:33:48 | INFO | Architecture: [256, 512, 256, 128]
+2025-12-08 12:33:49 | INFO | Model built with 324608 parameters
+2025-12-08 12:33:49 | INFO | Starting training...
+2025-12-08 12:34:36 | INFO | Epoch 1/100 - Train Loss: 0.0906, Val Loss: 0.0071
+2025-12-08 12:34:36 | INFO | New best model saved! Val Loss: 0.0071
+2025-12-08 12:35:20 | INFO | Epoch 2/100 - Train Loss: 0.0588, Val Loss: 0.0055
+2025-12-08 12:35:20 | INFO | New best model saved! Val Loss: 0.0055
+2025-12-08 12:36:03 | INFO | Epoch 3/100 - Train Loss: 0.0524, Val Loss: 0.0060
+2025-12-08 12:36:47 | INFO | Epoch 4/100 - Train Loss: 0.0466, Val Loss: 0.0039
+2025-12-08 12:36:47 | INFO | New best model saved! Val Loss: 0.0039
+2025-12-08 12:37:30 | INFO | Epoch 5/100 - Train Loss: 0.0444, Val Loss: 0.0077
+2025-12-08 12:38:13 | INFO | Epoch 6/100 - Train Loss: 0.0465, Val Loss: 0.0061
+2025-12-08 12:38:56 | INFO | Epoch 7/100 - Train Loss: 0.0423, Val Loss: 0.0061
+2025-12-08 12:39:40 | INFO | Epoch 8/100 - Train Loss: 0.0412, Val Loss: 0.0045
+2025-12-08 12:40:22 | INFO | Epoch 9/100 - Train Loss: 0.0385, Val Loss: 0.0067
+2025-12-08 12:41:05 | INFO | Epoch 10/100 - Train Loss: 0.0415, Val Loss: 0.0050
+2025-12-08 12:42:01 | INFO | Epoch 11/100 - Train Loss: 0.0396, Val Loss: 0.0055
+2025-12-08 12:42:47 | INFO | Epoch 12/100 - Train Loss: 0.0399, Val Loss: 0.0068
+2025-12-08 12:43:52 | INFO | Epoch 13/100 - Train Loss: 0.0370, Val Loss: 0.0060
+2025-12-08 12:45:07 | INFO | Epoch 14/100 - Train Loss: 0.0373, Val Loss: 0.0050
+2025-12-08 12:46:19 | INFO | Epoch 15/100 - Train Loss: 0.0378, Val Loss: 0.0053
+2025-12-08 12:47:39 | INFO | Epoch 16/100 - Train Loss: 0.0375, Val Loss: 0.0053
+2025-12-08 12:48:37 | INFO | Epoch 17/100 - Train Loss: 0.0369, Val Loss: 0.0046
+2025-12-08 12:49:38 | INFO | Epoch 18/100 - Train Loss: 0.0369, Val Loss: 0.0063
+2025-12-08 12:50:59 | INFO | Epoch 19/100 - Train Loss: 0.0375, Val Loss: 0.0067
+2025-12-08 12:52:19 | INFO | Epoch 20/100 - Train Loss: 0.0362, Val Loss: 0.0084
+2025-12-08 12:53:46 | INFO | Epoch 21/100 - Train Loss: 0.0358, Val Loss: 0.0066
+2025-12-08 12:55:11 | INFO | Epoch 22/100 - Train Loss: 0.0341, Val Loss: 0.0053
+2025-12-08 12:56:35 | INFO | Epoch 23/100 - Train Loss: 0.0346, Val Loss: 0.0056
+2025-12-08 12:58:13 | INFO | Epoch 24/100 - Train Loss: 0.0345, Val Loss: 0.0055
+2025-12-08 12:59:40 | INFO | Epoch 25/100 - Train Loss: 0.0356, Val Loss: 0.0058
+2025-12-08 13:01:19 | INFO | Epoch 26/100 - Train Loss: 0.0340, Val Loss: 0.0069
+2025-12-08 13:02:49 | INFO | Epoch 27/100 - Train Loss: 0.0366, Val Loss: 0.0048
+2025-12-08 13:04:30 | INFO | Epoch 28/100 - Train Loss: 0.0324, Val Loss: 0.0058
+2025-12-08 13:06:05 | INFO | Epoch 29/100 - Train Loss: 0.0328, Val Loss: 0.0066
+2025-12-08 13:07:38 | INFO | Epoch 30/100 - Train Loss: 0.0326, Val Loss: 0.0053
+2025-12-08 13:09:24 | INFO | Epoch 31/100 - Train Loss: 0.0323, Val Loss: 0.0060
+2025-12-08 13:11:01 | INFO | Epoch 32/100 - Train Loss: 0.0331, Val Loss: 0.0064
+2025-12-08 13:12:53 | INFO | Epoch 33/100 - Train Loss: 0.0327, Val Loss: 0.0067
+2025-12-08 13:14:29 | INFO | Epoch 34/100 - Train Loss: 0.0344, Val Loss: 0.0059
+2025-12-08 13:14:29 | INFO | Early stopping triggered after 34 epochs
+2025-12-08 13:14:29 | INFO | Training completed!
+2025-12-08 13:14:29 | INFO | Training history plot saved: logs\training_history.png
+2025-12-08 13:14:29 | INFO | Training script completed successfully!

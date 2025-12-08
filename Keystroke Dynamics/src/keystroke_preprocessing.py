@@ -36,15 +36,15 @@ class KeystrokePreprocessor:
     def load_dsl_dataset(self, file_path: str) -> pd.DataFrame:
         """
         Load DSL-StrongPasswordData dataset
-        
+
         Args:
             file_path: Path to dataset file (.xls or .csv)
-            
+
         Returns:
             DataFrame with keystroke timing data
         """
         logger.info(f"Loading DSL dataset from: {file_path}")
-        
+
         try:
             if file_path.endswith('.xls'):
                 # Try with xlrd
@@ -55,14 +55,63 @@ class KeystrokePreprocessor:
                 df = pd.read_csv(file_path)
             else:
                 raise ValueError(f"Unsupported file format: {file_path}")
-            
+
             logger.info(f"Loaded dataset: {df.shape[0]} samples, {df.shape[1]} features")
             logger.info(f"Subjects: {df['subject'].nunique() if 'subject' in df.columns else 'N/A'}")
-            
+
             return df
-            
+
         except Exception as e:
             logger.error(f"Error loading dataset: {e}")
+            raise
+
+    def load_tuplet_dataset(self, file_path: str) -> Tuple[np.ndarray, np.ndarray, np.ndarray, List[str]]:
+        """
+        Load tuplet dataset with pre-paired samples
+
+        Args:
+            file_path: Path to the tuplet Excel file
+
+        Returns:
+            Tuple of (X_A, X_B, labels, feature_names) where:
+            - X_A: Features for sample A
+            - X_B: Features for sample B
+            - labels: 1 for genuine (same user), 0 for impostor (different users)
+            - feature_names: List of feature names
+        """
+        logger.info(f"Loading tuplet dataset from: {file_path}")
+
+        try:
+            # Read Excel file
+            df = pd.read_excel(file_path, engine='openpyxl')
+
+            # Extract A features (all columns starting with 'A_' except metadata)
+            a_feature_cols = [col for col in df.columns if col.startswith('A_') and
+                             col not in ['A_subject', 'A_sessionIndex', 'A_rep']]
+            X_A = df[a_feature_cols].values
+
+            # Extract B features (all columns starting with 'B_' except metadata)
+            b_feature_cols = [col for col in df.columns if col.startswith('B_') and
+                             col not in ['B_subject', 'B_sessionIndex', 'B_rep']]
+            X_B = df[b_feature_cols].values
+
+            # Extract labels (1=genuine, 0=impostor)
+            labels = df['label'].values
+
+            # Get feature names (remove A_ prefix)
+            feature_names = [col.replace('A_', '') for col in a_feature_cols]
+
+            logger.info(f"Loaded tuplet dataset: {len(labels)} pairs")
+            logger.info(f"Features per sample: {X_A.shape[1]}")
+            logger.info(f"Genuine pairs: {np.sum(labels == 1)} ({np.sum(labels == 1) / len(labels) * 100:.1f}%)")
+            logger.info(f"Impostor pairs: {np.sum(labels == 0)} ({np.sum(labels == 0) / len(labels) * 100:.1f}%)")
+            logger.info(f"Unique A subjects: {df['A_subject'].nunique()}")
+            logger.info(f"Unique B subjects: {df['B_subject'].nunique()}")
+
+            return X_A, X_B, labels, feature_names
+
+        except Exception as e:
+            logger.error(f"Error loading tuplet dataset: {e}")
             raise
     
     def extract_timing_features(self, df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, List[str]]:
@@ -207,14 +256,14 @@ class KeystrokePreprocessor:
         return X_clean
 
     def augment_data(self, X: np.ndarray, y: np.ndarray,
-                     augmentation_factor: int = 2) -> Tuple[np.ndarray, np.ndarray]:
+                     augmentation_factor: int = None) -> Tuple[np.ndarray, np.ndarray]:
         """
-        Augment keystroke data with noise and time warping
+        Augment keystroke data with noise, time warping, and mixup
 
         Args:
             X: Input features
             y: Labels
-            augmentation_factor: Number of augmented samples per original
+            augmentation_factor: Number of augmented samples per original (default from config)
 
         Returns:
             Augmented features and labels
@@ -222,14 +271,19 @@ class KeystrokePreprocessor:
         if not self.config.training.use_augmentation:
             return X, y
 
+        # Get augmentation factor from config if not specified
+        if augmentation_factor is None:
+            augmentation_factor = getattr(self.config.training, 'augmentation_factor', 2)
+
         logger.info(f"Augmenting data with factor {augmentation_factor}...")
 
         X_aug_list = [X]
         y_aug_list = [y]
 
         noise_level = self.config.training.noise_level
+        mixup_alpha = getattr(self.config.training, 'mixup_alpha', 0.0)
 
-        for _ in range(augmentation_factor - 1):
+        for i in range(augmentation_factor - 1):
             # Add Gaussian noise
             noise = np.random.normal(0, noise_level, X.shape)
             X_noisy = X + noise * np.std(X, axis=0)
@@ -241,13 +295,31 @@ class KeystrokePreprocessor:
             else:
                 X_warped = X_noisy
 
-            X_aug_list.append(X_warped)
+            # Mixup: blend samples from the same user
+            if mixup_alpha > 0 and i % 2 == 0:  # Apply mixup to half of augmented samples
+                X_mixed = X_warped.copy()
+                for user_id in np.unique(y):
+                    user_mask = y == user_id
+                    user_samples = X_warped[user_mask]
+                    if len(user_samples) > 1:
+                        # Mix each sample with a random sample from the same user
+                        for idx in np.where(user_mask)[0]:
+                            other_idx = np.random.choice(np.where(user_mask)[0])
+                            if idx != other_idx:
+                                lam = np.random.beta(mixup_alpha, mixup_alpha)
+                                X_mixed[idx] = lam * X_warped[idx] + (1 - lam) * X_warped[other_idx]
+                X_aug_list.append(X_mixed)
+            else:
+                X_aug_list.append(X_warped)
+
             y_aug_list.append(y)
 
         X_augmented = np.vstack(X_aug_list)
         y_augmented = np.concatenate(y_aug_list)
 
         logger.info(f"Augmented dataset: {X.shape[0]} -> {X_augmented.shape[0]} samples")
+        if mixup_alpha > 0:
+            logger.info(f"Applied mixup augmentation with alpha={mixup_alpha}")
 
         return X_augmented, y_augmented
 

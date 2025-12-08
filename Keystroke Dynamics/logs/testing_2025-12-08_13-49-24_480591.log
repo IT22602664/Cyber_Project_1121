@@ -1,0 +1,41 @@
+2025-12-08 13:49:24.485 | INFO     | src.config_loader:load_config:62 - Loading configuration from: config.yaml
+2025-12-08 13:49:24.512 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models
+2025-12-08 13:49:24.513 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/checkpoints
+2025-12-08 13:49:24.513 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/pretrained
+2025-12-08 13:49:24.516 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/embeddings
+2025-12-08 13:49:24.519 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: logs
+2025-12-08 13:49:24.520 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: temp
+2025-12-08 13:49:24.521 | INFO     | src.config_loader:load_config:74 - Configuration loaded successfully
+2025-12-08 13:49:24.521 | INFO     | test:__init__:33 - Using device: cpu
+2025-12-08 13:49:24.522 | INFO     | src.keystroke_preprocessing:__init__:34 - KeystrokePreprocessor initialized
+2025-12-08 13:49:24.523 | INFO     | src.anomaly_detection:__init__:56 - AnomalyDetector initialized with method: isolation_forest
+2025-12-08 13:49:24.527 | INFO     | test:load_model:46 - Loading model from: models/checkpoints\best_model.pth
+2025-12-08 13:49:24.541 | INFO     | test:run_comprehensive_test:454 - Running comprehensive tests...
+2025-12-08 13:49:24.541 | INFO     | test:load_test_data:56 - Loading test dataset...
+2025-12-08 13:49:24.541 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:82 - Loading tuplet dataset from: Dataset/tuplet_dataset_with_subjects1.xlsx
+2025-12-08 13:49:34.994 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:104 - Loaded tuplet dataset: 10000 pairs
+2025-12-08 13:49:34.996 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:105 - Features per sample: 31
+2025-12-08 13:49:34.998 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:106 - Genuine pairs: 5000 (50.0%)
+2025-12-08 13:49:34.999 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:107 - Impostor pairs: 5000 (50.0%)
+2025-12-08 13:49:35.000 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:108 - Unique A subjects: 51
+2025-12-08 13:49:35.001 | INFO     | src.keystroke_preprocessing:load_tuplet_dataset:109 - Unique B subjects: 51
+2025-12-08 13:49:35.101 | INFO     | test:load_tuplet_test_data:103 - Tuplet test data loaded: 1000 pairs
+2025-12-08 13:49:35.101 | INFO     | test:load_tuplet_test_data:104 - Features: 31
+2025-12-08 13:49:35.102 | INFO     | test:load_tuplet_test_data:105 - Genuine: 481, Impostor: 519
+2025-12-08 13:49:35.138 | INFO     | src.keystroke_embedding:__init__:69 - KeystrokeEmbeddingModel initialized: 31 -> 128
+2025-12-08 13:49:35.138 | INFO     | src.keystroke_embedding:__init__:70 - Architecture: [256, 512, 256, 128]
+2025-12-08 13:49:35.173 | INFO     | test:run_comprehensive_test:469 - Model loaded successfully
+2025-12-08 13:49:35.181 | INFO     | test:evaluate_verification_tuplet:145 - Evaluating verification performance (tuplet dataset)...
+2025-12-08 13:49:35.602 | INFO     | test:evaluate_verification_tuplet:168 - Genuine scores: 481, Impostor scores: 519
+2025-12-08 13:49:35.602 | INFO     | src.keystroke_verification:__init__:38 - KeystrokeVerifier initialized
+2025-12-08 13:49:35.603 | INFO     | src.keystroke_verification:__init__:39 - Adaptive threshold: False
+2025-12-08 13:49:35.669 | INFO     | src.keystroke_verification:compute_eer:377 - EER: 0.3366, Optimal Threshold: 0.9940
+2025-12-08 13:49:36.391 | INFO     | test:plot_roc_curve:429 - ROC curve saved: logs\roc_curve.png
+2025-12-08 13:49:36.417 | INFO     | test:evaluate_anomaly_detection:436 - Evaluating anomaly detection...
+2025-12-08 13:49:36.418 | INFO     | src.anomaly_detection:fit:66 - Fitting anomaly detector on 100 samples
+2025-12-08 13:49:36.789 | INFO     | src.anomaly_detection:fit:84 - Anomaly detector fitted successfully
+2025-12-08 13:49:36.855 | INFO     | src.anomaly_detection:get_anomaly_report:269 - Anomaly Report: 11/100 anomalies (11.0%)
+2025-12-08 13:49:36.860 | INFO     | test:evaluate_anomaly_detection:448 - Anomaly Detection Report: {'total_samples': 100, 'anomaly_count': 11, 'normal_count': 89, 'anomaly_rate': 0.11, 'mean_score': 0.8031727122234451, 'min_score': 0.0, 'max_score': 0.9999999705521601, 'std_score': 0.17570415535988598}
+2025-12-08 13:49:36.901 | INFO     | test:generate_test_report:585 - Test report saved: logs\test_report.txt
+2025-12-08 13:49:36.920 | INFO     | test:run_comprehensive_test:489 - Comprehensive testing completed!
+2025-12-08 13:49:36.921 | INFO     | test:main:603 - Testing script completed successfully!

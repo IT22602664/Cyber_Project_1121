@@ -1,0 +1,40 @@
+2025-12-08 15:03:18 | INFO | ================================================================================
+2025-12-08 15:03:18 | INFO | KEYSTROKE DYNAMICS - ZERO TRUST TELEHEALTH PLATFORM
+2025-12-08 15:03:18 | INFO | ================================================================================
+2025-12-08 15:03:18 | INFO | Starting testing pipeline...
+2025-12-08 15:03:19 | INFO | Loading configuration from: config.yaml
+2025-12-08 15:03:19 | INFO | Configuration loaded successfully
+2025-12-08 15:03:19 | INFO | Using device: cpu
+2025-12-08 15:03:19 | INFO | KeystrokePreprocessor initialized
+2025-12-08 15:03:19 | INFO | AnomalyDetector initialized with method: isolation_forest
+2025-12-08 15:03:19 | INFO | Loading model from: models/checkpoints\best_model.pth
+2025-12-08 15:03:19 | INFO | Running comprehensive tests...
+2025-12-08 15:03:19 | INFO | Loading test dataset...
+2025-12-08 15:03:19 | INFO | Loading tuplet dataset from: Dataset/tuplet_dataset_with_subjects1.xlsx
+2025-12-08 15:03:29 | INFO | Loaded tuplet dataset: 10000 pairs
+2025-12-08 15:03:29 | INFO | Features per sample: 31
+2025-12-08 15:03:29 | INFO | Genuine pairs: 5000 (50.0%)
+2025-12-08 15:03:29 | INFO | Impostor pairs: 5000 (50.0%)
+2025-12-08 15:03:29 | INFO | Unique A subjects: 51
+2025-12-08 15:03:29 | INFO | Unique B subjects: 51
+2025-12-08 15:03:30 | INFO | Tuplet test data loaded: 1000 pairs
+2025-12-08 15:03:30 | INFO | Features: 31
+2025-12-08 15:03:30 | INFO | Genuine: 481, Impostor: 519
+2025-12-08 15:03:30 | INFO | KeystrokeEmbeddingModel initialized: 31 -> 128
+2025-12-08 15:03:30 | INFO | Architecture: [256, 512, 256, 128]
+2025-12-08 15:03:30 | INFO | Model loaded successfully
+2025-12-08 15:03:30 | INFO | Evaluating verification performance (tuplet dataset)...
+2025-12-08 15:03:30 | INFO | Genuine scores: 481, Impostor scores: 519
+2025-12-08 15:03:30 | INFO | KeystrokeVerifier initialized
+2025-12-08 15:03:30 | INFO | Adaptive threshold: False
+2025-12-08 15:03:30 | INFO | EER: 0.3316, Optimal Threshold: 0.9930
+2025-12-08 15:03:30 | INFO | Using threshold: 0.85 (adaptive=False, configured=0.85, optimal=0.992992992992993)
+2025-12-08 15:03:30 | INFO | ROC curve saved: logs\roc_curve.png
+2025-12-08 15:03:30 | INFO | Evaluating anomaly detection...
+2025-12-08 15:03:30 | INFO | Fitting anomaly detector on 100 samples
+2025-12-08 15:03:30 | INFO | Anomaly detector fitted successfully
+2025-12-08 15:03:30 | INFO | Anomaly Report: 11/100 anomalies (11.0%)
+2025-12-08 15:03:30 | INFO | Anomaly Detection Report: {'total_samples': 100, 'anomaly_count': 11, 'normal_count': 89, 'anomaly_rate': 0.11, 'mean_score': 0.8031727122234451, 'min_score': 0.0, 'max_score': 0.9999999705521601, 'std_score': 0.17570415535988598}
+2025-12-08 15:03:30 | INFO | Test report saved: logs\test_report.txt
+2025-12-08 15:03:30 | INFO | Comprehensive testing completed!
+2025-12-08 15:03:30 | INFO | Testing script completed successfully!

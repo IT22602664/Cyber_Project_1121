@@ -1,0 +1,134 @@
+2025-12-08 10:32:31.958 | INFO     | src.config_loader:load_config:62 - Loading configuration from: config.yaml
+2025-12-08 10:32:31.983 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models
+2025-12-08 10:32:31.985 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/checkpoints
+2025-12-08 10:32:31.986 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/pretrained
+2025-12-08 10:32:31.987 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: models/embeddings
+2025-12-08 10:32:31.989 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: logs
+2025-12-08 10:32:31.989 | DEBUG    | src.config_loader:load_config:72 - Ensured directory exists: temp
+2025-12-08 10:32:31.991 | INFO     | src.config_loader:load_config:74 - Configuration loaded successfully
+2025-12-08 10:32:31.991 | INFO     | train:__init__:35 - Using device: cpu
+2025-12-08 10:32:31.992 | INFO     | src.keystroke_preprocessing:__init__:34 - KeystrokePreprocessor initialized
+2025-12-08 10:32:31.995 | INFO     | train:load_data:51 - Loading dataset...
+2025-12-08 10:32:31.996 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:46 - Loading DSL dataset from: Dataset\DSL-StrongPasswordData-Original_Dataset.xls
+2025-12-08 10:32:33.852 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:59 - Loaded dataset: 20400 samples, 34 features
+2025-12-08 10:32:33.853 | INFO     | src.keystroke_preprocessing:load_dsl_dataset:60 - Subjects: 51
+2025-12-08 10:32:33.853 | INFO     | src.keystroke_preprocessing:split_by_subject:311 - Splitting dataset by subject...
+2025-12-08 10:32:33.853 | INFO     | src.keystroke_preprocessing:split_by_subject:331 - Split: Train=12000 (30 subjects), Val=4000 (10 subjects), Test=4400 (11 subjects)
+2025-12-08 10:32:33.853 | INFO     | train:load_data:70 - Preprocessing training data...
+2025-12-08 10:32:33.853 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:268 - Running preprocessing pipeline...
+2025-12-08 10:32:33.853 | INFO     | src.keystroke_preprocessing:extract_timing_features:83 - Extracting timing features...
+2025-12-08 10:32:33.867 | INFO     | src.keystroke_preprocessing:extract_timing_features:112 - Extracted 31 timing features
+2025-12-08 10:32:33.868 | INFO     | src.keystroke_preprocessing:extract_timing_features:113 - Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 10:32:33.879 | INFO     | src.keystroke_preprocessing:handle_outliers:197 - Handling outliers...
+2025-12-08 10:32:33.913 | INFO     | src.keystroke_preprocessing:handle_outliers:205 - Clipped 4553 outlier values
+2025-12-08 10:32:33.913 | INFO     | src.keystroke_preprocessing:compute_statistical_features:131 - Computing statistical features...
+2025-12-08 10:32:33.971 | INFO     | src.keystroke_preprocessing:compute_statistical_features:156 - Added 7 statistical features
+2025-12-08 10:32:33.973 | INFO     | src.keystroke_preprocessing:normalize_features:173 - Fitting scaler on training data...
+2025-12-08 10:32:34.011 | INFO     | src.keystroke_preprocessing:augment_data:225 - Augmenting data with factor 2...
+2025-12-08 10:32:34.045 | INFO     | src.keystroke_preprocessing:augment_data:250 - Augmented dataset: 12000 -> 24000 samples
+2025-12-08 10:32:34.050 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:293 - Preprocessing complete: torch.Size([24000, 38])
+2025-12-08 10:32:34.051 | INFO     | train:load_data:75 - Preprocessing validation data...
+2025-12-08 10:32:34.054 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:268 - Running preprocessing pipeline...
+2025-12-08 10:32:34.057 | INFO     | src.keystroke_preprocessing:extract_timing_features:83 - Extracting timing features...
+2025-12-08 10:32:34.064 | INFO     | src.keystroke_preprocessing:extract_timing_features:112 - Extracted 31 timing features
+2025-12-08 10:32:34.065 | INFO     | src.keystroke_preprocessing:extract_timing_features:113 - Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 10:32:34.067 | INFO     | src.keystroke_preprocessing:handle_outliers:197 - Handling outliers...
+2025-12-08 10:32:34.080 | INFO     | src.keystroke_preprocessing:handle_outliers:205 - Clipped 1609 outlier values
+2025-12-08 10:32:34.081 | INFO     | src.keystroke_preprocessing:compute_statistical_features:131 - Computing statistical features...
+2025-12-08 10:32:34.107 | INFO     | src.keystroke_preprocessing:compute_statistical_features:156 - Added 7 statistical features
+2025-12-08 10:32:34.112 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:293 - Preprocessing complete: torch.Size([4000, 38])
+2025-12-08 10:32:34.113 | INFO     | train:load_data:80 - Preprocessing test data...
+2025-12-08 10:32:34.113 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:268 - Running preprocessing pipeline...
+2025-12-08 10:32:34.114 | INFO     | src.keystroke_preprocessing:extract_timing_features:83 - Extracting timing features...
+2025-12-08 10:32:34.123 | INFO     | src.keystroke_preprocessing:extract_timing_features:112 - Extracted 31 timing features
+2025-12-08 10:32:34.124 | INFO     | src.keystroke_preprocessing:extract_timing_features:113 - Feature types: 11 hold, 10 DD, 10 UD
+2025-12-08 10:32:34.127 | INFO     | src.keystroke_preprocessing:handle_outliers:197 - Handling outliers...
+2025-12-08 10:32:34.144 | INFO     | src.keystroke_preprocessing:handle_outliers:205 - Clipped 1831 outlier values
+2025-12-08 10:32:34.144 | INFO     | src.keystroke_preprocessing:compute_statistical_features:131 - Computing statistical features...
+2025-12-08 10:32:34.169 | INFO     | src.keystroke_preprocessing:compute_statistical_features:156 - Added 7 statistical features
+2025-12-08 10:32:34.174 | INFO     | src.keystroke_preprocessing:preprocess_pipeline:293 - Preprocessing complete: torch.Size([4400, 38])
+2025-12-08 10:32:34.177 | INFO     | train:load_data:111 - Data loaded: Train=24000, Val=4000, Test=4400
+2025-12-08 10:32:34.179 | INFO     | train:build_model:118 - Building model...
+2025-12-08 10:32:34.190 | INFO     | src.keystroke_embedding:__init__:69 - KeystrokeEmbeddingModel initialized: 38 -> 128
+2025-12-08 10:32:34.192 | INFO     | src.keystroke_embedding:__init__:70 - Architecture: [256, 512, 256, 128]
+2025-12-08 10:32:36.632 | INFO     | train:build_model:160 - Model built with 324608 parameters
+2025-12-08 10:32:36.662 | INFO     | train:train:282 - Starting training...
+2025-12-08 10:33:06.169 | INFO     | train:train:299 - Epoch 1/100 - Train Loss: 0.1932, Val Loss: 0.0048
+2025-12-08 10:33:06.169 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 10:33:06.169 | INFO     | train:train:307 - New best model saved! Val Loss: 0.0048
+2025-12-08 10:33:53.119 | INFO     | train:train:299 - Epoch 2/100 - Train Loss: 0.1224, Val Loss: 0.0075
+2025-12-08 10:34:54.395 | INFO     | train:train:299 - Epoch 3/100 - Train Loss: 0.1122, Val Loss: 0.0025
+2025-12-08 10:34:54.408 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 10:34:54.409 | INFO     | train:train:307 - New best model saved! Val Loss: 0.0025
+2025-12-08 10:35:23.630 | INFO     | train:train:299 - Epoch 4/100 - Train Loss: 0.1027, Val Loss: 0.0035
+2025-12-08 10:35:56.681 | INFO     | train:train:299 - Epoch 5/100 - Train Loss: 0.1023, Val Loss: 0.0019
+2025-12-08 10:35:56.701 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 10:35:56.701 | INFO     | train:train:307 - New best model saved! Val Loss: 0.0019
+2025-12-08 10:36:47.152 | INFO     | train:train:299 - Epoch 6/100 - Train Loss: 0.0939, Val Loss: 0.0031
+2025-12-08 10:37:16.910 | INFO     | train:train:299 - Epoch 7/100 - Train Loss: 0.0944, Val Loss: 0.0031
+2025-12-08 10:37:46.493 | INFO     | train:train:299 - Epoch 8/100 - Train Loss: 0.0847, Val Loss: 0.0014
+2025-12-08 10:37:46.510 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 10:37:46.511 | INFO     | train:train:307 - New best model saved! Val Loss: 0.0014
+2025-12-08 10:38:15.438 | INFO     | train:train:299 - Epoch 9/100 - Train Loss: 0.0841, Val Loss: 0.0020
+2025-12-08 10:38:43.542 | INFO     | train:train:299 - Epoch 10/100 - Train Loss: 0.0803, Val Loss: 0.0014
+2025-12-08 10:38:43.552 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 10:38:43.552 | INFO     | train:train:307 - New best model saved! Val Loss: 0.0014
+2025-12-08 10:38:43.576 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_10.pth
+2025-12-08 10:39:12.688 | INFO     | train:train:299 - Epoch 11/100 - Train Loss: 0.0816, Val Loss: 0.0027
+2025-12-08 10:39:41.752 | INFO     | train:train:299 - Epoch 12/100 - Train Loss: 0.0772, Val Loss: 0.0017
+2025-12-08 10:40:12.651 | INFO     | train:train:299 - Epoch 13/100 - Train Loss: 0.0760, Val Loss: 0.0025
+2025-12-08 10:40:42.580 | INFO     | train:train:299 - Epoch 14/100 - Train Loss: 0.0748, Val Loss: 0.0029
+2025-12-08 10:41:11.260 | INFO     | train:train:299 - Epoch 15/100 - Train Loss: 0.0729, Val Loss: 0.0030
+2025-12-08 10:41:51.542 | INFO     | train:train:299 - Epoch 16/100 - Train Loss: 0.0724, Val Loss: 0.0041
+2025-12-08 10:42:19.902 | INFO     | train:train:299 - Epoch 17/100 - Train Loss: 0.0737, Val Loss: 0.0045
+2025-12-08 10:42:48.966 | INFO     | train:train:299 - Epoch 18/100 - Train Loss: 0.0712, Val Loss: 0.0027
+2025-12-08 10:43:17.504 | INFO     | train:train:299 - Epoch 19/100 - Train Loss: 0.0698, Val Loss: 0.0025
+2025-12-08 10:43:45.937 | INFO     | train:train:299 - Epoch 20/100 - Train Loss: 0.0656, Val Loss: 0.0032
+2025-12-08 10:43:45.966 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_20.pth
+2025-12-08 10:44:14.443 | INFO     | train:train:299 - Epoch 21/100 - Train Loss: 0.0696, Val Loss: 0.0064
+2025-12-08 10:44:42.603 | INFO     | train:train:299 - Epoch 22/100 - Train Loss: 0.0704, Val Loss: 0.0050
+2025-12-08 10:45:11.209 | INFO     | train:train:299 - Epoch 23/100 - Train Loss: 0.0685, Val Loss: 0.0036
+2025-12-08 10:45:39.707 | INFO     | train:train:299 - Epoch 24/100 - Train Loss: 0.0666, Val Loss: 0.0047
+2025-12-08 10:46:09.010 | INFO     | train:train:299 - Epoch 25/100 - Train Loss: 0.0651, Val Loss: 0.0055
+2025-12-08 10:46:55.960 | INFO     | train:train:299 - Epoch 26/100 - Train Loss: 0.0654, Val Loss: 0.0039
+2025-12-08 10:47:34.384 | INFO     | train:train:299 - Epoch 27/100 - Train Loss: 0.0623, Val Loss: 0.0028
+2025-12-08 10:48:10.402 | INFO     | train:train:299 - Epoch 28/100 - Train Loss: 0.0640, Val Loss: 0.0044
+2025-12-08 10:48:49.222 | INFO     | train:train:299 - Epoch 29/100 - Train Loss: 0.0612, Val Loss: 0.0039
+2025-12-08 10:49:27.405 | INFO     | train:train:299 - Epoch 30/100 - Train Loss: 0.0595, Val Loss: 0.0067
+2025-12-08 10:49:27.441 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_30.pth
+2025-12-08 10:50:07.516 | INFO     | train:train:299 - Epoch 31/100 - Train Loss: 0.0621, Val Loss: 0.0050
+2025-12-08 10:50:50.298 | INFO     | train:train:299 - Epoch 32/100 - Train Loss: 0.0620, Val Loss: 0.0039
+2025-12-08 10:51:34.340 | INFO     | train:train:299 - Epoch 33/100 - Train Loss: 0.0587, Val Loss: 0.0032
+2025-12-08 10:52:20.346 | INFO     | train:train:299 - Epoch 34/100 - Train Loss: 0.0617, Val Loss: 0.0038
+2025-12-08 10:53:09.504 | INFO     | train:train:299 - Epoch 35/100 - Train Loss: 0.0624, Val Loss: 0.0049
+2025-12-08 10:54:05.702 | INFO     | train:train:299 - Epoch 36/100 - Train Loss: 0.0571, Val Loss: 0.0039
+2025-12-08 10:54:57.498 | INFO     | train:train:299 - Epoch 37/100 - Train Loss: 0.0554, Val Loss: 0.0039
+2025-12-08 10:55:51.348 | INFO     | train:train:299 - Epoch 38/100 - Train Loss: 0.0545, Val Loss: 0.0050
+2025-12-08 10:56:54.680 | INFO     | train:train:299 - Epoch 39/100 - Train Loss: 0.0543, Val Loss: 0.0047
+2025-12-08 10:57:45.706 | INFO     | train:train:299 - Epoch 40/100 - Train Loss: 0.0580, Val Loss: 0.0044
+2025-12-08 10:57:45.733 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_40.pth
+2025-12-08 10:58:43.445 | INFO     | train:train:299 - Epoch 41/100 - Train Loss: 0.0573, Val Loss: 0.0044
+2025-12-08 10:59:32.268 | INFO     | train:train:299 - Epoch 42/100 - Train Loss: 0.0555, Val Loss: 0.0046
+2025-12-08 11:00:28.813 | INFO     | train:train:299 - Epoch 43/100 - Train Loss: 0.0541, Val Loss: 0.0045
+2025-12-08 11:01:20.840 | INFO     | train:train:299 - Epoch 44/100 - Train Loss: 0.0538, Val Loss: 0.0040
+2025-12-08 11:02:18.207 | INFO     | train:train:299 - Epoch 45/100 - Train Loss: 0.0517, Val Loss: 0.0028
+2025-12-08 11:03:02.071 | INFO     | train:train:299 - Epoch 46/100 - Train Loss: 0.0479, Val Loss: 0.0025
+2025-12-08 11:03:47.416 | INFO     | train:train:299 - Epoch 47/100 - Train Loss: 0.0538, Val Loss: 0.0056
+2025-12-08 11:04:31.668 | INFO     | train:train:299 - Epoch 48/100 - Train Loss: 0.0524, Val Loss: 0.0046
+2025-12-08 11:05:18.691 | INFO     | train:train:299 - Epoch 49/100 - Train Loss: 0.0487, Val Loss: 0.0061
+2025-12-08 11:06:04.323 | INFO     | train:train:299 - Epoch 50/100 - Train Loss: 0.0500, Val Loss: 0.0030
+2025-12-08 11:06:04.338 | DEBUG    | train:save_checkpoint:338 - Checkpoint saved: models/checkpoints\checkpoint_epoch_50.pth
+2025-12-08 11:06:52.752 | INFO     | train:train:299 - Epoch 51/100 - Train Loss: 0.0511, Val Loss: 0.0046
+2025-12-08 11:07:40.510 | INFO     | train:train:299 - Epoch 52/100 - Train Loss: 0.0484, Val Loss: 0.0028
+2025-12-08 11:08:26.750 | INFO     | train:train:299 - Epoch 53/100 - Train Loss: 0.0510, Val Loss: 0.0046
+2025-12-08 11:09:14.929 | INFO     | train:train:299 - Epoch 54/100 - Train Loss: 0.0462, Val Loss: 0.0038
+2025-12-08 11:10:00.806 | INFO     | train:train:299 - Epoch 55/100 - Train Loss: 0.0464, Val Loss: 0.0029
+2025-12-08 11:10:48.322 | INFO     | train:train:299 - Epoch 56/100 - Train Loss: 0.0472, Val Loss: 0.0036
+2025-12-08 11:11:35.693 | INFO     | train:train:299 - Epoch 57/100 - Train Loss: 0.0464, Val Loss: 0.0049
+2025-12-08 11:12:43.524 | INFO     | train:train:299 - Epoch 58/100 - Train Loss: 0.0454, Val Loss: 0.0045
+2025-12-08 11:13:50.022 | INFO     | train:train:299 - Epoch 59/100 - Train Loss: 0.0478, Val Loss: 0.0040
+2025-12-08 11:14:49.698 | INFO     | train:train:299 - Epoch 60/100 - Train Loss: 0.0447, Val Loss: 0.0036
+2025-12-08 11:14:49.698 | INFO     | train:train:313 - Early stopping triggered after 60 epochs
+2025-12-08 11:14:49.700 | INFO     | train:train:320 - Training completed!
+2025-12-08 11:14:51.360 | INFO     | train:plot_training_history:353 - Training history plot saved: logs\training_history.png
+2025-12-08 11:14:51.393 | INFO     | train:main:377 - Training script completed successfully!
