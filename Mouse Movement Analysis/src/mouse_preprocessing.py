@@ -207,35 +207,49 @@ class MousePreprocessor:
         # Velocity (pixels per second)
         velocities = distances / time_diff
 
+        # Clip extreme values to prevent NaN/Inf
+        velocities = np.clip(velocities, 0, 10000)  # Max 10000 pixels/sec
+
         # Statistical features
         if self.config.features.use_statistics:
             for stat_name in self.config.features.statistics:
                 if stat_name == 'mean':
-                    features.append(np.mean(velocities))
+                    val = np.mean(velocities) if len(velocities) > 0 else 0.0
+                    features.append(val)
                     names.append('velocity_mean')
                 elif stat_name == 'std':
-                    features.append(np.std(velocities))
+                    val = np.std(velocities) if len(velocities) > 0 else 0.0
+                    features.append(val)
                     names.append('velocity_std')
                 elif stat_name == 'median':
-                    features.append(np.median(velocities))
+                    val = np.median(velocities) if len(velocities) > 0 else 0.0
+                    features.append(val)
                     names.append('velocity_median')
                 elif stat_name == 'min':
-                    features.append(np.min(velocities))
+                    val = np.min(velocities) if len(velocities) > 0 else 0.0
+                    features.append(val)
                     names.append('velocity_min')
                 elif stat_name == 'max':
-                    features.append(np.max(velocities))
+                    val = np.max(velocities) if len(velocities) > 0 else 0.0
+                    features.append(val)
                     names.append('velocity_max')
                 elif stat_name == 'q25':
-                    features.append(np.percentile(velocities, 25))
+                    val = np.percentile(velocities, 25) if len(velocities) > 0 else 0.0
+                    features.append(val)
                     names.append('velocity_q25')
                 elif stat_name == 'q75':
-                    features.append(np.percentile(velocities, 75))
+                    val = np.percentile(velocities, 75) if len(velocities) > 0 else 0.0
+                    features.append(val)
                     names.append('velocity_q75')
                 elif stat_name == 'skew':
-                    features.append(stats.skew(velocities))
+                    val = stats.skew(velocities) if len(velocities) > 1 else 0.0
+                    val = 0.0 if np.isnan(val) or np.isinf(val) else val
+                    features.append(val)
                     names.append('velocity_skew')
                 elif stat_name == 'kurtosis':
-                    features.append(stats.kurtosis(velocities))
+                    val = stats.kurtosis(velocities) if len(velocities) > 1 else 0.0
+                    val = 0.0 if np.isnan(val) or np.isinf(val) else val
+                    features.append(val)
                     names.append('velocity_kurtosis')
 
         # Velocity in X and Y directions
@@ -484,6 +498,9 @@ class MousePreprocessor:
             raise ValueError("Scaler not fitted. Call with fit=True first.")
 
         X_normalized = self.scaler.transform(X)
+
+        # Replace any NaN or Inf values with 0
+        X_normalized = np.nan_to_num(X_normalized, nan=0.0, posinf=0.0, neginf=0.0)
 
         return X_normalized
 

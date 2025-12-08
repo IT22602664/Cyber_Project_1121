@@ -11,3 +11,52 @@
 2025-12-08 15:06:52.559 | INFO     | __main__:load_data:68 - Preprocessing training data...
 2025-12-08 15:06:52.560 | INFO     | src.mouse_preprocessing:preprocess_pipeline:557 - Running preprocessing pipeline...
 2025-12-08 15:06:52.560 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user7 (1/6)
+2025-12-08 15:08:34.487 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user16 (2/6)
+2025-12-08 15:09:31.651 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user9 (3/6)
+2025-12-08 15:09:58.190 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user15 (4/6)
+2025-12-08 15:10:32.843 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user23 (5/6)
+2025-12-08 15:11:03.000 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user12 (6/6)
+2025-12-08 15:12:10.394 | INFO     | src.mouse_preprocessing:preprocess_pipeline:580 - Extracted features: (25947, 32), Labels: (25947,)
+2025-12-08 15:12:10.478 | INFO     | src.mouse_preprocessing:normalize_features:481 - Feature scaler fitted
+2025-12-08 15:12:10.533 | INFO     | __main__:load_data:73 - Preprocessing validation data...
+2025-12-08 15:12:10.534 | INFO     | src.mouse_preprocessing:preprocess_pipeline:557 - Running preprocessing pipeline...
+2025-12-08 15:12:10.535 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user20 (1/2)
+2025-12-08 15:13:14.451 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user29 (2/2)
+2025-12-08 15:13:46.228 | INFO     | src.mouse_preprocessing:preprocess_pipeline:580 - Extracted features: (8498, 32), Labels: (8498,)
+2025-12-08 15:13:46.231 | INFO     | __main__:load_data:78 - Preprocessing test data...
+2025-12-08 15:13:46.233 | INFO     | src.mouse_preprocessing:preprocess_pipeline:557 - Running preprocessing pipeline...
+2025-12-08 15:13:46.233 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user21 (1/2)
+2025-12-08 15:14:16.544 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:563 - Processing user user35 (2/2)
+2025-12-08 15:14:43.746 | INFO     | src.mouse_preprocessing:preprocess_pipeline:580 - Extracted features: (4478, 32), Labels: (4478,)
+2025-12-08 15:14:43.752 | INFO     | __main__:load_data:109 - Data loaded: Train=25947, Val=8498, Test=4478
+2025-12-08 15:14:43.753 | INFO     | __main__:build_model:116 - Building model...
+2025-12-08 15:14:43.762 | INFO     | src.mouse_embedding:__init__:73 - MouseEmbeddingModel initialized: 32 -> 128
+2025-12-08 15:14:43.762 | INFO     | src.mouse_embedding:__init__:74 - Architecture: [256, 512, 512, 256, 128]
+2025-12-08 15:14:43.762 | INFO     | src.mouse_embedding:__init__:75 - Total parameters: 586752
+2025-12-08 15:14:44.811 | INFO     | __main__:build_model:165 - Model built with 586752 parameters
+2025-12-08 15:14:44.811 | INFO     | __main__:train:271 - Starting training...
+2025-12-08 15:15:15.711 | INFO     | __main__:train:288 - Epoch 1/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:15:47.801 | INFO     | __main__:train:288 - Epoch 2/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:16:19.567 | INFO     | __main__:train:288 - Epoch 3/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:16:52.217 | INFO     | __main__:train:288 - Epoch 4/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:17:25.244 | INFO     | __main__:train:288 - Epoch 5/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:18:02.171 | INFO     | __main__:train:288 - Epoch 6/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:18:43.952 | INFO     | __main__:train:288 - Epoch 7/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:19:17.239 | INFO     | __main__:train:288 - Epoch 8/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:19:54.932 | INFO     | __main__:train:288 - Epoch 9/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:20:31.026 | INFO     | __main__:train:288 - Epoch 10/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:20:31.044 | DEBUG    | __main__:save_checkpoint:327 - Checkpoint saved: models/checkpoints\checkpoint_epoch_10.pth
+2025-12-08 15:21:04.405 | INFO     | __main__:train:288 - Epoch 11/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:21:43.693 | INFO     | __main__:train:288 - Epoch 12/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:22:18.306 | INFO     | __main__:train:288 - Epoch 13/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:22:51.977 | INFO     | __main__:train:288 - Epoch 14/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:23:24.966 | INFO     | __main__:train:288 - Epoch 15/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:24:02.651 | INFO     | __main__:train:288 - Epoch 16/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:24:37.289 | INFO     | __main__:train:288 - Epoch 17/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:25:11.117 | INFO     | __main__:train:288 - Epoch 18/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:25:45.651 | INFO     | __main__:train:288 - Epoch 19/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:26:19.474 | INFO     | __main__:train:288 - Epoch 20/100 - Train Loss: nan, Val Loss: nan
+2025-12-08 15:26:19.475 | INFO     | __main__:train:302 - Early stopping triggered after 20 epochs
+2025-12-08 15:26:19.476 | INFO     | __main__:train:309 - Training completed!
+2025-12-08 15:26:19.871 | INFO     | __main__:plot_training_history:343 - Training history plot saved: logs\training_history.png
+2025-12-08 15:26:19.888 | INFO     | __main__:main:373 - Training script completed successfully!

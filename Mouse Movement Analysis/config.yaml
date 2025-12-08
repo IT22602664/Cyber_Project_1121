@@ -78,7 +78,7 @@ training:
 # Verification Configuration
 verification:
   similarity_metric: "cosine"  # cosine, euclidean, or manhattan
-  threshold: 0.70  # Adjustable threshold for authentication
+  threshold: 0.85  # Adjustable threshold for authentication (increased from 0.70)
   target_accuracy: 0.875  # Target 85-90% accuracy
   
   # Continuous verification

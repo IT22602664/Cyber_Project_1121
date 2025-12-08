@@ -239,6 +239,23 @@ class MouseTester:
 
         # Load model checkpoint
         checkpoint_path = os.path.join(self.config.paths.checkpoint_dir, 'best_model.pth')
+
+        # If best_model.pth doesn't exist, try to find the latest checkpoint
+        if not os.path.exists(checkpoint_path):
+            logger.warning(f"best_model.pth not found. Looking for alternative checkpoints...")
+            checkpoint_dir = self.config.paths.checkpoint_dir
+            if os.path.exists(checkpoint_dir):
+                checkpoints = [f for f in os.listdir(checkpoint_dir) if f.endswith('.pth')]
+                if checkpoints:
+                    # Sort by epoch number and get the latest
+                    checkpoints.sort(key=lambda x: int(x.split('_')[-1].split('.')[0]) if 'epoch' in x else 0)
+                    checkpoint_path = os.path.join(checkpoint_dir, checkpoints[-1])
+                    logger.info(f"Using checkpoint: {checkpoint_path}")
+                else:
+                    raise FileNotFoundError(f"No checkpoints found in {checkpoint_dir}. Please train the model first.")
+            else:
+                raise FileNotFoundError(f"Checkpoint directory not found: {checkpoint_dir}. Please train the model first.")
+
         checkpoint = self.load_model(checkpoint_path)
 
         # We need to get input_dim from preprocessor
@@ -259,6 +276,27 @@ class MouseTester:
         self.model = self.model.to(self.device)
         self.model.eval()
 
+        # Load the fitted scaler
+        if 'scaler' in checkpoint:
+            self.preprocessor.scaler = checkpoint['scaler']
+            # Load fitted flag if available, otherwise assume True if scaler exists
+            self.preprocessor.is_fitted = checkpoint.get('scaler_fitted', True)
+            logger.info("Scaler loaded from checkpoint")
+        else:
+            logger.warning("Scaler not found in checkpoint. Will fit on test data.")
+            # Fit scaler on first batch of test data as fallback
+            first_user = list(dataset.keys())[0]
+            first_sessions = dataset[first_user][:5]
+            temp_features = []
+            for session_file in first_sessions:
+                features = self.preprocessor.extract_session_features(session_file)
+                if features is not None:
+                    temp_features.append(features)
+            if temp_features:
+                X_temp = np.vstack(temp_features)
+                self.preprocessor.normalize_features(X_temp, fit=True)
+                logger.info("Scaler fitted on test data")
+
         logger.info("Model loaded successfully")
 
         # Initialize verifier
@@ -274,6 +312,24 @@ class MouseTester:
         # Calculate metrics
         metrics = self.calculate_metrics(scores, labels)
 
+        # Print results to terminal
+        print("\n" + "=" * 70)
+        print("MOUSE MOVEMENT ANALYSIS - TEST RESULTS")
+        print("=" * 70)
+        print(f"Dataset: Balabit Mouse Dynamics Challenge")
+        print(f"Total Samples: {len(scores)}")
+        print(f"Genuine Samples: {np.sum(labels == 1)} ({np.sum(labels == 1)/len(labels)*100:.1f}%)")
+        print(f"Impostor Samples: {np.sum(labels == 0)} ({np.sum(labels == 0)/len(labels)*100:.1f}%)")
+        print("-" * 70)
+        print("PERFORMANCE METRICS:")
+        print("-" * 70)
+        print(f"Accuracy:   {metrics['accuracy']:.4f} ({metrics['accuracy']*100:.2f}%)")
+        print(f"Precision:  {metrics['precision']:.4f} ({metrics['precision']*100:.2f}%)")
+        print(f"Recall:     {metrics['recall']:.4f} ({metrics['recall']*100:.2f}%)")
+        print(f"F1 Score:   {metrics['f1_score']:.4f} ({metrics['f1_score']*100:.2f}%)")
+        print(f"AUC:        {metrics['auc']:.4f} ({metrics['auc']*100:.2f}%)")
+
+        # Also log to file
         logger.info("=" * 60)
         logger.info("TEST RESULTS")
         logger.info("=" * 60)
@@ -286,6 +342,36 @@ class MouseTester:
         # Calculate EER
         if len(np.unique(labels)) > 1:
             eer, eer_threshold = self.calculate_eer(scores, labels)
+            print(f"EER:        {eer:.4f} ({eer*100:.2f}%)")
+            print(f"EER Threshold: {eer_threshold:.4f}")
+            print("-" * 70)
+            print("INTERPRETATION:")
+            print("-" * 70)
+            if metrics['accuracy'] >= 0.85:
+                print("✓ EXCELLENT: Accuracy meets target (≥85%)")
+            elif metrics['accuracy'] >= 0.75:
+                print("✓ GOOD: Accuracy is acceptable (≥75%)")
+            else:
+                print("✗ NEEDS IMPROVEMENT: Accuracy below 75%")
+
+            if eer <= 0.15:
+                print("✓ EXCELLENT: EER meets target (≤15%)")
+            elif eer <= 0.25:
+                print("✓ GOOD: EER is acceptable (≤25%)")
+            else:
+                print("✗ NEEDS IMPROVEMENT: EER above 25%")
+
+            if metrics['auc'] >= 0.85:
+                print("✓ EXCELLENT: AUC meets target (≥0.85)")
+            elif metrics['auc'] >= 0.75:
+                print("✓ GOOD: AUC is acceptable (≥0.75)")
+            else:
+                print("✗ NEEDS IMPROVEMENT: AUC below 0.75")
+
+            print("=" * 70)
+            print(f"Results saved to: {self.config.paths.logs_dir}")
+            print("=" * 70 + "\n")
+
             logger.info(f"EER:       {eer:.4f} ({eer*100:.2f}%)")
             logger.info(f"EER Threshold: {eer_threshold:.4f}")
 

@@ -204,6 +204,10 @@ class MouseTrainer:
 
             # Backward pass
             loss.backward()
+
+            # Gradient clipping to prevent explosion
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
+
             self.optimizer.step()
 
             total_loss += loss.item()
@@ -288,6 +292,12 @@ class MouseTrainer:
             logger.info(f"Epoch {epoch+1}/{self.config.training.epochs} - "
                        f"Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}")
 
+            # Check for NaN losses
+            if np.isnan(train_loss) or np.isnan(val_loss):
+                logger.error(f"NaN loss detected! Train: {train_loss}, Val: {val_loss}")
+                logger.error("Training stopped due to NaN loss. Check your data and learning rate.")
+                break
+
             # Save best model
             if val_loss < self.best_val_loss:
                 self.best_val_loss = val_loss
@@ -321,7 +331,9 @@ class MouseTrainer:
             'optimizer_state_dict': self.optimizer.state_dict(),
             'train_losses': self.train_losses,
             'val_losses': self.val_losses,
-            'config': self.config.to_dict()
+            'config': self.config.to_dict(),
+            'scaler': self.preprocessor.scaler,  # Save the fitted scaler
+            'scaler_fitted': self.preprocessor.is_fitted  # Save fitted flag
         }, filepath)
 
         logger.debug(f"Checkpoint saved: {filepath}")
