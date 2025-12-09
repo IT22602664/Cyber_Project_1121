@@ -1,0 +1,85 @@
+2025-12-08 16:58:09.154 | INFO     | src.config_loader:load_config:76 - Loading configuration from: config.yaml
+2025-12-08 16:58:09.176 | DEBUG    | src.config_loader:validate_config:131 - Configuration validation passed
+2025-12-08 16:58:09.177 | INFO     | src.config_loader:load_config:86 - Configuration loaded successfully
+2025-12-08 16:58:09.179 | INFO     | __main__:__init__:35 - Using device: cpu
+2025-12-08 16:58:09.179 | INFO     | src.mouse_preprocessing:__init__:39 - MousePreprocessor initialized
+2025-12-08 16:58:09.179 | INFO     | __main__:load_data:52 - Loading Balabit dataset...
+2025-12-08 16:58:09.179 | INFO     | src.mouse_preprocessing:load_balabit_dataset:54 - Loading Balabit dataset from: Dataset/training_files
+2025-12-08 16:58:09.182 | INFO     | src.mouse_preprocessing:load_balabit_dataset:70 - Loaded 10 users with 60 sessions
+2025-12-08 16:58:09.182 | INFO     | src.mouse_preprocessing:load_balabit_dataset:76 - Loaded 816 labels
+2025-12-08 16:58:09.182 | INFO     | src.mouse_preprocessing:split_by_user:556 - Split: 6 train, 2 val, 2 test users
+2025-12-08 16:58:09.182 | INFO     | __main__:load_data:68 - Preprocessing training data...
+2025-12-08 16:58:09.182 | INFO     | src.mouse_preprocessing:preprocess_pipeline:574 - Running preprocessing pipeline...
+2025-12-08 16:58:09.182 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user7 (1/6)
+2025-12-08 17:00:52.552 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user23 (2/6)
+2025-12-08 17:01:44.982 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user12 (3/6)
+2025-12-08 17:03:29.743 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user35 (4/6)
+2025-12-08 17:04:12.251 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user9 (5/6)
+2025-12-08 17:05:00.982 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user29 (6/6)
+2025-12-08 17:05:50.590 | INFO     | src.mouse_preprocessing:preprocess_pipeline:597 - Extracted features: (22761, 32), Labels: (22761,)
+2025-12-08 17:05:50.684 | INFO     | src.mouse_preprocessing:normalize_features:495 - Feature scaler fitted
+2025-12-08 17:05:50.762 | INFO     | __main__:load_data:73 - Preprocessing validation data...
+2025-12-08 17:05:50.763 | INFO     | src.mouse_preprocessing:preprocess_pipeline:574 - Running preprocessing pipeline...
+2025-12-08 17:05:50.763 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user21 (1/2)
+2025-12-08 17:06:36.914 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user20 (2/2)
+2025-12-08 17:08:16.771 | INFO     | src.mouse_preprocessing:preprocess_pipeline:597 - Extracted features: (8380, 32), Labels: (8380,)
+2025-12-08 17:08:16.791 | INFO     | __main__:load_data:78 - Preprocessing test data...
+2025-12-08 17:08:16.794 | INFO     | src.mouse_preprocessing:preprocess_pipeline:574 - Running preprocessing pipeline...
+2025-12-08 17:08:16.795 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user15 (1/2)
+2025-12-08 17:09:13.286 | DEBUG    | src.mouse_preprocessing:preprocess_pipeline:580 - Processing user user16 (2/2)
+2025-12-08 17:10:59.924 | INFO     | src.mouse_preprocessing:preprocess_pipeline:597 - Extracted features: (7782, 32), Labels: (7782,)
+2025-12-08 17:10:59.945 | INFO     | __main__:load_data:109 - Data loaded: Train=22761, Val=8380, Test=7782
+2025-12-08 17:10:59.945 | INFO     | __main__:build_model:116 - Building model...
+2025-12-08 17:10:59.970 | INFO     | src.mouse_embedding:__init__:73 - MouseEmbeddingModel initialized: 32 -> 128
+2025-12-08 17:10:59.976 | INFO     | src.mouse_embedding:__init__:74 - Architecture: [256, 512, 512, 256, 128]
+2025-12-08 17:10:59.976 | INFO     | src.mouse_embedding:__init__:75 - Total parameters: 586752
+2025-12-08 17:11:03.376 | INFO     | __main__:build_model:165 - Model built with 586752 parameters
+2025-12-08 17:11:03.378 | INFO     | __main__:train:275 - Starting training...
+2025-12-08 17:12:10.415 | INFO     | __main__:train:292 - Epoch 1/200 - Train Loss: 2.1973, Val Loss: 0.0076
+2025-12-08 17:12:10.446 | DEBUG    | __main__:save_checkpoint:339 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 17:12:10.446 | INFO     | __main__:train:306 - New best model saved! Val Loss: 0.0076
+2025-12-08 17:12:59.855 | INFO     | __main__:train:292 - Epoch 2/200 - Train Loss: 2.1031, Val Loss: 0.0076
+2025-12-08 17:12:59.882 | DEBUG    | __main__:save_checkpoint:339 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 17:12:59.883 | INFO     | __main__:train:306 - New best model saved! Val Loss: 0.0076
+2025-12-08 17:14:03.426 | INFO     | __main__:train:292 - Epoch 3/200 - Train Loss: 2.0601, Val Loss: 0.0076
+2025-12-08 17:15:38.045 | INFO     | __main__:train:292 - Epoch 4/200 - Train Loss: 2.0376, Val Loss: 0.0076
+2025-12-08 17:17:05.575 | INFO     | __main__:train:292 - Epoch 5/200 - Train Loss: 2.0279, Val Loss: 0.0076
+2025-12-08 17:17:05.645 | DEBUG    | __main__:save_checkpoint:339 - Checkpoint saved: models/checkpoints\best_model.pth
+2025-12-08 17:17:05.645 | INFO     | __main__:train:306 - New best model saved! Val Loss: 0.0076
+2025-12-08 17:17:57.609 | INFO     | __main__:train:292 - Epoch 6/200 - Train Loss: 2.0225, Val Loss: 0.0076
+2025-12-08 17:18:44.369 | INFO     | __main__:train:292 - Epoch 7/200 - Train Loss: 2.0183, Val Loss: 0.0076
+2025-12-08 17:19:32.343 | INFO     | __main__:train:292 - Epoch 8/200 - Train Loss: 2.0151, Val Loss: 0.0076
+2025-12-08 17:20:23.464 | INFO     | __main__:train:292 - Epoch 9/200 - Train Loss: 2.0122, Val Loss: 0.0076
+2025-12-08 17:21:09.366 | INFO     | __main__:train:292 - Epoch 10/200 - Train Loss: 2.0098, Val Loss: 0.0076
+2025-12-08 17:21:09.398 | DEBUG    | __main__:save_checkpoint:339 - Checkpoint saved: models/checkpoints\checkpoint_epoch_10.pth
+2025-12-08 17:21:55.987 | INFO     | __main__:train:292 - Epoch 11/200 - Train Loss: 2.0076, Val Loss: 0.0076
+2025-12-08 17:22:42.091 | INFO     | __main__:train:292 - Epoch 12/200 - Train Loss: 2.0056, Val Loss: 0.0076
+2025-12-08 17:23:28.377 | INFO     | __main__:train:292 - Epoch 13/200 - Train Loss: 2.0038, Val Loss: 0.0076
+2025-12-08 17:24:14.882 | INFO     | __main__:train:292 - Epoch 14/200 - Train Loss: 2.0023, Val Loss: 0.0076
+2025-12-08 17:25:02.247 | INFO     | __main__:train:292 - Epoch 15/200 - Train Loss: 2.0011, Val Loss: 0.0076
+2025-12-08 17:25:48.972 | INFO     | __main__:train:292 - Epoch 16/200 - Train Loss: 2.0005, Val Loss: 0.0076
+2025-12-08 17:26:36.063 | INFO     | __main__:train:292 - Epoch 17/200 - Train Loss: 2.0005, Val Loss: 0.0076
+2025-12-08 17:27:34.054 | INFO     | __main__:train:292 - Epoch 18/200 - Train Loss: 2.0004, Val Loss: 0.0076
+2025-12-08 17:28:20.974 | INFO     | __main__:train:292 - Epoch 19/200 - Train Loss: 2.0004, Val Loss: 0.0076
+2025-12-08 17:29:09.634 | INFO     | __main__:train:292 - Epoch 20/200 - Train Loss: 2.0004, Val Loss: 0.0076
+2025-12-08 17:29:09.655 | DEBUG    | __main__:save_checkpoint:339 - Checkpoint saved: models/checkpoints\checkpoint_epoch_20.pth
+2025-12-08 17:29:56.476 | INFO     | __main__:train:292 - Epoch 21/200 - Train Loss: 2.0004, Val Loss: 0.0076
+2025-12-08 17:30:43.728 | INFO     | __main__:train:292 - Epoch 22/200 - Train Loss: 2.0004, Val Loss: 0.0076
+2025-12-08 17:31:30.769 | INFO     | __main__:train:292 - Epoch 23/200 - Train Loss: 2.0003, Val Loss: 0.0076
+2025-12-08 17:32:18.621 | INFO     | __main__:train:292 - Epoch 24/200 - Train Loss: 2.0003, Val Loss: 0.0076
+2025-12-08 17:33:05.434 | INFO     | __main__:train:292 - Epoch 25/200 - Train Loss: 2.0002, Val Loss: 0.0076
+2025-12-08 17:33:52.343 | INFO     | __main__:train:292 - Epoch 26/200 - Train Loss: 2.0001, Val Loss: 0.0076
+2025-12-08 17:34:39.722 | INFO     | __main__:train:292 - Epoch 27/200 - Train Loss: 2.0001, Val Loss: 0.0076
+2025-12-08 17:35:27.044 | INFO     | __main__:train:292 - Epoch 28/200 - Train Loss: 2.0001, Val Loss: 0.0076
+2025-12-08 17:36:14.269 | INFO     | __main__:train:292 - Epoch 29/200 - Train Loss: 2.0000, Val Loss: 0.0076
+2025-12-08 17:37:28.682 | INFO     | __main__:train:292 - Epoch 30/200 - Train Loss: 2.0000, Val Loss: 0.0076
+2025-12-08 17:37:28.721 | DEBUG    | __main__:save_checkpoint:339 - Checkpoint saved: models/checkpoints\checkpoint_epoch_30.pth
+2025-12-08 17:38:32.659 | INFO     | __main__:train:292 - Epoch 31/200 - Train Loss: 2.0000, Val Loss: 0.0076
+2025-12-08 17:39:48.643 | INFO     | __main__:train:292 - Epoch 32/200 - Train Loss: 2.0000, Val Loss: 0.0076
+2025-12-08 17:43:35.945 | INFO     | __main__:train:292 - Epoch 33/200 - Train Loss: 2.0000, Val Loss: 0.0076
+2025-12-08 17:46:37.633 | INFO     | __main__:train:292 - Epoch 34/200 - Train Loss: 2.0000, Val Loss: 0.0076
+2025-12-08 17:48:31.253 | INFO     | __main__:train:292 - Epoch 35/200 - Train Loss: 2.0000, Val Loss: 0.0076
+2025-12-08 17:48:31.255 | INFO     | __main__:train:312 - Early stopping triggered after 35 epochs
+2025-12-08 17:48:31.257 | INFO     | __main__:train:319 - Training completed!
+2025-12-08 17:48:32.016 | INFO     | __main__:plot_training_history:355 - Training history plot saved: logs\training_history.png
+2025-12-08 17:48:32.047 | INFO     | __main__:main:385 - Training script completed successfully!

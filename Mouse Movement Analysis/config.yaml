@@ -52,16 +52,16 @@ features:
 # Training Configuration
 training:
   batch_size: 32
-  epochs: 100
+  epochs: 200  # Increased from 100 for better convergence
   learning_rate: 0.0001
   weight_decay: 0.0001
   optimizer: "adam"
   scheduler: "cosine"
-  early_stopping_patience: 20
-  
+  early_stopping_patience: 30  # Increased from 20
+
   # Loss function
   loss_type: "triplet"  # triplet loss for Siamese network
-  triplet_margin: 1.0
+  triplet_margin: 2.0  # Increased from 1.0 for stronger class separation
   triplet_mining: "hard"  # hard, semi-hard, or all
   
   # Data split
@@ -118,7 +118,7 @@ anomaly_detection:
 
 # Enrollment Configuration
 enrollment:
-  min_samples: 100  # Minimum mouse events for enrollment
+  min_samples: 50  # Reduced from 100 to handle users with fewer samples
   max_samples: 1000  # Maximum events to store
   enrollment_sessions: 3  # Number of sessions for robust enrollment
   

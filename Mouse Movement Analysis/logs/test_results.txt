@@ -1,9 +1,9 @@
 Mouse Movement Analysis - Test Results
 ============================================================
-Accuracy:  0.8109 (81.09%)
-Precision: 0.8109
+Accuracy:  0.7842 (78.42%)
+Precision: 0.7842
 Recall:    1.0000
-F1 Score:  0.8956
-AUC:       0.6316
-EER:       0.3715 (37.15%)
-EER Threshold: 0.9945
+F1 Score:  0.8790
+AUC:       0.5570
+EER:       0.4695 (46.95%)
+EER Threshold: 1.0000
