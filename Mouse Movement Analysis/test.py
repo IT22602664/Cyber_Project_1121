@@ -53,7 +53,7 @@ class MouseTester:
         if not os.path.exists(checkpoint_path):
             raise FileNotFoundError(f"Checkpoint not found: {checkpoint_path}")
         
-        checkpoint = torch.load(checkpoint_path, map_location=self.device)
+        checkpoint = torch.load(checkpoint_path, map_location=self.device, weights_only=False)
         
         # Get input dimension from checkpoint or infer from data
         # For now, we'll load data first to get input_dim
