@@ -126,6 +126,11 @@ This will:
 
 Start the REST API server:
 
+
+python main.py api
+
+# or :
+
 ```bash
 # Windows:
 start_api.bat

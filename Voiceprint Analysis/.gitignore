@@ -33,16 +33,6 @@ ENV/
 *.swo
 *~
 
-# Environment Variables
-.env
-
-# Models and Checkpoints
-models/checkpoints/*.ckpt
-models/pretrained/
-*.pth
-*.pt
-*.h5
-
 # Logs
 logs/
 *.log
