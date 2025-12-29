@@ -2,6 +2,7 @@ import Doctor from '../models/Doctor.js';
 import { generateToken } from '../middleware/auth.js';
 import mlService from '../services/mlService.js';
 import fs from 'fs';
+import { convertMultipleToWav } from '../utils/audioConverter.js';
 
 // @desc    Register a new doctor
 // @route   POST /api/auth/register
@@ -52,21 +53,27 @@ export const register = async (req, res) => {
 
     // Enroll voice if audio files provided (expecting 3 samples)
     if (req.files && req.files.length > 0) {
+      let convertedPaths = [];
       try {
         console.log(`Enrolling voice for doctor ${doctor._id}... (${req.files.length} samples)`);
 
         // Get all file paths
         const audioFilePaths = req.files.map(file => file.path);
 
+        // Convert to WAV format if needed (fallback if frontend conversion fails)
+        console.log('Converting audio files to WAV format...');
+        convertedPaths = await convertMultipleToWav(audioFilePaths);
+        console.log(`✓ Audio files converted: ${convertedPaths.length} files`);
+
         // Enroll with multiple samples
-        const voiceResult = await mlService.enrollVoiceMultiple(doctor._id.toString(), audioFilePaths);
+        const voiceResult = await mlService.enrollVoiceMultiple(doctor._id.toString(), convertedPaths);
         doctor.biometricData.voiceEnrolled = true;
         doctor.biometricData.voiceEmbedding = doctor._id.toString();
         biometricResults.voice.success = true;
         console.log('✓ Voice enrollment successful');
 
         // Clean up uploaded files
-        audioFilePaths.forEach(path => {
+        convertedPaths.forEach(path => {
           if (fs.existsSync(path)) {
             fs.unlinkSync(path);
           }
@@ -75,6 +82,13 @@ export const register = async (req, res) => {
         console.error('✗ Voice enrollment failed:', error.message);
         biometricResults.voice.error = error.message;
         // Clean up uploaded files even on error
+        if (convertedPaths.length > 0) {
+          convertedPaths.forEach(path => {
+            if (fs.existsSync(path)) {
+              fs.unlinkSync(path);
+            }
+          });
+        }
         if (req.files && req.files.length > 0) {
           req.files.forEach(file => {
             if (file.path && fs.existsSync(file.path)) {

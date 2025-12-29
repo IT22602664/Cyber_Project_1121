@@ -33,7 +33,7 @@ python main.py api
 
 #### Keystroke Dynamics API (Port 8002)
 ```powershell
-cd "Keystroke Dynamics"
+c
 .\venv\Scripts\Activate.ps1
 python main.py api
 ```

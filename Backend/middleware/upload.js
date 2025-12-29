@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
 // File filter
 const fileFilter = (req, file, cb) => {
   // Accept audio files for voice samples
-  if (file.fieldname === 'voiceSample') {
+  if (file.fieldname === 'voiceSample' || file.fieldname === 'voiceSamples') {
     if (file.mimetype.startsWith('audio/')) {
       cb(null, true);
     } else {
