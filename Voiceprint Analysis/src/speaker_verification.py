@@ -48,18 +48,26 @@ class SpeakerVerificationEngine:
             )
         
         embeddings = []
-        
+
         # Extract embeddings from all enrollment samples
         for audio_path in audio_samples:
             # Preprocess audio
             segments = self.audio_preprocessor.preprocess(audio_path)
-            
+
+            # Check if we got any segments
+            if len(segments) == 0:
+                raise ValueError(f"No audio segments extracted from {audio_path}. Audio may be too short or silent.")
+
             # Extract embeddings from all segments
             for segment in segments:
                 embedding = self.embedding_model.extract_embedding(segment)
                 embedding = self.embedding_model.normalize_embedding(embedding)
                 embeddings.append(embedding)
-        
+
+        # Check if we got any embeddings
+        if len(embeddings) == 0:
+            raise ValueError("No embeddings extracted from audio samples. Please provide valid audio with speech.")
+
         # Compute mean embedding (voiceprint template)
         embeddings_array = np.array(embeddings)
         mean_embedding = np.mean(embeddings_array, axis=0)

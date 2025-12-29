@@ -15,7 +15,7 @@ audio:
   min_duration: 1.0     # minimum audio duration
   max_duration: 10.0    # maximum audio duration
   vad_enabled: true     # Voice Activity Detection
-  vad_threshold: 0.01   # Energy threshold for VAD (0.01 = 1% of max amplitude)
+  vad_threshold: 0.001  # Energy threshold for VAD (lowered from 0.01 to 0.001 to be more sensitive)
   noise_reduction: true
   
 # Speaker Verification
@@ -24,7 +24,7 @@ verification:
   threshold: 0.65              # Verification threshold (adjustable)
   eer_target: 0.03             # Target EER < 3%
   max_latency_ms: 800          # Maximum latency per window
-  enrollment_samples: 3        # Minimum samples for enrollment
+  enrollment_samples: 1        # Minimum samples for enrollment (changed from 3 to 1 for single audio upload)
   few_shot_samples: 2          # Few-shot learning samples
   
 # Anti-Spoofing
@@ -61,7 +61,7 @@ database:
 api:
   host: "0.0.0.0"
   port: 8001
-  workers: 4
+  workers: 1  # Changed from 4 to 1 - Windows doesn't support multiple workers properly
   reload: false
   log_level: "info"
   cors_origins: ["http://localhost:3000", "http://localhost:5000"]

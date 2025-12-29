@@ -103,6 +103,10 @@ class AudioPreprocessor:
         frame_duration_ms = 30
         frame_length = int(sample_rate * frame_duration_ms / 1000)
 
+        # Handle short audio
+        if len(audio) < frame_length:
+            return audio
+
         # Calculate energy for each frame
         voiced_frames = []
         for i in range(0, len(audio) - frame_length, frame_length):
@@ -116,6 +120,7 @@ class AudioPreprocessor:
                 voiced_frames.append(frame)
 
         if len(voiced_frames) == 0:
+            print(f"Warning: VAD filtered out all audio. Returning original. Threshold: {self.vad_threshold}")
             return audio  # Return original if no speech detected
 
         return np.concatenate(voiced_frames)
@@ -155,6 +160,10 @@ class AudioPreprocessor:
         window_samples = int(self.window_duration * sample_rate)
         hop_samples = int(window_samples * (1 - self.window_overlap))
 
+        # If audio is shorter than window, return it as a single segment
+        if len(audio) <= window_samples:
+            return [audio]
+
         segments = []
         for start in range(0, len(audio) - window_samples + 1, hop_samples):
             segment = audio[start:start + window_samples]
@@ -163,6 +172,10 @@ class AudioPreprocessor:
         # Add last segment if there's remaining audio
         if len(audio) > window_samples and (len(audio) - window_samples) % hop_samples != 0:
             segments.append(audio[-window_samples:])
+
+        # Ensure we have at least one segment
+        if len(segments) == 0:
+            segments = [audio]
 
         return segments
 

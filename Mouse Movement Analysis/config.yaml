@@ -145,7 +145,7 @@ security:
 api:
   host: "0.0.0.0"
   port: 8003
-  workers: 4
+  workers: 1  # Changed from 4 to 1 - Windows doesn't support multiple workers properly
   reload: false
   log_level: "info"
   
