@@ -23,7 +23,7 @@ const Register = () => {
   });
 
   // Biometric data
-  const [voiceBlob, setVoiceBlob] = useState(null);
+  const [voiceBlobs, setVoiceBlobs] = useState([]);
   const [keystrokeData, setKeystrokeData] = useState([]);
   const [mouseData, setMouseData] = useState([]);
 
@@ -80,13 +80,13 @@ const Register = () => {
     setStep(step - 1);
   };
 
-  // Voice Recording with timer
+  // Voice Recording with timer - Collect 3 samples
   const startVoiceRecording = async () => {
     const started = await voiceCapture.current.start();
     if (started) {
       setIsRecordingVoice(true);
       setVoiceRecordingTime(0);
-      toast.success('🎤 Recording started! Please speak clearly for 5-10 seconds');
+      toast.success(`🎤 Recording sample ${voiceBlobs.length + 1}/3... Please speak clearly for 5-10 seconds`);
 
       // Auto-stop after 10 seconds
       const timer = setInterval(() => {
@@ -106,22 +106,55 @@ const Register = () => {
 
   const stopVoiceRecording = async () => {
     const blob = await voiceCapture.current.stop();
-    setVoiceBlob(blob);
+    setVoiceBlobs(prev => [...prev, blob]);
     setIsRecordingVoice(false);
-    toast.success('✅ Voice sample captured successfully!');
+    const newCount = voiceBlobs.length + 1;
+    if (newCount >= 3) {
+      toast.success(`✅ All ${newCount} voice samples captured!`);
+    } else {
+      toast.success(`✅ Voice sample ${newCount}/3 captured! Please record ${3 - newCount} more.`);
+    }
   };
 
-  // Keystroke Capture with better UX
+  // Keystroke Capture with validation
+  const REQUIRED_PHRASE = "The quick brown fox jumps over the lazy dog";
+
   const startKeystrokeCapture = () => {
     keystrokeCapture.current.start();
     setIsCapturingKeystroke(true);
     setTypedText('');
     setCurrentKeystrokeSample(keystrokeData.length + 1);
-    toast.success(`⌨️ Sample ${keystrokeData.length + 1}/3: Type the phrase below`);
+    toast.success(`⌨️ Sample ${keystrokeData.length + 1}/3: Type the exact phrase shown below`);
   };
 
-  const stopKeystrokeCapture = () => {
+  const handleKeystrokeTextChange = (e) => {
+    // Prevent paste
+    const newText = e.target.value;
+    setTypedText(newText);
+  };
+
+  const handleKeystrokePaste = (e) => {
+    e.preventDefault();
+    toast.error('❌ Copy/paste is not allowed. Please type the phrase manually.');
+  };
+
+  const completeKeystrokeSample = () => {
+    // Validate the typed text matches exactly
+    if (typedText.trim() !== REQUIRED_PHRASE) {
+      toast.error('❌ Text does not match! Please type the exact phrase.');
+      return;
+    }
+
     const features = keystrokeCapture.current.stop();
+
+    // Validate we have enough keystroke events
+    if (features.length < 38) {
+      toast.error('❌ Not enough keystroke data captured. Please try again.');
+      setIsCapturingKeystroke(false);
+      setTypedText('');
+      return;
+    }
+
     setKeystrokeData(prev => [...prev, features]);
     setIsCapturingKeystroke(false);
     setTypedText('');
@@ -157,17 +190,17 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!voiceBlob) {
-      toast.error('Please record a voice sample');
+
+    if (voiceBlobs.length < 3) {
+      toast.error(`Please record 3 voice samples (${voiceBlobs.length}/3 completed)`);
       return;
     }
-    
+
     if (keystrokeData.length < 3) {
       toast.error('Please capture at least 3 keystroke samples');
       return;
     }
-    
+
     if (mouseData.length === 0) {
       toast.error('Please capture a mouse movement pattern');
       return;
@@ -184,7 +217,12 @@ const Register = () => {
       submitData.append('medicalLicenseNumber', formData.medicalLicenseNumber);
       submitData.append('specialization', formData.specialization);
       submitData.append('yearsOfExperience', formData.yearsOfExperience);
-      submitData.append('voiceSample', voiceBlob, 'voice-sample.wav');
+
+      // Append all 3 voice samples
+      voiceBlobs.forEach((blob, index) => {
+        submitData.append('voiceSamples', blob, `voice-sample-${index + 1}.wav`);
+      });
+
       submitData.append('keystrokePattern', JSON.stringify(keystrokeData));
       submitData.append('mousePattern', JSON.stringify(mouseData));
 
@@ -371,30 +409,32 @@ const Register = () => {
 
                 {/* Voice Sample */}
                 <div className={`border-2 rounded-lg p-6 transition-all ${
-                  voiceBlob ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
+                  voiceBlobs.length >= 3 ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
                 }`}>
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center">
-                      <div className={`p-2 rounded-full ${voiceBlob ? 'bg-green-500' : 'bg-primary-600'}`}>
+                      <div className={`p-2 rounded-full ${voiceBlobs.length >= 3 ? 'bg-green-500' : 'bg-primary-600'}`}>
                         <Mic className="h-5 w-5 text-white" />
                       </div>
                       <div className="ml-3">
                         <h4 className="font-semibold text-gray-900">Voice Biometric</h4>
-                        <p className="text-xs text-gray-500">Record a 5-10 second voice sample</p>
+                        <p className="text-xs text-gray-500">Record 3 voice samples (5-10 seconds each)</p>
                       </div>
                     </div>
-                    {voiceBlob && (
-                      <div className="flex items-center text-green-600">
-                        <CheckCircle className="h-5 w-5 mr-1" />
-                        <span className="text-sm font-medium">Complete</span>
-                      </div>
-                    )}
+                    <div className="flex items-center">
+                      <span className={`text-sm font-medium ${voiceBlobs.length >= 3 ? 'text-green-600' : 'text-gray-600'}`}>
+                        {voiceBlobs.length}/3 samples
+                      </span>
+                      {voiceBlobs.length >= 3 && (
+                        <CheckCircle className="h-5 w-5 ml-2 text-green-600" />
+                      )}
+                    </div>
                   </div>
 
                   {isRecordingVoice && (
                     <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-red-900">🎤 Recording in progress...</span>
+                        <span className="text-sm font-medium text-red-900">🎤 Recording sample {voiceBlobs.length + 1}/3...</span>
                         <span className="text-lg font-bold text-red-600">{voiceRecordingTime}s / 10s</span>
                       </div>
                       <div className="w-full bg-red-200 rounded-full h-2">
@@ -412,16 +452,16 @@ const Register = () => {
                   <button
                     type="button"
                     onClick={isRecordingVoice ? stopVoiceRecording : startVoiceRecording}
-                    disabled={voiceBlob && !isRecordingVoice}
+                    disabled={voiceBlobs.length >= 3 && !isRecordingVoice}
                     className={`w-full py-3 px-4 rounded-md text-sm font-medium transition-all ${
                       isRecordingVoice
                         ? 'bg-red-600 hover:bg-red-700 text-white animate-pulse'
-                        : voiceBlob
+                        : voiceBlobs.length >= 3
                         ? 'bg-green-600 text-white cursor-not-allowed'
                         : 'bg-primary-600 hover:bg-primary-700 text-white'
                     }`}
                   >
-                    {isRecordingVoice ? '⏹️ Stop Recording' : voiceBlob ? '✅ Voice Captured' : '🎤 Start Voice Recording'}
+                    {isRecordingVoice ? '⏹️ Stop Recording' : voiceBlobs.length >= 3 ? '✅ All Samples Captured' : `🎤 Record Sample ${voiceBlobs.length + 1}/3`}
                   </button>
                 </div>
 
@@ -455,9 +495,9 @@ const Register = () => {
                     <div className="mb-4">
                       <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-md">
                         <p className="text-sm font-medium text-blue-900 mb-1">
-                          Sample {currentKeystrokeSample}/3: Type this phrase exactly:
+                          Sample {currentKeystrokeSample}/3: Type this phrase EXACTLY (no copy/paste):
                         </p>
-                        <p className="text-sm font-mono text-blue-700 italic">
+                        <p className="text-sm font-mono text-blue-700 font-semibold">
                           "The quick brown fox jumps over the lazy dog"
                         </p>
                       </div>
@@ -466,34 +506,59 @@ const Register = () => {
                         rows="3"
                         placeholder="Start typing here..."
                         value={typedText}
-                        onChange={(e) => setTypedText(e.target.value)}
+                        onChange={handleKeystrokeTextChange}
+                        onPaste={handleKeystrokePaste}
+                        onCut={(e) => e.preventDefault()}
+                        onCopy={(e) => e.preventDefault()}
                         onKeyDown={(e) => keystrokeCapture.current.handleKeyDown(e)}
                         onKeyUp={(e) => keystrokeCapture.current.handleKeyUp(e)}
                         autoFocus
                       />
-                      <p className="text-xs text-gray-500 mt-1">
-                        Characters typed: {typedText.length}
-                      </p>
+                      <div className="flex justify-between items-center mt-1">
+                        <p className="text-xs text-gray-500">
+                          Characters typed: {typedText.length} / {REQUIRED_PHRASE.length}
+                        </p>
+                        {typedText.length > 0 && (
+                          <p className={`text-xs font-medium ${
+                            typedText.trim() === REQUIRED_PHRASE ? 'text-green-600' : 'text-orange-600'
+                          }`}>
+                            {typedText.trim() === REQUIRED_PHRASE ? '✓ Match!' : '⚠ Keep typing...'}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   )}
 
-                  <button
-                    type="button"
-                    onClick={isCapturingKeystroke ? stopKeystrokeCapture : startKeystrokeCapture}
-                    disabled={keystrokeData.length >= 3 && !isCapturingKeystroke}
-                    className={`w-full py-3 px-4 rounded-md text-sm font-medium transition-all ${
-                      keystrokeData.length >= 3
-                        ? 'bg-green-600 text-white cursor-not-allowed'
-                        : 'bg-primary-600 hover:bg-primary-700 text-white'
-                    }`}
-                  >
-                    {isCapturingKeystroke
-                      ? '✅ Complete Sample'
-                      : keystrokeData.length >= 3
-                      ? '✅ All Samples Captured'
-                      : `⌨️ Capture Sample ${keystrokeData.length + 1}/3`
-                    }
-                  </button>
+                  {isCapturingKeystroke ? (
+                    <button
+                      type="button"
+                      onClick={completeKeystrokeSample}
+                      disabled={typedText.trim() !== REQUIRED_PHRASE}
+                      className={`w-full py-3 px-4 rounded-md text-sm font-medium transition-all ${
+                        typedText.trim() === REQUIRED_PHRASE
+                          ? 'bg-green-600 hover:bg-green-700 text-white'
+                          : 'bg-gray-400 text-white cursor-not-allowed'
+                      }`}
+                    >
+                      {typedText.trim() === REQUIRED_PHRASE ? '✅ Complete Sample' : '⏳ Finish typing...'}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={startKeystrokeCapture}
+                      disabled={keystrokeData.length >= 3}
+                      className={`w-full py-3 px-4 rounded-md text-sm font-medium transition-all ${
+                        keystrokeData.length >= 3
+                          ? 'bg-green-600 text-white cursor-not-allowed'
+                          : 'bg-primary-600 hover:bg-primary-700 text-white'
+                      }`}
+                    >
+                      {keystrokeData.length >= 3
+                        ? '✅ All Samples Captured'
+                        : `⌨️ Capture Sample ${keystrokeData.length + 1}/3`
+                      }
+                    </button>
+                  )}
                 </div>
 
                 {/* Mouse Pattern */}
@@ -577,7 +642,7 @@ const Register = () => {
                   </button>
                   <button
                     type="submit"
-                    disabled={loading || !voiceBlob || keystrokeData.length < 3 || mouseData.length === 0}
+                    disabled={loading || voiceBlobs.length < 3 || keystrokeData.length < 3 || mouseData.length === 0}
                     className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-50"
                   >
                     {loading ? 'Registering...' : 'Complete Registration'}

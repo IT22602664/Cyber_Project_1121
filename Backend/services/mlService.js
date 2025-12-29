@@ -32,6 +32,28 @@ class MLService {
     }
   }
 
+  async enrollVoiceMultiple(userId, audioFilePaths) {
+    try {
+      // Use the /api/v1/enroll endpoint which expects multiple audio files
+      const response = await axios.post(
+        `${this.voiceApiUrl}/api/v1/enroll`,
+        {
+          speaker_id: userId,
+          audio_files: audioFilePaths
+        },
+        {
+          headers: { 'Content-Type': 'application/json' },
+          timeout: 60000 // Longer timeout for multiple files
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error('Voice enrollment (multiple) error:', error.message);
+      throw new Error(`Voice enrollment failed: ${error.message}`);
+    }
+  }
+
   async verifyVoice(userId, audioFilePath) {
     try {
       const formData = new FormData();

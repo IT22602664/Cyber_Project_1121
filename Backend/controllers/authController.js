@@ -50,24 +50,37 @@ export const register = async (req, res) => {
       mouse: { success: false, error: null }
     };
 
-    // Enroll voice if audio file provided
-    if (req.file) {
+    // Enroll voice if audio files provided (expecting 3 samples)
+    if (req.files && req.files.length > 0) {
       try {
-        console.log(`Enrolling voice for doctor ${doctor._id}...`);
-        const voiceResult = await mlService.enrollVoice(doctor._id.toString(), req.file.path);
+        console.log(`Enrolling voice for doctor ${doctor._id}... (${req.files.length} samples)`);
+
+        // Get all file paths
+        const audioFilePaths = req.files.map(file => file.path);
+
+        // Enroll with multiple samples
+        const voiceResult = await mlService.enrollVoiceMultiple(doctor._id.toString(), audioFilePaths);
         doctor.biometricData.voiceEnrolled = true;
         doctor.biometricData.voiceEmbedding = doctor._id.toString();
         biometricResults.voice.success = true;
         console.log('✓ Voice enrollment successful');
 
-        // Clean up uploaded file
-        fs.unlinkSync(req.file.path);
+        // Clean up uploaded files
+        audioFilePaths.forEach(path => {
+          if (fs.existsSync(path)) {
+            fs.unlinkSync(path);
+          }
+        });
       } catch (error) {
         console.error('✗ Voice enrollment failed:', error.message);
         biometricResults.voice.error = error.message;
-        // Clean up uploaded file even on error
-        if (req.file && req.file.path && fs.existsSync(req.file.path)) {
-          fs.unlinkSync(req.file.path);
+        // Clean up uploaded files even on error
+        if (req.files && req.files.length > 0) {
+          req.files.forEach(file => {
+            if (file.path && fs.existsSync(file.path)) {
+              fs.unlinkSync(file.path);
+            }
+          });
         }
       }
     }
