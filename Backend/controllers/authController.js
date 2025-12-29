@@ -45,63 +45,89 @@ export const register = async (req, res) => {
 
     // Enroll biometric data
     const biometricResults = {
-      voice: false,
-      keystroke: false,
-      mouse: false
+      voice: { success: false, error: null },
+      keystroke: { success: false, error: null },
+      mouse: { success: false, error: null }
     };
 
     // Enroll voice if audio file provided
     if (req.file) {
       try {
+        console.log(`Enrolling voice for doctor ${doctor._id}...`);
         const voiceResult = await mlService.enrollVoice(doctor._id.toString(), req.file.path);
         doctor.biometricData.voiceEnrolled = true;
         doctor.biometricData.voiceEmbedding = doctor._id.toString();
-        biometricResults.voice = true;
-        
+        biometricResults.voice.success = true;
+        console.log('✓ Voice enrollment successful');
+
         // Clean up uploaded file
         fs.unlinkSync(req.file.path);
       } catch (error) {
-        console.error('Voice enrollment failed:', error.message);
+        console.error('✗ Voice enrollment failed:', error.message);
+        biometricResults.voice.error = error.message;
+        // Clean up uploaded file even on error
+        if (req.file && req.file.path && fs.existsSync(req.file.path)) {
+          fs.unlinkSync(req.file.path);
+        }
       }
     }
 
     // Enroll keystroke pattern
     if (keystrokePattern) {
       try {
+        console.log(`Enrolling keystroke for doctor ${doctor._id}...`);
         const keystrokeData = JSON.parse(keystrokePattern);
+        console.log(`Keystroke samples: ${keystrokeData.length}`);
         const keystrokeResult = await mlService.enrollKeystroke(
           doctor._id.toString(),
           keystrokeData
         );
         doctor.biometricData.keystrokeEnrolled = true;
         doctor.biometricData.keystrokeProfile = doctor._id.toString();
-        biometricResults.keystroke = true;
+        biometricResults.keystroke.success = true;
+        console.log('✓ Keystroke enrollment successful');
       } catch (error) {
-        console.error('Keystroke enrollment failed:', error.message);
+        console.error('✗ Keystroke enrollment failed:', error.message);
+        biometricResults.keystroke.error = error.message;
       }
     }
 
     // Enroll mouse pattern
     if (mousePattern) {
       try {
+        console.log(`Enrolling mouse for doctor ${doctor._id}...`);
         const mouseData = JSON.parse(mousePattern);
+        console.log(`Mouse events: ${mouseData.length}`);
         const mouseResult = await mlService.enrollMouse(
           doctor._id.toString(),
           mouseData
         );
         doctor.biometricData.mouseEnrolled = true;
         doctor.biometricData.mouseProfile = doctor._id.toString();
-        biometricResults.mouse = true;
+        biometricResults.mouse.success = true;
+        console.log('✓ Mouse enrollment successful');
       } catch (error) {
-        console.error('Mouse enrollment failed:', error.message);
+        console.error('✗ Mouse enrollment failed:', error.message);
+        biometricResults.mouse.error = error.message;
       }
     }
 
+    // Save doctor record regardless of biometric enrollment results
     await doctor.save();
+    console.log(`Doctor ${doctor._id} saved to database`);
+
+    // Determine overall success message
+    const allBiometricsSuccess = biometricResults.voice.success &&
+                                  biometricResults.keystroke.success &&
+                                  biometricResults.mouse.success;
+
+    const message = allBiometricsSuccess
+      ? 'Doctor registered successfully with all biometric enrollments'
+      : 'Doctor registered successfully. Some biometric enrollments may have failed - you can re-enroll later.';
 
     res.status(201).json({
       success: true,
-      message: 'Doctor registered successfully',
+      message,
       data: {
         doctor: {
           id: doctor._id,

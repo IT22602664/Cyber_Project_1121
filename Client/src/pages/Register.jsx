@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-import { Shield, User, Mail, Lock, FileText, Briefcase, Calendar, Mic, Keyboard, Mouse } from 'lucide-react';
+import { Shield, User, Mail, Lock, FileText, Briefcase, Calendar, Mic, Keyboard, Mouse, CheckCircle } from 'lucide-react';
 import { KeystrokeCapture, MouseCapture, VoiceCapture } from '../utils/biometricCapture';
 
 const Register = () => {
@@ -26,16 +26,20 @@ const Register = () => {
   const [voiceBlob, setVoiceBlob] = useState(null);
   const [keystrokeData, setKeystrokeData] = useState([]);
   const [mouseData, setMouseData] = useState([]);
-  
+
   // Capture instances
   const keystrokeCapture = useRef(new KeystrokeCapture());
   const mouseCapture = useRef(new MouseCapture());
   const voiceCapture = useRef(new VoiceCapture());
-  
+
   // Recording states
   const [isRecordingVoice, setIsRecordingVoice] = useState(false);
   const [isCapturingKeystroke, setIsCapturingKeystroke] = useState(false);
   const [isCapturingMouse, setIsCapturingMouse] = useState(false);
+  const [voiceRecordingTime, setVoiceRecordingTime] = useState(0);
+  const [mouseRecordingTime, setMouseRecordingTime] = useState(0);
+  const [currentKeystrokeSample, setCurrentKeystrokeSample] = useState(0);
+  const [typedText, setTypedText] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -76,14 +80,27 @@ const Register = () => {
     setStep(step - 1);
   };
 
-  // Voice Recording
+  // Voice Recording with timer
   const startVoiceRecording = async () => {
     const started = await voiceCapture.current.start();
     if (started) {
       setIsRecordingVoice(true);
-      toast.success('Recording... Please speak for 5-10 seconds');
+      setVoiceRecordingTime(0);
+      toast.success('🎤 Recording started! Please speak clearly for 5-10 seconds');
+
+      // Auto-stop after 10 seconds
+      const timer = setInterval(() => {
+        setVoiceRecordingTime(prev => {
+          if (prev >= 10) {
+            clearInterval(timer);
+            stopVoiceRecording();
+            return 10;
+          }
+          return prev + 1;
+        });
+      }, 1000);
     } else {
-      toast.error('Failed to access microphone');
+      toast.error('Failed to access microphone. Please check permissions.');
     }
   };
 
@@ -91,36 +108,51 @@ const Register = () => {
     const blob = await voiceCapture.current.stop();
     setVoiceBlob(blob);
     setIsRecordingVoice(false);
-    toast.success('Voice sample captured!');
+    toast.success('✅ Voice sample captured successfully!');
   };
 
-  // Keystroke Capture
+  // Keystroke Capture with better UX
   const startKeystrokeCapture = () => {
     keystrokeCapture.current.start();
     setIsCapturingKeystroke(true);
-    toast.success('Type the following phrase: "The quick brown fox jumps over the lazy dog"');
+    setTypedText('');
+    setCurrentKeystrokeSample(keystrokeData.length + 1);
+    toast.success(`⌨️ Sample ${keystrokeData.length + 1}/3: Type the phrase below`);
   };
 
   const stopKeystrokeCapture = () => {
     const features = keystrokeCapture.current.stop();
-    // Collect multiple samples
     setKeystrokeData(prev => [...prev, features]);
     setIsCapturingKeystroke(false);
-    toast.success(`Keystroke sample ${keystrokeData.length + 1} captured!`);
+    setTypedText('');
+    toast.success(`✅ Keystroke sample ${keystrokeData.length + 1}/3 captured!`);
   };
 
-  // Mouse Capture
+  // Mouse Capture with timer
   const startMouseCapture = () => {
     mouseCapture.current.start();
     setIsCapturingMouse(true);
-    toast.success('Move your mouse naturally for 10 seconds');
+    setMouseRecordingTime(0);
+    toast.success('🖱️ Move your mouse naturally in the area below');
+
+    // Auto-stop after 15 seconds
+    const timer = setInterval(() => {
+      setMouseRecordingTime(prev => {
+        if (prev >= 15) {
+          clearInterval(timer);
+          stopMouseCapture();
+          return 15;
+        }
+        return prev + 1;
+      });
+    }, 1000);
   };
 
   const stopMouseCapture = () => {
     const events = mouseCapture.current.stop();
     setMouseData(events);
     setIsCapturingMouse(false);
-    toast.success('Mouse pattern captured!');
+    toast.success(`✅ Mouse pattern captured! (${events.length} events recorded)`);
   };
 
   const handleSubmit = async (e) => {
@@ -330,88 +362,208 @@ const Register = () => {
             {/* Step 3: Biometric Enrollment */}
             {step === 3 && (
               <div className="space-y-6">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">Biometric Enrollment</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  Please provide biometric samples for continuous authentication during consultations.
-                </p>
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Biometric Enrollment</h3>
+                  <p className="text-sm text-gray-600">
+                    Complete all three biometric enrollments for secure continuous authentication
+                  </p>
+                </div>
 
                 {/* Voice Sample */}
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
+                <div className={`border-2 rounded-lg p-6 transition-all ${
+                  voiceBlob ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
+                }`}>
+                  <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center">
-                      <Mic className="h-5 w-5 text-primary-600 mr-2" />
-                      <h4 className="font-medium">Voice Sample</h4>
+                      <div className={`p-2 rounded-full ${voiceBlob ? 'bg-green-500' : 'bg-primary-600'}`}>
+                        <Mic className="h-5 w-5 text-white" />
+                      </div>
+                      <div className="ml-3">
+                        <h4 className="font-semibold text-gray-900">Voice Biometric</h4>
+                        <p className="text-xs text-gray-500">Record a 5-10 second voice sample</p>
+                      </div>
                     </div>
-                    {voiceBlob && <span className="text-green-600 text-sm">✓ Captured</span>}
+                    {voiceBlob && (
+                      <div className="flex items-center text-green-600">
+                        <CheckCircle className="h-5 w-5 mr-1" />
+                        <span className="text-sm font-medium">Complete</span>
+                      </div>
+                    )}
                   </div>
-                  <p className="text-sm text-gray-600 mb-3">Record your voice for 5-10 seconds</p>
+
+                  {isRecordingVoice && (
+                    <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-red-900">🎤 Recording in progress...</span>
+                        <span className="text-lg font-bold text-red-600">{voiceRecordingTime}s / 10s</span>
+                      </div>
+                      <div className="w-full bg-red-200 rounded-full h-2">
+                        <div
+                          className="bg-red-600 h-2 rounded-full transition-all duration-1000"
+                          style={{ width: `${(voiceRecordingTime / 10) * 100}%` }}
+                        ></div>
+                      </div>
+                      <p className="text-xs text-red-700 mt-2">
+                        💡 Speak clearly: "My name is [Your Name] and I am a medical professional"
+                      </p>
+                    </div>
+                  )}
+
                   <button
                     type="button"
                     onClick={isRecordingVoice ? stopVoiceRecording : startVoiceRecording}
-                    className={`w-full py-2 px-4 rounded-md text-sm font-medium ${
+                    disabled={voiceBlob && !isRecordingVoice}
+                    className={`w-full py-3 px-4 rounded-md text-sm font-medium transition-all ${
                       isRecordingVoice
-                        ? 'bg-red-600 hover:bg-red-700 text-white'
+                        ? 'bg-red-600 hover:bg-red-700 text-white animate-pulse'
+                        : voiceBlob
+                        ? 'bg-green-600 text-white cursor-not-allowed'
                         : 'bg-primary-600 hover:bg-primary-700 text-white'
                     }`}
                   >
-                    {isRecordingVoice ? 'Stop Recording' : 'Start Recording'}
+                    {isRecordingVoice ? '⏹️ Stop Recording' : voiceBlob ? '✅ Voice Captured' : '🎤 Start Voice Recording'}
                   </button>
                 </div>
 
                 {/* Keystroke Pattern */}
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
+                <div className={`border-2 rounded-lg p-6 transition-all ${
+                  keystrokeData.length >= 3 ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
+                }`}>
+                  <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center">
-                      <Keyboard className="h-5 w-5 text-primary-600 mr-2" />
-                      <h4 className="font-medium">Keystroke Pattern</h4>
+                      <div className={`p-2 rounded-full ${keystrokeData.length >= 3 ? 'bg-green-500' : 'bg-primary-600'}`}>
+                        <Keyboard className="h-5 w-5 text-white" />
+                      </div>
+                      <div className="ml-3">
+                        <h4 className="font-semibold text-gray-900">Keystroke Dynamics</h4>
+                        <p className="text-xs text-gray-500">Capture 3 typing samples</p>
+                      </div>
                     </div>
-                    <span className="text-sm text-gray-600">{keystrokeData.length}/3 samples</span>
+                    <div className="flex items-center">
+                      {keystrokeData.length >= 3 ? (
+                        <div className="flex items-center text-green-600">
+                          <CheckCircle className="h-5 w-5 mr-1" />
+                          <span className="text-sm font-medium">Complete</span>
+                        </div>
+                      ) : (
+                        <span className="text-sm font-medium text-gray-600">{keystrokeData.length}/3 samples</span>
+                      )}
+                    </div>
                   </div>
-                  <p className="text-sm text-gray-600 mb-3">Capture 3 typing samples</p>
+
                   {isCapturingKeystroke && (
-                    <textarea
-                      className="w-full p-2 border border-gray-300 rounded-md mb-2"
-                      rows="3"
-                      placeholder="Type here..."
-                      onKeyDown={(e) => keystrokeCapture.current.handleKeyDown(e)}
-                      onKeyUp={(e) => keystrokeCapture.current.handleKeyUp(e)}
-                    />
+                    <div className="mb-4">
+                      <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                        <p className="text-sm font-medium text-blue-900 mb-1">
+                          Sample {currentKeystrokeSample}/3: Type this phrase exactly:
+                        </p>
+                        <p className="text-sm font-mono text-blue-700 italic">
+                          "The quick brown fox jumps over the lazy dog"
+                        </p>
+                      </div>
+                      <textarea
+                        className="w-full p-3 border-2 border-primary-500 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        rows="3"
+                        placeholder="Start typing here..."
+                        value={typedText}
+                        onChange={(e) => setTypedText(e.target.value)}
+                        onKeyDown={(e) => keystrokeCapture.current.handleKeyDown(e)}
+                        onKeyUp={(e) => keystrokeCapture.current.handleKeyUp(e)}
+                        autoFocus
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Characters typed: {typedText.length}
+                      </p>
+                    </div>
                   )}
+
                   <button
                     type="button"
                     onClick={isCapturingKeystroke ? stopKeystrokeCapture : startKeystrokeCapture}
-                    disabled={keystrokeData.length >= 3}
-                    className="w-full py-2 px-4 rounded-md text-sm font-medium bg-primary-600 hover:bg-primary-700 text-white disabled:opacity-50"
+                    disabled={keystrokeData.length >= 3 && !isCapturingKeystroke}
+                    className={`w-full py-3 px-4 rounded-md text-sm font-medium transition-all ${
+                      keystrokeData.length >= 3
+                        ? 'bg-green-600 text-white cursor-not-allowed'
+                        : 'bg-primary-600 hover:bg-primary-700 text-white'
+                    }`}
                   >
-                    {isCapturingKeystroke ? 'Stop Capture' : 'Start Capture'}
+                    {isCapturingKeystroke
+                      ? '✅ Complete Sample'
+                      : keystrokeData.length >= 3
+                      ? '✅ All Samples Captured'
+                      : `⌨️ Capture Sample ${keystrokeData.length + 1}/3`
+                    }
                   </button>
                 </div>
 
                 {/* Mouse Pattern */}
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
+                <div className={`border-2 rounded-lg p-6 transition-all ${
+                  mouseData.length > 0 ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
+                }`}>
+                  <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center">
-                      <Mouse className="h-5 w-5 text-primary-600 mr-2" />
-                      <h4 className="font-medium">Mouse Movement Pattern</h4>
+                      <div className={`p-2 rounded-full ${mouseData.length > 0 ? 'bg-green-500' : 'bg-primary-600'}`}>
+                        <Mouse className="h-5 w-5 text-white" />
+                      </div>
+                      <div className="ml-3">
+                        <h4 className="font-semibold text-gray-900">Mouse Movement Pattern</h4>
+                        <p className="text-xs text-gray-500">Record natural mouse movements</p>
+                      </div>
                     </div>
-                    {mouseData.length > 0 && <span className="text-green-600 text-sm">✓ Captured</span>}
+                    {mouseData.length > 0 && (
+                      <div className="flex items-center text-green-600">
+                        <CheckCircle className="h-5 w-5 mr-1" />
+                        <span className="text-sm font-medium">Complete ({mouseData.length} events)</span>
+                      </div>
+                    )}
                   </div>
-                  <p className="text-sm text-gray-600 mb-3">Move your mouse naturally for 10 seconds</p>
+
                   {isCapturingMouse && (
-                    <div
-                      className="w-full h-32 bg-gray-100 rounded-md mb-2 cursor-crosshair"
-                      onMouseMove={(e) => mouseCapture.current.handleMouseMove(e)}
-                      onClick={(e) => mouseCapture.current.handleMouseClick(e)}
-                    >
-                      <p className="text-center pt-12 text-gray-500">Move your mouse here</p>
+                    <div className="mb-4">
+                      <div className="mb-2 p-3 bg-purple-50 border border-purple-200 rounded-md">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-purple-900">🖱️ Recording mouse movements...</span>
+                          <span className="text-lg font-bold text-purple-600">{mouseRecordingTime}s / 15s</span>
+                        </div>
+                        <div className="w-full bg-purple-200 rounded-full h-2 mt-2">
+                          <div
+                            className="bg-purple-600 h-2 rounded-full transition-all duration-1000"
+                            style={{ width: `${(mouseRecordingTime / 15) * 100}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                      <div
+                        className="w-full h-48 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg border-2 border-dashed border-purple-300 cursor-crosshair relative overflow-hidden"
+                        onMouseMove={(e) => mouseCapture.current.handleMouseMove(e)}
+                        onClick={(e) => mouseCapture.current.handleMouseClick(e)}
+                      >
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="text-center">
+                            <Mouse className="h-12 w-12 text-purple-400 mx-auto mb-2 animate-bounce" />
+                            <p className="text-sm text-purple-600 font-medium">Move your mouse naturally</p>
+                            <p className="text-xs text-purple-500">Click, drag, and move around</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   )}
+
                   <button
                     type="button"
                     onClick={isCapturingMouse ? stopMouseCapture : startMouseCapture}
-                    className="w-full py-2 px-4 rounded-md text-sm font-medium bg-primary-600 hover:bg-primary-700 text-white"
+                    disabled={mouseData.length > 0 && !isCapturingMouse}
+                    className={`w-full py-3 px-4 rounded-md text-sm font-medium transition-all ${
+                      mouseData.length > 0
+                        ? 'bg-green-600 text-white cursor-not-allowed'
+                        : 'bg-primary-600 hover:bg-primary-700 text-white'
+                    }`}
                   >
-                    {isCapturingMouse ? 'Stop Capture' : 'Start Capture'}
+                    {isCapturingMouse
+                      ? '⏹️ Stop Recording'
+                      : mouseData.length > 0
+                      ? '✅ Mouse Pattern Captured'
+                      : '🖱️ Start Mouse Recording'
+                    }
                   </button>
                 </div>
 

@@ -99,26 +99,76 @@ async def health_check():
 async def enroll_speaker(request: EnrollmentRequest):
     """
     Enroll a new speaker with multiple audio samples
-    
+
     - **speaker_id**: Unique identifier (e.g., doctor ID)
     - **audio_files**: List of paths to enrollment audio files (minimum 3)
     """
     try:
         if verification_engine is None:
             raise HTTPException(status_code=503, detail="Verification engine not initialized")
-        
+
         result = verification_engine.enroll_speaker(
             speaker_id=request.speaker_id,
             audio_samples=request.audio_files
         )
-        
+
         logger.info(f"Speaker {request.speaker_id} enrolled successfully")
-        
+
         return EnrollmentResponse(
             **result,
             message="Speaker enrolled successfully"
         )
-        
+
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Enrollment error: {e}")
+        raise HTTPException(status_code=500, detail=f"Enrollment failed: {str(e)}")
+
+
+@app.post("/api/v1/enroll/upload")
+async def enroll_speaker_upload(
+    speaker_id: str = Form(...),
+    audio_file: UploadFile = File(...)
+):
+    """
+    Enroll a new speaker with a single uploaded audio file
+
+    - **speaker_id**: Unique identifier (e.g., doctor ID)
+    - **audio_file**: Audio file upload (WAV format recommended)
+    """
+    import tempfile
+    import os
+
+    try:
+        if verification_engine is None:
+            raise HTTPException(status_code=503, detail="Verification engine not initialized")
+
+        # Save uploaded file temporarily
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.wav') as temp_file:
+            content = await audio_file.read()
+            temp_file.write(content)
+            temp_path = temp_file.name
+
+        try:
+            # Enroll with single audio file (will be split into segments)
+            result = verification_engine.enroll_speaker(
+                speaker_id=speaker_id,
+                audio_samples=[temp_path]
+            )
+
+            logger.info(f"Speaker {speaker_id} enrolled successfully via upload")
+
+            return {
+                **result,
+                "message": "Speaker enrolled successfully"
+            }
+
+        finally:
+            # Clean up temporary file
+            if os.path.exists(temp_path):
+                os.unlink(temp_path)
+
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:

@@ -118,14 +118,14 @@ anomaly_detection:
 
 # Enrollment Configuration
 enrollment:
-  min_samples: 50  # Reduced from 100 to handle users with fewer samples
+  min_samples: 1  # Minimum samples for enrollment (single session with multiple events)
   max_samples: 1000  # Maximum events to store
   enrollment_sessions: 3  # Number of sessions for robust enrollment
-  
+
   # Few-shot learning
   few_shot_enabled: true
-  min_few_shot_samples: 50
-  
+  min_few_shot_samples: 1  # Reduced to match min_samples
+
   # Template update
   adaptive_templates: true
   template_update_rate: 0.05  # Weight for new samples

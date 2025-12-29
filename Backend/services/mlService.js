@@ -17,7 +17,7 @@ class MLService {
       formData.append('speaker_id', userId);
 
       const response = await axios.post(
-        `${this.voiceApiUrl}/api/v1/enroll`,
+        `${this.voiceApiUrl}/api/v1/enroll/upload`,
         formData,
         {
           headers: formData.getHeaders(),
