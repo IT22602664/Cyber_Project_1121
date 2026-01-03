@@ -1,0 +1,15 @@
+
+# Ignore other project modules (keep locally, don't push)
+Documentations/
+Keystroke Dynamics/
+Mouse Movement Analysis/
+Voiceprint Analysis/
+
+# Common junk
+**/__pycache__/
+**/*.pyc
+**/venv/
+**/.env
+**/logs/
+**/temp/
+**/evaluation_results/
