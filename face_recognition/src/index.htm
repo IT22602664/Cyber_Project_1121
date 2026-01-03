@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Face Verification</h1>
+        <div class="input-group">
+            <label for="image1">Upload Image 1:</label>
+            <input type="file" id="image1" accept="image/*">
+        </div>
+        <div class="input-group">
+            <label for="image2">Upload Image 2:</label>
+            <input type="file" id="image2" accept="image/*">
+        </div>
+        <button id="verifyButton">Verify</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const verifyButton = document.getElementById('verifyButton');
+        const resultDiv = document.getElementById('result');
+
+        verifyButton.addEventListener('click', async () => {
+            const image1 = document.getElementById('image1').files[0];
+            const image2 = document.getElementById('image2').files[0];
+
+            if (!image1 || !image2) {
+                resultDiv.textContent = 'Please upload both images.';
+                return;
+            }
+
+            try {
+                const base64Image1 = await toBase64(image1);
+                const base64Image2 = await toBase64(image2);
+
+                const response = await fetch('http://localhost:8000/verify-images', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        image1: base64Image1,
+                        image2: base64Image2
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.textContent = `Verification Result: ${data.verified ? 'Match' : 'No Match'} (Similarity: ${data.similarity.toFixed(4)})`;
+                } else {
+                    const error = await response.json();
+                    resultDiv.textContent = `Error: ${error.detail}`;
+                }
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+            }
+        });
+
+        function toBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+    </script>
+</body>
+</html>
