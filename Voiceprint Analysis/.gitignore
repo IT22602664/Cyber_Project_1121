@@ -1,0 +1,20 @@
+# Never commit dataset
+Voice dataset - senath/
+
+# Environments & caches
+venv/
+__pycache__/
+*.pyc
+
+# Logs & temp
+logs/
+temp/
+evaluation_results/
+
+# Local outputs
+test_output.txt
+test_results.txt
+evaluation_results.json
+
+# Secrets
+.env
