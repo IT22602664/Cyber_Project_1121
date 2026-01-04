@@ -3,7 +3,11 @@
 Documentations/
 Keystroke Dynamics/
 Mouse Movement Analysis/
+<<<<<<< HEAD
 
+=======
+#Voiceprint Analysis
+>>>>>>> origin/main
 
 # Common junk
 **/__pycache__/
