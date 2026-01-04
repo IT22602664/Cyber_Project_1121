@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test Data
+test_dataset/
+test_images/
+
+# Logs
+*.log
+logs/
+
+# Development/Testing Scripts (optional - uncomment if not needed in repo)
+# test.py
+# evaluate_accuracy.py
+
+# Model checkpoints (uncomment if models are too large for git)
+# models/*.pth
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/

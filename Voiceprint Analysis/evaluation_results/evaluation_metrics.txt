@@ -1,0 +1,25 @@
+======================================================================
+MODEL EVALUATION RESULTS
+======================================================================
+
+Dataset: VoxCeleb
+Verification Pairs: 499
+Genuine Pairs: 250
+Impostor Pairs: 249
+
+PRIMARY METRICS:
+  Accuracy:  98.80%
+  Precision: 99.19%
+  Recall:    98.40%
+  F1-Score:  98.80%
+
+SECURITY METRICS:
+  EER:     0.80%
+  FAR:     0.80%
+  FRR:     1.60%
+  ROC AUC: 0.9999
+
+CONFUSION MATRIX:
+  TP: 246, TN: 247, FP: 2, FN: 4
+
+Optimal Threshold: 0.2979
