@@ -1,9 +1,9 @@
 
 # Ignore other project modules (keep locally, don't push)
 Documentations/
-Keystroke Dynamics/
-Mouse Movement Analysis/
-#Voiceprint Analysis
+# Keystroke Dynamics/
+# Mouse Movement Analysis/
+# Voiceprint Analysis
 
 # Common junk
 **/__pycache__/
